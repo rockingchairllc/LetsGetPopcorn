@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="shortcut icon" href="images/favicon.png" />
+</head>
+<body class="login_page">
+
+		<!-- login_popcorn.png - 274x357 -->
+        <div class="login">
+        	<h1>Start browsing for your perfect movie date now!</h1>
+            
+            <form class="login_search">
+            	<fieldset>
+                	
+                    I am 
+                    <select>
+                    	<option>A Girl</option>
+                        <option>A Guy</option>
+                    </select>
+                    <br />
+                    
+                    interested in having popcorn <br />
+                    with
+                    
+                    <select>
+                    	<option>A Guy</option>
+                        <option>A Girl</option>
+                        <option>Any</option>
+                    </select>
+                    <br />
+                    
+                    <button type="button">Search</button>
+                    
+                </fieldset>
+            </form>
+            <% if user_signed_in? %>
+              <form class='login_options'>
+                Signed in as <%= current_user.first_name %>. Not you?
+                  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+              </form>
+            <% else %>
+            <%= form_for("user", :url => user_session_path, :html=>{:class=>'login_options'}) do |f| %>
+            
+            	<fieldset>
+                
+                <!-- facebook JSSDK login to generate button -->
+                    <div class="fb_login">
+                        <div id="fb-root"></div>
+                        <script>
+                          window.fbAsyncInit = function() {
+                            FB.init({
+                              appId      : 'YOUR_APP_ID',
+                              status     : true, 
+                              cookie     : true,
+                              xfbml      : true
+                            });
+                          };
+                          (function(d){
+                             var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+                             js = d.createElement('script'); js.id = id; js.async = true;
+                             js.src = "//connect.facebook.net/en_US/all.js";
+                             d.getElementsByTagName('head')[0].appendChild(js);
+                           }(document));
+                        </script>
+                        <fb:login-button size="medium" scope="email">Login with Facebook</fb:login-button> 
+                    </div><!-- .fb_login -->
+                    
+                    or<br />
+                    
+                    
+                    
+        						  
+        									 <%= f.text_field :username, :onFocus=>"if(this.value=='username')this.value='';", :onBlur=>"if (this.value == '') this.value = 'username';", :value=>'username' %>
+        							
+        									 <%= f.password_field :password, :onFocus=>"if(this.value=='password')this.value='';", :onBlur=>"if (this.value == '') this.value = 'password';", :value=>'password' %>
+        							
+        							
+        								<%= f.submit 'SIGN IN', :class => 'input-submit' %>
+
+        						
+                
+                </fieldset>
+            <% end %>
+            <% end %>
+            
+            

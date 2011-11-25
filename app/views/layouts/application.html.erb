@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Account</title>
+  <%= stylesheet_link_tag :all %>
+  <link rel="shortcut icon" href="images/favicon.png" />
+  <%= javascript_include_tag 'jquery-1.6.2.min.js' %>
+  <script>
+  function showtimes() {
+  	$('.showtimes_wrapper').toggle();
+  }
+  $(function() {
+  	$('.select_showtime_modal_overlay').click( function () {
+  		$('.showtimes_wrapper').toggle();
+  	});
+  });
+  $(function() {
+  $('td').click( function () {
+  		$(this).css( {'color':'#fff', 'background':'#a80202'} );
+  	});
+  });
+  </script>
+</head>
+  <body class="account">
+  
+    <!-- Model and Overlay -->
+        <div class="showtimes_wrapper">
+            <div class="select_showtime_modal_overlay"></div>
+            
+            <div class="select_showtime_modal">
+                <h2>Select Showtimes</h2>
+                <h3>My Theaters: </h3>
+                <ul class="my_theaters">
+                    <li>AMC East Kips Bay, </li>
+                    <li>AMC West, </li>
+                    <li>Loews Uptown. </li>
+                    <li><a href="#">Change...</a></li>
+                </ul><!-- .my_theaters -->
+                
+                <table class="showtimes">
+                    <tr>
+                        <th>Today</th>
+                        <td>noon</td>
+                        <td>1:15p</td>
+                        <td>3:00p</td>
+                        <td>5:30p</td>
+                        <td>7:30p</td>
+                        <td>10pm</td>
+                        <td>11:30p</td>
+                    </tr>
+                    <tr>
+                        <th>Tomorrow</th>
+                        <td>noon</td>
+                        <td>1:15p</td>
+                        <td>3:00p</td>
+                        <td>5:30p</td>
+                        <td>7:30p</td>
+                        <td>10pm</td>
+                        <td>11:30p</td>
+                    </tr>
+                    <tr>
+                        <th>Wednesday</th>
+                        <td>noon</td>
+                        <td>1:15p</td>
+                        <td>3:00p</td>
+                        <td>5:30p</td>
+                        <td>7:30p</td>
+                        <td>10pm</td>
+                        <td>11:30p</td>
+                    </tr>
+                    <tr>
+                        <th>Thursday</th>
+                        <td>noon</td>
+                        <td>1:15p</td>
+                        <td>3:00p</td>
+                        <td>5:30p</td>
+                        <td>7:30p</td>
+                        <td>10pm</td>
+                        <td>11:30p</td>
+                    </tr>
+                    <tr>
+                        <th>Friday</th>
+                        <td>noon</td>
+                        <td>1:15p</td>
+                        <td>3:00p</td>
+                        <td>5:30p</td>
+                        <td>7:30p</td>
+                        <td>10pm</td>
+                        <td>11:30p</td>
+                    </tr>
+                    <tr>
+                        <th>Saturday</th>
+                        <td>noon</td>
+                        <td>1:15p</td>
+                        <td>3:00p</td>
+                        <td>5:30p</td>
+                        <td>7:30p</td>
+                        <td>10pm</td>
+                        <td>11:30p</td>
+                    </tr>
+                    <tr>
+                        <th>Sunday</th>
+                        <td>noon</td>
+                        <td>1:15p</td>
+                        <td>3:00p</td>
+                        <td>5:30p</td>
+                        <td>7:30p</td>
+                        <td>10pm</td>
+                        <td>11:30p</td>
+                    </tr>
+                </table>
+				<button type="button" class="modal_cancel" onClick="showtimes()">x</button>
+            </div><!-- .select_time_modal -->
+        </div><!-- showtimes_wrapper -->
+        <!-- END modal overlay -->
+    
+
+	 <div class="wrapper">
+           
+    	<div class="header">
+        	<div class="logo"></div>
+            <h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.first_name %> <%= current_user.last_name %> <% else %> <% end %></h1>
+            <ul class="nav">
+            	<li><a href="javascript:void(0)">matches</a></li>
+                <li><a href="/movies" <% if @title == 'movies' %> class="active_button" <% end %>>movies</a></li>
+                <li><a href="/user/account" <% if @title == 'account' %> class="active_button" <% end %> >account</a></li>
+            </ul><!-- .nav -->
+            
+            <!-- clear the float -->
+            <div class="clearfloat"></div>
+        </div><!-- .header -->
+
+          <%= yield %>
+
+    <!-- clear the float -->
+    <div class="clearfloat"></div>
+    </div><!-- wrapper -->
+  </body>
+</html>
