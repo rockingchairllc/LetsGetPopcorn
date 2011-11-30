@@ -1,6 +1,6 @@
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   
-  provider :facebook,'224567324265745', '29b03854dfc3afd54cce2af7ceed95d0',{:scope => 'publish_stream,offline_access,email'}
+  provider :facebook,'146261058813526', '59252c9bf43e22a8bdff70f5e030cd84',{:scope => 'publish_stream,offline_access,email'}
     
 end
