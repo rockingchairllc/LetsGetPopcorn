@@ -45,8 +45,7 @@ Moviewithme::Application.configure do
       :address              => 'smtp.gmail.com',
       :port                 => 587,
       :domain               => 'imap.gmail.com',
-      :user_name            => 'amol@kunalinfotech.net',
-      :password             => 'amol123',
+      
       :authentication       => 'login',
       :enable_starttls_auto => true
     }
