@@ -34,8 +34,23 @@ Moviewithme::Application.configure do
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
-  # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = true
+  
+  # set delivery method to :smtp, :sendmail or :test
+  config.action_mailer.delivery_method = :smtp
+
+  # these options are only needed if you choose smtp delivery
+  config.action_mailer.smtp_settings = {
+      :address              => 'smtp.gmail.com',
+      :port                 => 587,
+      :domain               => 'imap.gmail.com',
+      :user_name            => 'amol@kunalinfotech.net',
+      :password             => 'amol123',
+      :authentication       => 'login',
+      :enable_starttls_auto => true
+    }
+    
 
   # Enable threaded mode
   # config.threadsafe!
