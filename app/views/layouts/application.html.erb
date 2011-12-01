@@ -5,7 +5,7 @@
 <title> Movie with me</title>
   <%= stylesheet_link_tag :all %>
   <link rel="shortcut icon" href="images/favicon.png" />
-  <%= javascript_include_tag 'jquery-1.6.2.min.js' %>
+  <%= javascript_include_tag 'jquery-1.6.2.min.js', 'jquery.validate.min', 'application' %>
   <script>
   function showtimes() {
   	$('.showtimes_wrapper').toggle();
@@ -135,6 +135,17 @@
 
     <!-- clear the float -->
     <div class="clearfloat"></div>
+    
+    <ul class="footer_links">
+    	<li><a href="javascript:void(0)">Footer Link</a></li>
+        <li>|</li>
+    	<li><a href="/movies">Movies</a></li>
+        <li>|</li>
+        <li><a href="/user/account">Account</a></li>
+        <li>|</li>
+        <li><a href="javascript:void(0)">Footer Link</a></li>
+    </ul><!-- .footer_links -->
+    
     </div><!-- wrapper -->
   </body>
 </html>

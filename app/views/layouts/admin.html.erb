@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	  <title>Admin: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag  'admin' %>
+  <%= javascript_include_tag "tiny_mce/tiny_mce" %>
+  
+  
+  
+
+	<script type="text/javascript">
+
+     tinyMCE.init({  theme:"advanced",
+					mode:"textareas",
+    				editor_selector : "tiny_mce"
+    			});
+   </script>
+</head>
+
+<body>
+	<div id="header">
+		<div id="logo">
+			<%= image_tag  "/images/admin/" %>&nbsp; <span style="color:#fff; font-size:34px;">Admin Panel</span>
+		</div>
+		<div id="nav">
+			<ul class="tabs">
+				
+				<li><% if controller.controller_name == 'pages' %> <%= link_to "Pages", admin_pages_path, :class=>"active" %> <% else %> <%= link_to "Pages", admin_pages_path %> <% end %></li>
+				<li><% if controller.controller_name == 'contacts' %> <%= link_to "contacts", admin_contacts_path, :class=>"active" %> <% else %> <%= link_to "contacts", admin_contacts_path %> <% end %></li>  
+			
+	    <li>
+					<% if admin_signed_in? %> 
+						<%= link_to "Sign out", destroy_admin_session_path %> 
+					<% else %> 
+						<%= link_to "sign in", new_admin_session_path %> &nbsp; 
+					<% end %>
+			</li>	
+			</ul>
+		</div>
+		</div>
+
+	<div id='container'>
+		<div id="main">
+			<p style="color: green"><%= flash[:notice] %></p>
+	
+  			<%= yield %>
+  		</div>
+	</div>
+	
+	<div id="footer">
+      <div id="footer_logo">
+            <div id="powered_by">
+            	Powered by <a target="_blank" href="http://www.kunalinfotech.net" style="color:#FFFFFF;">Kunalinfotech Pvt Ltd</a>
+        	</div>
+      </div>
+    </div>
+
+</body>
+</html>

@@ -555,3 +555,7 @@ ul.profile_pics {
 #pp3 {margin-top: 38px;}
 #pp4 {margin-top: 32px;}
 #pp5 {margin-top: 27px; margin-right: 0px;}
+
+.error { color: #FE1717; font: 12px "Trebuchet MS",Arial,Helvetica,sans-serif,sans-serif;}
+#notice { background-color: #FFF1AB; border: 1px solid #999999; font-size: 12px; margin-right: 17px; margin-top: 3px; padding: 2px; text-align: center; width: 250px; }
+.join-btn-div {margin-top: 147px; position: absolute; right: 141px; text-transform: uppercase; top: 50%;}

@@ -29,7 +29,11 @@
 or<br />
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :login %><br />
+  <% if !flash.empty? %>
+     <div id="notice"><%= alert %><%= notice %></div>
+    <% end %>
+    
+  <p><%= f.label :username %><br />
   <%= f.text_field :login %></p>
 
   <p><%= f.label :password %><br />

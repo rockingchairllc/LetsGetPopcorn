@@ -1,0 +1,44 @@
+
+
+  <div id="content">
+
+	<% form_for [:admin, @page],:html => { :multipart => true } do |f| %>
+	
+	
+	  
+	  <%- @page.errors.full_messages.each do |message| -%>
+	   <div class="errorExplanation"> <p><%= message %></p></div>
+	  <%- end -%>
+	   
+	  
+	  <div id="breadcrumb">
+	  	   <%= link_to "Pages", admin_pages_path %> &raquo; New
+	  </div>
+	 
+	  <p>
+	    <%= f.label :title %>
+	    <%= f.text_field :title, :class => 'text' %>
+	  </p>
+	  
+	 	     
+	  <p>
+	    <%= f.label :body %>
+	    <%= f.text_area :body, :class => 'tiny_mce' %>
+	  </p>
+	  <p>
+	    <%= f.label :keyword %>
+	    <%= f.text_field :keyword, :class => 'text' %>
+	  </p>
+	
+	  <p>
+		<%= f.label :meta_description %>
+	    <%= f.text_area :meta_description, :class => 'tiny_mce' %>
+		
+	  </p>
+	  
+	 <%= render :partial =>"button" %>
+	
+	<% end %>
+
+
+</div>
