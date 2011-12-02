@@ -3,7 +3,7 @@
       <div class="article profile">
       	<h2 class="headshots">Edit Photo </h2><br>
 
-	      <% form_for [:user, @album],:html => { :multipart => true, :class=>'form' } do |f| %>
+	      <% form_for [:user, @album],:html => { :multipart => true, :class=>'form', :id=>'edit_photo' } do |f| %>
 	        
 	        <%- @album.errors.full_messages.each do |message| -%>
 	          <div class="errorExplanation"> <p><%= message %></p></div>

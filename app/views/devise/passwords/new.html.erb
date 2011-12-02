@@ -3,7 +3,7 @@
         	
             <h2 class="headshots">Forgot your password?</h2><br>
 
-            <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class=>'form' }) do |f| %>
+            <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class=>'form',:id=>'forg_pass' }) do |f| %>
               <%= devise_error_messages! %>
 
               <p class="text_box">*<%= f.label :email %></p>
