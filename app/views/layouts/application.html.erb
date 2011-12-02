@@ -148,6 +148,15 @@
         <li><a href="/pages/faq">FAQ</a></li>
         <li>|</li>
         <li><a href="/contact">Contact</a></li>
+        <% if user_signed_in? %>
+          <li>|</li>
+          <li>
+          <form class='login_options'>
+            
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+          </form>
+        <% end %>
+         </li>
     </ul><!-- .footer_links -->
     
     </div><!-- wrapper -->
