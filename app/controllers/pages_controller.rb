@@ -11,6 +11,8 @@ class PagesController < ApplicationController
   
   #  For Contact-us 
   def contact
+    @subject = Subject.all
+    
     if request.post? and params[:reset_password]
             if contact = Contact.new(params[:reset_password])
 

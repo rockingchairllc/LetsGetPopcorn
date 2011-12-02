@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111202102038) do
+ActiveRecord::Schema.define(:version => 20111202105130) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -55,6 +55,11 @@ ActiveRecord::Schema.define(:version => 20111202102038) do
     t.datetime "updated_at"
   end
 
+  create_table "emailers", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.string   "keyword"
@@ -75,6 +80,12 @@ ActiveRecord::Schema.define(:version => 20111202102038) do
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "subjects", :force => true do |t|
+    t.string   "subject_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tiny_prints", :force => true do |t|
     t.string   "image_file_name"

@@ -14,7 +14,8 @@
         <div class="clearfloat"></div>
         
         <p class="text_box">*<label for="subject">Subject:</label></p>
-        <p class="text_box1"><%= form.text_field :subject %></p>
+        <p class="text_box1"><%= select("reset_password", "subject", @subject.collect {|c|[c.subject_name]},{:include_blank => 'Select Subject'} ) %></p>
+        
         <div class="clearfloat"></div>
         
         <p class="text_box">*<label for="comments">Message:</label></p>
