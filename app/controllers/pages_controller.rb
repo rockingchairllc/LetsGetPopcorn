@@ -4,4 +4,8 @@ class PagesController < ApplicationController
     @title = 'movies'
   end
   
+  def show
+    @page = Page.find(params[:id])
+  end
+  
 end

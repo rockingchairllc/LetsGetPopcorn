@@ -366,6 +366,12 @@ Main Pages (non-login)
 
 .section {float: left;}
 .search_filter {
+	width: 820px; 
+	margin-left: 110px; 
+	padding: 20px 0 0 30px; 
+	background: #a5c8ff;
+}
+.search_filternew {
 	width: 580px; 
 	margin-left: 110px; 
 	padding: 20px 0 0 30px; 
@@ -611,3 +617,7 @@ p.forgot {
 	line-height:17px;
 }
 
+.headshot_question {
+    color: #FF0000;
+    font-size: 1.1em;
+}

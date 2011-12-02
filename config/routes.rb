@@ -8,6 +8,7 @@ Moviewithme::Application.routes.draw do |map|
 
   map.connect '/movies', :controller=>'pages', :action=>'movies'
   match '/auth/:provider/callback' => 'authentications#create'
+  map.connect '/pages/:id', :controller=>'pages', :action=>'show'
   root :to => "home#index"
   
   # User
