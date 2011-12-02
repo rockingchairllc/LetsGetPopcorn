@@ -236,8 +236,9 @@ form.login_search button {
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
+	cursor: pointer;
 }
-form.login_options input {width: 152px;}
+form.login_options input {width: 152px; cursor: pointer;}
 /* Footer Links */
 .footer_links {
 	position: absolute;
