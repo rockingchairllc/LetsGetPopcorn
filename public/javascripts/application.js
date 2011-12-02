@@ -98,3 +98,47 @@ jQuery(document).ready(function() {
 	});
 });
 
+
+
+$(document).ready(function() {
+  $("#contactform").validate({
+	errorElement:'div',
+	rules: {
+		"reset_password[name]":{
+					                  required: true,
+                        			character:true,
+     					              maxlength:49
+			},
+		
+		"reset_password[email]":{
+						required:true,
+						email:true
+		},
+		
+		"reset_password[message]":{
+						required:true,
+							minlength:10,
+						maxlength:499
+		}
+		},
+	messages: {
+		"reset_password[name]":{
+			required: "Please enter name",
+                        character: "Please enter only character",
+			                  maxlength:jQuery.format("do not enter more than 50 charecter")
+			},
+		
+		"reset_password[email]":{
+						            required: "Please enter email address",
+						            email: "Please enter valid email id"
+						
+		},
+		"reset_password[message]":{
+						            required: "Please enter message",
+						            minlength:jQuery.format("Please enter at least 10 characters."),
+						            maxlength:jQuery.format("Can not exceed 500 characters")
+		}
+		}
+	});
+});
+

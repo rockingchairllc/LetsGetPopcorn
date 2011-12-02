@@ -1,0 +1,39 @@
+  <div class="section"> 
+      <div class="article profile">
+      	<h2 class="headshots">Conatct Us </h2><br>
+            
+        
+      <% form_for :reset_password, :html=>{:class=>'form', :id=>'contactform'} do |form| %> 
+        
+        <p class="text_box">*<label for="name">Name:</label></p>
+        <p class="text_box1"><%= form.text_field :name %></p>
+        <div class="clearfloat"></div>
+        
+        <p class="text_box">*<label for="email">Email:</label></p>
+        <p class="text_box1"><%= form.text_field :email %></p>
+        <div class="clearfloat"></div>
+        
+        <p class="text_box">*<label for="subject">Subject:</label></p>
+        <p class="text_box1"><%= form.text_field :subject %></p>
+        <div class="clearfloat"></div>
+        
+        <p class="text_box">*<label for="comments">Message:</label></p>
+        <p class="text_box1"><%= form.text_area :message, :rows => 4, :cols => 34 %></p>
+        <div class="clearfloat"></div>
+        
+        <p style="margin:10px 0 0 160px;"><%= submit_tag 'Send', :class=>'input-submit' %></p>
+        <% end %>
+        
+      
+        </div><!-- article -->
+        <!-- END Aritcle -->
+    </div><!-- .section -->
+  
+ 
+
+  
+    
+  
+ 
+          
+
