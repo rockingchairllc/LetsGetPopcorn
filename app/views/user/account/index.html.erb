@@ -38,16 +38,35 @@
         
         
         <h3>The Synopsis</h3>
-        You hae 30 seconds to pitch!
-        <button type="button">Edit</button>
+        
+      
+        <% if @synopse.nil? %>
+       	    <button type="button" onClick="javascript:document.location.href ='/user/synopses/new'">Add</button>
+       	<% else %>
+       	    <%= @synopse.title %>
+       	    <button type="button" onClick="javascript:document.location.href ='/user/synopses/<%= @synopse.id %>/edit'">Edit</button>
+       	<% end %>
         
         <h3>Favorite movie of all time</h3>
-        'Eternal Sunshine for a Spotless Mind'
-        <button type="button">Edit</button>
+        
+        
+         <% if @favmovie.nil? %>
+              <button type="button" onClick="javascript:document.location.href ='/user/favmovies/new'">Add</button>
+         	<% else %>
+         	    '<%= @favmovie.title %>'
+         	    <button type="button" onClick="javascript:document.location.href ='/user/favmovies/<%= @favmovie.id %>/edit'">Edit</button>
+         	<% end %>
         
         <h3>Funny Question</h3>
-        'Which celebrity would you most like to be stuck in an elevator with?
-        <button type="button">Edit</button>
+       
+        
+        <% if @funnyque.nil? %>
+       	    <button type="button" onClick="javascript:document.location.href ='/user/funnyques/new'">Add</button>
+       	<% else %>
+       	    <%= @funnyque.title %>
+       	    <button type="button" onClick="javascript:document.location.href ='/user/funnyques/<%= @funnyque.id %>/edit'">Edit</button>
+       	<% end %>
+        
         
     </div><!-- article -->
     <!-- END Aritcle -->

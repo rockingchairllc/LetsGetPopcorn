@@ -1,0 +1,24 @@
+<div class="section"> 
+  <div class="article profile">
+  	<h2 class="headshots">Add Synopsis </h2><br>
+
+    <% form_for [:user, @synopsis],:html => { :class=>'form', :id=>'add_photo' } do |f| %>
+      
+      <%- @synopsis.errors.full_messages.each do |message| -%>
+        <div class="errorExplanation"> <p><%= message %></p></div>
+      <%- end -%>
+ 
+      <p class="text_box"> <%= f.label :title %></p>
+      <p class="text_box1"> <%= f.text_area :title %></p>
+      <div class="clearfloat"></div>
+      
+
+      <p class="button" style="margin:10px 0 0 188px;"> <button type="submit"> Save </button>
+	      <button type="submit" onclick="javascript:history.back()" > Cancel </button> 
+	    </p>
+
+    <% end %>
+
+    </div><!-- article -->
+    <!-- END Aritcle -->
+</div><!-- .section -->

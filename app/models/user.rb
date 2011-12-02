@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   
   has_many :authentications
   has_many :albums
+  has_many :favmovies
+  has_many :funnyques
+  has_many :synopses
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable, :confirmable and :activatable
