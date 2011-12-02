@@ -14,4 +14,18 @@ class User::AlbumsController < ApplicationController
     end
   end
   
+  def edit
+    @album = current_user.albums.find(params[:id])
+  end
+
+  def update
+    @album = current_user.albums.find(params[:id])
+    if @album.update_attributes(params[:album])
+      flash[:notice] = "Album saved successfully"
+      redirect_to("/user/account")
+    else
+      render :edit
+    end
+  end
+  
 end

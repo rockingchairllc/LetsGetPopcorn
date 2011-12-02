@@ -28,7 +28,8 @@
         <h3>The highlight reel</h3>
         <ul class="profile_pics">
           <% @albums.each do |album| %>
-      	      <li id="pp1"><a href="javascript:void(0)"><%= image_tag album.photo.url(:thumb) %></a></li>
+      	      <li id="pp1"><%= link_to image_tag(album.photo.url(:thumb)), edit_user_album_path(album) %></li>
+      	      
       	  <% end %>
       	
         	

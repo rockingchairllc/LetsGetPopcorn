@@ -44,6 +44,18 @@ input[type=password]:focus {
 	-moz-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, .3);
 	box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, .3);
 }
+input[type=email] {
+	padding: 5px;
+	border: 2px inset #a5c8ff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;	
+}
+input[type=email]:focus {
+	-webkit-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, .3);
+	-moz-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, .3);
+	box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, .3);
+}
 
 button {
 	padding: 5px;
@@ -578,7 +590,14 @@ ul.profile_pics {
 
 .form p.text_box {
 	float:left;
-	width:160px;
+	width:145px;
+	font-size:14px;
+	margin:10px 0 0 0;
+}
+
+.form p.text_box1 {
+	float:left;
+	width:221px;
 	font-size:14px;
 	margin:10px 0 0 0;
 }

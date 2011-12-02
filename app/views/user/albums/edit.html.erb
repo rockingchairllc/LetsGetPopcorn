@@ -1,0 +1,29 @@
+
+  <div class="section"> 
+      <div class="article profile">
+      	<h2 class="headshots">Edit Photo </h2><br>
+
+	      <% form_for [:user, @album],:html => { :multipart => true, :class=>'form' } do |f| %>
+	        
+	        <%- @album.errors.full_messages.each do |message| -%>
+	          <div class="errorExplanation"> <p><%= message %></p></div>
+	        <%- end -%>
+	   
+	        <p class="text_box"> <%= f.label :name %></p>
+	        <p class="text_box1"> <%= f.text_field :name %></p>
+	        <div class="clearfloat"></div>
+	        
+	        <p class="text_box"><%= f.label :photo %></p>
+	        <p class="text_box1"><%= f.file_field :photo %></p>
+	        <div class="clearfloat"></div>
+	        <p class="text_box1"><%= image_tag @album.photo.url(:thumb) %></p>
+	
+	        <p class="button"> <button class="button positive" type="submit"> Save </button>
+    	      <%= link_to "Cancel", onclick="javascript:history.back()", :class => 'button negative' %>
+    	    </p>
+
+        <% end %>
+
+        </div><!-- article -->
+        <!-- END Aritcle -->
+    </div><!-- .section -->
