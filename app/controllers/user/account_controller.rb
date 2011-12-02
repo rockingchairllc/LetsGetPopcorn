@@ -4,7 +4,7 @@ class User::AccountController < ApplicationController
   
   def index
     @title = 'account'
-    @albums = current_user.albums.find(:all)
+    @albums = current_user.albums.find(:all, :limit => 5)
   end
   
 end
