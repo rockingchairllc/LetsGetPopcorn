@@ -32,6 +32,10 @@ GEM
     activesupport (3.0.7)
     addressable (2.2.6)
     arel (2.0.10)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     babosa (0.2.2)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
@@ -154,11 +158,13 @@ GEM
     warden (1.0.6)
       rack (>= 1.0)
     will_paginate (3.0.pre2)
+    xml-simple (1.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-s3
   ckeditor (= 3.4.2.pre)
   cocaine
   devise (= 1.2.rc)

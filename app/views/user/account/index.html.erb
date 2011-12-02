@@ -27,13 +27,14 @@
                 
                 <h3>The highlight reel</h3>
                 <ul class="profile_pics">
-                	<li id="pp1"><a href="javascript:void(0)"><img src="http://graph.facebook.com/1000499831/picture?size=square" alt="" height="76" width="76" /></a></li>
-                	<li id="pp2"><a href="javascript:void(0)"><img src="http://graph.facebook.com/82701710/picture?type=square" alt="" height="76" width="76" /></a></li>
-                	<li id="pp3"><a href="javascript:void(0)"><img src="http://graph.facebook.com/813525525/picture?type=square" alt="" height="76" width="76" /></a></li>
-                	<li id="pp4"><a href="javascript:void(0)"><img src="http://graph.facebook.com/1622498061/picture?size=square" alt="" height="76" width="76" /></a></li>
-                	<li id="pp5"><a href="javascript:void(0)"><img src="http://graph.facebook.com/1466760040/picture?type=square" alt="" height="76" width="76" /></a></li>
+                  <% @albums.each do |album| %>
+              	      <li id="pp1"><a href="javascript:void(0)"><%= image_tag album.photo.url(:thumb) %></a></li>
+              	  <% end %>
+              	
+                	
                 </ul><!-- .profile_pics -->
-                <button type="button">Upload</button>
+                <button type="button" onClick="javascript:document.location.href ='/user/albums/new'">Upload</button>
+                
                 
                 <h3>The Synopsis</h3>
                 You hae 30 seconds to pitch!

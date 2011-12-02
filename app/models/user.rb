@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   
   has_many :authentications
+  has_many :albums
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable, :confirmable and :activatable

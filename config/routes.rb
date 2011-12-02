@@ -1,4 +1,5 @@
 Moviewithme::Application.routes.draw do |map|
+  
   devise_for :admins
 
   resources :authentications
@@ -12,6 +13,7 @@ Moviewithme::Application.routes.draw do |map|
   # User
   namespace :user do 
      match '/account' => "account#index", :as => :root
+     resources :albums
    end
    
   # Administration

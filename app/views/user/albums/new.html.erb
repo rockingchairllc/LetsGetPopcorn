@@ -1,0 +1,36 @@
+
+  <div id="content">
+
+	<% form_for [:user, @album],:html => { :multipart => true } do |f| %>
+	
+	  
+	  <%- @album.errors.full_messages.each do |message| -%>
+	   <div class="errorExplanation"> <p><%= message %></p></div>
+	  <%- end -%>
+	   
+	  
+	  
+	 
+	  <p>
+	    <%= f.label :name %>
+	    <%= f.text_field :name %>
+	  </p>
+	  <p>
+	    <%= f.label :photo %>
+	    <%= f.file_field :photo %>
+	  </p>
+	
+	  </fieldset>
+	  
+	  <p class="button">
+      	<button class="button positive" type="submit">
+    		 Save
+    	</button>
+    	<%= link_to "Cancel", onclick="javascript:history.back()", :class => 'button negative' %>
+
+      </p>
+	
+	<% end %>
+
+
+</div>

@@ -19,3 +19,5 @@ gem 'will_paginate', '3.0.pre2'
 gem 'geocoder'
 
 gem "omniauth", "0.3.0"
+
+gem 'aws-s3'
