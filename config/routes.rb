@@ -1,10 +1,10 @@
 Moviewithme::Application.routes.draw do |map|
   
-  devise_for :admins
+  devise_for :admins, :path_names => { :sign_in =>"login", :sign_out =>"logout"}
 
   resources :authentications
 
-  devise_for :users
+  devise_for :users, :path_names => { :sign_up => "register", :sign_in =>"login"}
 
   map.connect '/movies', :controller=>'pages', :action=>'movies'
   map.connect '/contact', :controller=>'pages', :action=>'contact'
