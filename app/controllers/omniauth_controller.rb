@@ -5,5 +5,5 @@ class OmniauthController < Devise::OmniauthCAllbackController
       #and delegate to super.
       super
    end
-   
 end
+
