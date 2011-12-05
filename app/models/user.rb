@@ -10,13 +10,13 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :lockable, :timeoutable, :confirmable and :activatable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  
-  validates_uniqueness_of :email, :login       
+         
   attr_accessor :login
   
-
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :username, :login
+  
+  validates_uniqueness_of :email, :username
   
   def apply_omniauth(omniauth)
     case omniauth['provider']
