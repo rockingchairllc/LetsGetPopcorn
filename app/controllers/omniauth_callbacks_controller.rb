@@ -1,4 +1,4 @@
-class Devise::OmniauthCallbacksController < ApplicationController
+class OmniauthCallbacksController < ApplicationController
   include Devise::Controllers::InternalHelpers
 
   def failure
