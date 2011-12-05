@@ -621,3 +621,16 @@ p.forgot {
     color: #FF0000;
     font-size: 1.1em;
 }
+
+.form span.text_box1 {
+    float: left;
+    font-size: 14px;
+    margin: 10px 0 0;
+    width: 145px;
+}
+.form span.text_box {
+    float: left;
+    font-size: 14px;
+    margin: 10px 0 0;
+    width: 145px;
+}

@@ -7,7 +7,7 @@
 <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body class="login_page">
-  <%= content_tag 'div', h(flash[:notice]), :class => 'errorMsg', :id => 'notice' if flash[:notice] %>
+  
   <%= yield %>
 
 <ul class="footer_links">

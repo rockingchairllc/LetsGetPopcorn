@@ -8,8 +8,11 @@
 </head>
 <body class="login_page">
 
+    
+
 		<!-- login_popcorn.png - 274x357 -->
         <div class="login">
+        <center><%= content_tag 'div', h(flash[:notice]), :class => 'errorMsg', :id => 'notice' if flash[:notice] %></center>
         	<h1>Start browsing for your perfect movie date now!</h1>
             
             <form class="login_search">

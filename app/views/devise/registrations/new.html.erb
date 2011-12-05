@@ -1,52 +1,52 @@
-    <div class="section"> 
-        <div class="article profile">
-        	<h2 class="headshots">User Registration </h2><br>
+<div class="section"> 
+    <div class="article profile">
+    	<h2 class="headshots">User Registration </h2><br>
 
-            <p class="headshot_msg">Welcome to Let's Get Popcorn!</p>
-            <p>Just fill in following details to explore entertainment the way it's supposed to be enjoyed - together!</p>
+        <p class="headshot_msg">Welcome to Let's Get Popcorn!</p>
+        <p>Just fill in following details to explore entertainment the way it's supposed to be enjoyed - together!</p>
 
-              <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=>{:class=>'form'}) do |f| %>
-                <fieldset>
-                <%= devise_error_messages! %>
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=>{:class=>'form'}) do |f| %>
+            <fieldset>
+            <%= devise_error_messages! %>
 
-                  <p class="text_box">*<%= f.label :first_name %></p>
-                  <p class="text_box1"><%= f.text_field :first_name %></p>
-                  <div class="clearfloat"></div>
+              <span class="text_box">*First name</span>
+              <span class="text_box1"><%= f.text_field :first_name %></span>
+              <div class="clearfloat"></div>
 
-                  <p class="text_box">*<%= f.label :last_name %></p>
-                  <p class="text_box1"><%= f.text_field :last_name %></p>
-                  <div class="clearfloat"></div>
+              <span class="text_box">*Last name</span>
+              <span class="text_box1"><%= f.text_field :last_name %></span>
+              <div class="clearfloat"></div>
 
-                  <p class="text_box">*<%= f.label :username %></p>
-                  <p class="text_box1"><%= f.text_field :username %></p>
-                  <div class="clearfloat"></div>
+              <span class="text_box">*Username</span>
+              <span class="text_box1"><%= f.text_field :username %></span>
+              <div class="clearfloat"></div>
 
-                  <p class="text_box">*<%= f.label :email %></p>
-                  <p class="text_box1"><%= f.email_field :email %></p>
-                  <div class="clearfloat"></div>
+              <span class="text_box">*Email</span>
+              <span class="text_box1"><%= f.email_field :email %></span>
+              <div class="clearfloat"></div>
 
-                  <p class="text_box">*<%= f.label :password %></p>
-                  <p class="text_box1"><%= f.password_field :password %></p>
-                  <div class="clearfloat"></div>
+              <span class="text_box">*Password</span>
+              <span class="text_box1"><%= f.password_field :password %></span>
+              <div class="clearfloat"></div>
 
-                  <p class="text_box">*<%= f.label :password_confirmation %></p>
-                  <p class="text_box1"><%= f.password_field :password_confirmation %></p>
-                  <div class="clearfloat"></div>
+              <span class="text_box">*password Confirmation</span>
+              <span class="text_box1"><%= f.password_field :password_confirmation %></span>
+              <div class="clearfloat"></div>
 
-                  <p style="margin:10px 0 0 160px;"><%= f.submit "Sign up", :class=>'input-submit' %></p>
-                  </fieldset>
-                <% end %>
+              <p style="margin:10px 0 0 160px;"><%= f.submit "Sign up", :class=>'input-submit' %></p>
+              </fieldset>
+            <% end %>
 
-                  <p style="margin:10px 0 0 188px;"><%= render :partial => "devise/shared/links" %></p>
-          
-            
-                          
-        </div><!-- article -->
-        <!-- END Aritcle -->
-    </div><!-- .section -->
+              <p style="margin:10px 0 0 188px;"><%= render :partial => "devise/shared/links" %></p>
+      
+        
+                      
+    </div><!-- article -->
+    <!-- END Aritcle -->
+</div><!-- .section -->
 
 
-    
+
 
 
 
