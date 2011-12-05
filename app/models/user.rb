@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :username, :login
   
-  validates_uniqueness_of :email, :username
+  validates_uniqueness_of :email
   
   def apply_omniauth(omniauth)
     case omniauth['provider']
