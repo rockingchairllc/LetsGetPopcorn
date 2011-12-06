@@ -30,7 +30,7 @@ class PagesController < ApplicationController
 
             end
          else
-           @meta_title = " - Contacts"
+           @meta_title = " - Contact"
         end
   end
   
