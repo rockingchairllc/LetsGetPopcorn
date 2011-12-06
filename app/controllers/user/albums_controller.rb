@@ -4,6 +4,7 @@ class User::AlbumsController < ApplicationController
   
   def new
     @album = current_user.albums.new
+    @meta_title = ' - Add album'
   end
 
   def create
@@ -18,6 +19,7 @@ class User::AlbumsController < ApplicationController
   
   def edit
     @album = current_user.albums.find(params[:id])
+    @meta_title = ' - Edit album'
   end
 
   def update

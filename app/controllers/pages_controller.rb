@@ -1,12 +1,13 @@
 class PagesController < ApplicationController
   
   def movies
-    @title = 'movies'
+    @meta_title = " - Movies"
   end
   
   #  For Static Pages 
   def show
     @page = Page.find(params[:id])
+    @meta_title = " - #{@page.title}"
   end
   
   #  For Contact-us 
@@ -29,7 +30,7 @@ class PagesController < ApplicationController
 
             end
          else
-           @title = "contacts"
+           @meta_title = " - Contacts"
         end
   end
   
