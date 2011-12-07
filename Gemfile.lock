@@ -158,6 +158,7 @@ GEM
     warden (1.0.6)
       rack (>= 1.0)
     will_paginate (3.0.pre2)
+    with-or-without-www (0.0.1)
     xml-simple (1.1.1)
 
 PLATFORMS
@@ -176,3 +177,4 @@ DEPENDENCIES
   ruby-mysql
   sqlite3
   will_paginate (= 3.0.pre2)
+  with-or-without-www (~> 0.0.1)
