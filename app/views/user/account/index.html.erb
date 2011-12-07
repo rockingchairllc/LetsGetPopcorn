@@ -14,29 +14,19 @@
 
 <div class="section">
     
-    <div class="search_filternew">
-        <form>
-            <fieldset>
-                Movies playing within <input type="text" class="miles" /> 
-                miles of <input type="text" class="zip" />
-                <input type="text" value="genre" /><br />
-                <span class="search_for">
-                    <u>S</u>earch for: 
-                    <input type="text" class="search_movies" value="search movies..." />
-                    <button type="button">Go</button>
-                </span><!-- .search_for -->
-            </fieldset>
-        </form>
-    </div><!-- .search_filter -->
+    
     
     <div class="articlenew profile">
+      <div style="margin-left: 140px;">
     	<h2 class="headshots">Head Shots!</h2>
+    	
         <p class="headshot_msg">
         	Now it's time to fil in your profile with details about your glamorous life.  
         	(Don't worry, it won't go on Imdb!)
         </p><!-- .headshot_msg -->
-        
+       </div> 
         <h3>The highlight reel</h3>
+       
         <ul class="profile_pics">
           <% @albums.each do |album| %>
       	      <li id="pp1"><%= link_to image_tag(album.photo.url(:thumb)), edit_user_album_path(album) %></li>
