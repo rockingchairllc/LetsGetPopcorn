@@ -22,4 +22,3 @@ gem "omniauth", "0.3.0"
 
 gem 'aws-s3'
 
-gem "with-or-without-www", "~> 0.0.1"
