@@ -1,4 +1,4 @@
-// application-specific JavaScript functions and classes here
+// validation for registration pages
 
 
 jQuery(document).ready(function() {
@@ -75,6 +75,7 @@ jQuery(document).ready(function() {
 	});
 });
 
+// validation for Forget password pages
 
 jQuery(document).ready(function() {
   jQuery("#forg_pass").validate({
@@ -99,6 +100,7 @@ jQuery(document).ready(function() {
 });
 
 
+// validation for Contact Us pages
 
 $(document).ready(function() {
   $("#contactform").validate({
@@ -142,6 +144,7 @@ $(document).ready(function() {
 	});
 });
 
+// validation for Add highlight reel pages
 
 jQuery(document).ready(function() {
   jQuery("#add_photo").validate({
@@ -171,6 +174,8 @@ jQuery(document).ready(function() {
 		}
 	});
 });
+
+// validation for Edit highlight reel pages
 
 jQuery(document).ready(function() {
   jQuery("#edit_photo").validate({
