@@ -1,3 +1,16 @@
+<div class="header">
+    		<h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.first_name %> <%= current_user.last_name %> <% else %> <% end %></h1>
+        	<div class="logo"></div>
+          <ul class="nav">
+            	<li><a href="javascript:void(0)">matches</a></li>
+                <li><a href="/movies" <% if @title == 'movies' %> class="active_button" <% end %>>movies</a></li>
+                <li><a href="/user/account" <% if @title == 'account' %> class="active_button" <% end %> >account</a></li>
+            </ul><!-- .nav -->
+            
+            <!-- clear the float -->
+            <div class="clearfloat"></div>
+        </div><!-- .header -->
+        
 <div class="section"> 
     <div class="article profile">
     	<h2 class="headshots">User Registration </h2><br>

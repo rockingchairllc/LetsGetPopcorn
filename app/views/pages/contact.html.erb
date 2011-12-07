@@ -1,40 +1,53 @@
-  <div class="section"> 
-      <div class="article profile">
-      	<h2 class="headshots">Contact Us </h2><br>
-            
-        
-      <% form_for :reset_password, :html=>{:class=>'form', :id=>'contactform'} do |form| %> 
-        
-        <p class="text_box">*<label for="name">Name:</label></p>
-        <p class="text_box1"><%= form.text_field :name %></p>
-        <div class="clearfloat"></div>
-        
-        <p class="text_box">*<label for="email">Email:</label></p>
-        <p class="text_box1"><%= form.text_field :email %></p>
-        <div class="clearfloat"></div>
-        
-        <p class="text_box">*<label for="subject">Subject:</label></p>
-        <p class="text_box1"><%= select("reset_password", "subject", @subject.collect {|c|[c.subject_name]},{:include_blank => 'Select Subject'} ) %></p>
-        
-        <div class="clearfloat"></div>
-        
-        <p class="text_box">*<label for="comments">Message:</label></p>
-        <p class="text_box1"><%= form.text_area :message, :rows => 4, :cols => 34 %></p>
-        <div class="clearfloat"></div>
-        
-        <p style="margin:10px 0 0 160px;"><%= submit_tag 'Send', :class=>'input-submit' %></p>
-        <% end %>
-        
-      
-        </div><!-- article -->
-        <!-- END Aritcle -->
-    </div><!-- .section -->
-  
+<div class="header">
+   		<h1 class="title">GOOD DIALOG, GOOD STORY"</h1>
+       	<div class="logo"></div>
+         <ul class="nav">
+           	<li><a href="javascript:void(0)">matches</a></li>
+               <li><a href="/movies" <% if @title == 'movies' %> class="active_button" <% end %>>movies</a></li>
+               <li><a href="/user/account" <% if @title == 'account' %> class="active_button" <% end %> >account</a></li>
+           </ul><!-- .nav -->
+           
+           <!-- clear the float -->
+           <div class="clearfloat"></div>
+       </div><!-- .header -->
+
+ <div class="section"> 
+     <div class="article profile">
+     	<h2 class="headshots">Contact Us </h2><br>
+           
+       
+     <% form_for :reset_password, :html=>{:class=>'form', :id=>'contactform'} do |form| %> 
+       
+       <p class="text_box">*<label for="name">Name:</label></p>
+       <p class="text_box1"><%= form.text_field :name %></p>
+       <div class="clearfloat"></div>
+       
+       <p class="text_box">*<label for="email">Email:</label></p>
+       <p class="text_box1"><%= form.text_field :email %></p>
+       <div class="clearfloat"></div>
+       
+       <p class="text_box">*<label for="subject">Subject:</label></p>
+       <p class="text_box1"><%= select("reset_password", "subject", @subject.collect {|c|[c.subject_name]},{:include_blank => 'Select Subject'} ) %></p>
+       
+       <div class="clearfloat"></div>
+       
+       <p class="text_box">*<label for="comments">Message:</label></p>
+       <p class="text_box1"><%= form.text_area :message, :rows => 4, :cols => 34 %></p>
+       <div class="clearfloat"></div>
+       
+       <p style="margin:10px 0 0 148px;"><%= submit_tag 'Send', :class=>'input-submit' %></p>
+       <% end %>
+       
+     
+       </div><!-- article -->
+       <!-- END Aritcle -->
+   </div><!-- .section -->
  
 
-  
-    
-  
+
  
-          
+   
+ 
+
+         
 

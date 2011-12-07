@@ -1,4 +1,15 @@
-
+  <div class="header">
+  		<h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.first_name %> <%= current_user.last_name %> <% else %> <% end %></h1>
+      	<div class="logo"></div>
+        <ul class="nav">
+          	<li><a href="javascript:void(0)">matches</a></li>
+              <li><a href="/movies" <% if @title == 'movies' %> class="active_button" <% end %>>movies</a></li>
+              <li><a href="/user/account" <% if @title == 'account' %> class="active_button" <% end %> >account</a></li>
+          </ul><!-- .nav -->
+          
+          <!-- clear the float -->
+          <div class="clearfloat"></div>
+      </div><!-- .header -->
 
 
 <div class="section">
@@ -34,37 +45,39 @@
       	
         	
         </ul><!-- .profile_pics -->
-        <button type="button" onClick="javascript:document.location.href ='/user/albums/new'">Upload</button>
+        <%= link_to "Upload", {:controller=>"albums", :action=>'new'}, :class=>"button_to" %>
         
         
         <h3>The Synopsis</h3>
         
       
         <% if @synopse.nil? %>
-       	    <button type="button" onClick="javascript:document.location.href ='/user/synopses/new'">Add</button>
+            <%= link_to "Add", {:controller=>"synopses", :action=>'new'}, :class=>"button_to" %>
+       	    
        	<% else %>
        	    <%= @synopse.title %>
-       	    <button type="button" onClick="javascript:document.location.href ='/user/synopses/<%= @synopse.id %>/edit'">Edit</button>
+       	    <%= link_to "Edit", {:controller=>"synopses", :action=>'edit', :id=>@synopse.id}, :class=>"button_to" %>
+       	    
        	<% end %>
         
         <h3>Favorite movie of all time</h3>
         
-        
          <% if @favmovie.nil? %>
-              <button type="button" onClick="javascript:document.location.href ='/user/favmovies/new'">Add</button>
+              <%= link_to "Add", {:controller=>"favmovies", :action=>'new'}, :class=>"button_to" %>    
          	<% else %>
          	    '<%= @favmovie.title %>'
-         	    <button type="button" onClick="javascript:document.location.href ='/user/favmovies/<%= @favmovie.id %>/edit'">Edit</button>
+         	    <%= link_to "Edit", {:controller=>"favmovies", :action=>'edit', :id=>@favmovie.id}, :class=>"button_to" %>
          	<% end %>
         
         <h3>Funny Question</h3>
        
         
         <% if @funnyque.nil? %>
-       	    <button type="button" onClick="javascript:document.location.href ='/user/funnyques/new'">Add</button>
+            <%= link_to "Add", {:controller=>"funnyques", :action=>'new'}, :class=>"button_to" %>
        	<% else %>
        	    <%= @funnyque.title %>
-       	    <button type="button" onClick="javascript:document.location.href ='/user/funnyques/<%= @funnyque.id %>/edit'">Edit</button>
+       	    <%= link_to "Edit", {:controller=>"funnyques", :action=>'edit', :id=>@funnyque.id}, :class=>"button_to" %>
+       	    
        	<% end %>
         
         
