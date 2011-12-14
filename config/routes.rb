@@ -14,7 +14,8 @@ Moviewithme::Application.routes.draw do |map|
   
   # User
   namespace :user do 
-     match '/account' => "account#index", :as => :root
+     match '/dashboard' => "dashboard#index", :as => :root
+     match '/account' => "account#index"
      resources :albums
      resources :synopses
      resources :favmovies

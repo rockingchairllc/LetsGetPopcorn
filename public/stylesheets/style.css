@@ -670,3 +670,51 @@ p.forgot {
 	background: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(226,226,226,1) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e2e2e2',GradientType=0 ); /* IE6-8 */
 }
+
+.gpop{bottom: 10px; cursor: pointer; position: absolute; right: 10px;}
+
+.recent_activity {
+	padding:10px 0 0 0;
+}
+
+.recent_activity .activity_inner {
+	padding:10px;
+	background: #CCCCCC;
+	margin:8px 0 0 0;
+}
+
+.recent_activity .activity_inner .profile_image {
+	width:100px;
+	float:left;
+}
+.recent_activity .activity_inner .profile_con {
+	float:left;
+	margin:0 0 0 15px;
+	width:450px;
+	font-size:13px;
+}
+.recent_activity .activity_inner .profile_con a{ 
+	color:#000000
+}
+.recent_activity .activity_inner .profile_con a:hover {
+	color:#333333
+}
+
+.profile_area .profile_inner {
+    padding: 10px 0 0;
+}
+
+.aside .advertise p {
+    font-size: 15px;
+    line-height: 140px;
+}
+.aside .advertise {
+    -moz-border-radius: 10px 10px 10px 10px;
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: 150px;
+}
+
+.profile_area .avtar_con {
+    float: left;
+    margin: 0 0 0 10px;
+}
