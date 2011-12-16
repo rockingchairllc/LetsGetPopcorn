@@ -415,7 +415,7 @@ Main Pages (non-login)
 .movie_list li:nth-child(odd) {background: #e9f0fe;}
 .movie_outter_content {float: left; text-align: center; padding-right: 5px; position: relative;}
 .movie_outter_content a, .movie_cover_image {display: block; cursor: pointer;}
-.movie_inner_content {position: relative; width: 530px; margin-left: 160px;}
+.movie_inner_content {position: relative; width: 486px; margin-left: 160px;}
 .movie_inner_content ul li {display: inline-block; padding: 0px; height: auto;} /*user photos */
 .movie_buttons {position: absolute; bottom: 10px; right: 10px;}
 .movie_buttons button {
