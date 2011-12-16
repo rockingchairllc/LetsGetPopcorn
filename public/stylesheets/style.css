@@ -691,7 +691,7 @@ p.forgot {
 	float:left;
 	margin:0 0 0 15px;
 	width:450px;
-	font-size:13px;
+	font-size:14px;
 }
 .recent_activity .activity_inner .profile_con a{ 
 	color:#000000
@@ -717,4 +717,8 @@ p.forgot {
 .profile_area .avtar_con {
     float: left;
     margin: 0 0 0 10px;
+}
+
+.recent_activity .activity_inner .profile_con strong{
+    font-size:16px;
 }
