@@ -4,6 +4,9 @@ class PagesController < ApplicationController
     @meta_title = " - Movies"
   end
   
+  def matches
+  end
+  
   #  For Static Pages 
   def show
     @page = Page.find(params[:id])

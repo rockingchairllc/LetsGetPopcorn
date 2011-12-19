@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207121742) do
+ActiveRecord::Schema.define(:version => 20111219045616) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -65,6 +65,10 @@ ActiveRecord::Schema.define(:version => 20111207121742) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "height_feet"
+    t.string   "height_inches"
+    t.string   "smoke"
+    t.string   "drink"
   end
 
   create_table "funnyques", :force => true do |t|
@@ -126,11 +130,11 @@ ActiveRecord::Schema.define(:version => 20111207121742) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "email",                                     :default => "", :null => false
+    t.string   "encrypted_password",         :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
+    t.integer  "sign_in_count",                             :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -140,6 +144,15 @@ ActiveRecord::Schema.define(:version => 20111207121742) do
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
+    t.date     "birthday"
+    t.string   "zip"
+    t.string   "gender"
+    t.string   "orientation"
+    t.integer  "overlay"
+    t.string   "profile_photo_file_name"
+    t.string   "profile_photo_content_type"
+    t.integer  "profile_photo_file_size"
+    t.datetime "profile_photo_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -7,6 +7,7 @@ Moviewithme::Application.routes.draw do |map|
   devise_for :users, :path_names => { :sign_up => "register", :sign_in =>"login"}
 
   map.connect '/movies', :controller=>'pages', :action=>'movies'
+  map.connect '/matches', :controller=>'pages', :action=>'matches'
   map.connect '/contact', :controller=>'pages', :action=>'contact'
   match '/auth/:provider/callback' => 'authentications#create'
   map.connect '/pages/:id', :controller=>'pages', :action=>'show'

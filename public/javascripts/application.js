@@ -35,6 +35,9 @@ jQuery(document).ready(function() {
 			},
 			"user[password_confirmation]":{
 							required: true
+			},
+			"user[zip]":{
+							required: true
 			}
 		},
 	messages: {
@@ -70,7 +73,12 @@ jQuery(document).ready(function() {
 		},
 		"user[password_confirmation]":{
 						            required: "Please provide a confirmation password"
-		}
+		},
+	
+		
+			"user[zip]":{
+									required: "Please enter zip code"
+			}
 		}
 	});
 });

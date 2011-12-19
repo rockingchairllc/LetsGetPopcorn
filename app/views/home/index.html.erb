@@ -1,15 +1,7 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Login</title>
-<link rel="stylesheet" type="text/css" href="style.css" />
-<link rel="shortcut icon" href="images/favicon.png" />
-</head>
-<body class="login_page">
+
 
     
-
+  
 		<!-- login_popcorn.png - 274x357 -->
         <div class="login">
         <center><%= content_tag 'div', h(flash[:notice]), :class => 'errorMsg', :id => 'notice' if flash[:notice] %></center>
@@ -26,7 +18,7 @@
                     
                     interested in having popcorn <br />
                     with
-                    <%= select :user, :orientation, ["A Guy", "A Girl", "Any"] %>
+                    <%= select :user, :orientation, options_for_select([["A Guy", "men"], ["A Girl", "women"], ["Any","any"]]) %>
                     
                     
                     

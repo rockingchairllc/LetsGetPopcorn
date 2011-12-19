@@ -2,7 +2,7 @@
     		<h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.first_name %> <%= current_user.last_name %> <% else %> <% end %></h1>
         	<div class="logo"></div>
           <ul class="nav">
-            	<li><a href="javascript:void(0)">matches</a></li>
+            	<li><a href="/matches">matches</a></li>
                 <li><a href="/movies" <% if @title == 'movies' %> class="active_button" <% end %>>movies</a></li>
                 <li><a href="/user/account" <% if @title == 'account' %> class="active_button" <% end %> >account</a></li>
             </ul><!-- .nav -->
@@ -24,7 +24,12 @@
       <p class="text_box1"> <%= f.text_area :title %></p>
       <div class="clearfloat"></div>
       
-
+       
+        <%= select(:favmovie, :smoke, [['----'], ['Yes'], ['Sometimes'], ['When drinking'], ['Trying to quit']],{:include_blank => 'Select'}) %>
+        <div class="clearfloat"></div>
+        
+        <%= select(:favmovie, :drink, [['Very Often'], ['Often'], ['Socially'], ['Rarely'], ['Desperately'], ['Not at All']],{:include_blank => 'Select'}) %>
+        <div class="clearfloat"></div>
       <p class="button" style="margin:10px 0 0 188px;"> <button type="submit"> Save </button>
 	      <button type="submit" onclick="javascript:history.back()" > Cancel </button> 
 	    </p>

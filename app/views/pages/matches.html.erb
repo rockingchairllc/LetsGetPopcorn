@@ -1,96 +1,10 @@
-<div id="dialog" style="display:none;">
-
-	<div class="div_inner">
-		<div class="heading"><strong>Register FREE and find your movie match!</strong></div> 
-		<table width="100%" border="0" cellspacing="2" cellpadding="2">
-			<tr>
-				<td width="43%">
-					<table width="100%" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #FFF;">
-						<tr>
-							<td><div style="position:absolute;padding-left:20px;"><img src="/images/watch-movie.png" alt="" /></div></td>
-						</tr>
-					</table>
-					<!-- <div style="position:absolute;"><img src="images/warch-movie.jpg" alt="" /></div> --></td>
-				<td width="40%" style="padding-top:20px;padding-right:10px;">
-				<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=>{:multipart => true}) do |f| %>
-      	<table width="100%" border="0" cellspacing="2" cellpadding="2">
-      	<%= devise_error_messages! %>
-        <% if request.get? and params[:user] %>
-        <%= f.hidden_field :gender, :value => "#{params[:user][:gender]}" %>
-        <%= f.hidden_field :orientation, :value => "#{params[:user][:orientation]}" %>
-        <% else %>
-        <tr>
-            <td colspan="2">
-              <strong> I am </strong>
-              <%= select :user, :gender, options_for_select([["A Girl", "female"],["A Guy", "male"]]) %>
-             <strong> interested in having popcorn with </strong>
-              <%= select :user, :orientation, options_for_select([["A Guy", "men"], ["A Girl", "women"], ["Any","any"]]) %>
-            </td>
-        </tr>
-        <% end %>
-        <tr>
-            <td style="vertical-align: top;" align="left"><strong>Username </strong></td>
-            <td  align="left"><%= f.text_field :username %></td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;" align="left"><strong>Password</strong></td>
-            <td align="left"><%= f.password_field :password %></td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;" align="left"><strong>Password Confirmation </strong></td>
-            <td align="left"><%= f.password_field :password_confirmation %></td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;" align="left"><strong>E-Mail</strong></td>
-            <td align="left"><%= f.email_field :email %></td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;" align="left"><strong>Birthday </strong></td>
-            <td align="left"><%= f.date_select :birthday, :start_year => 1912, :use_month_numbers => true, :order => [:month, :day, :year], :prompt => {:month => 'mm', :day => 'dd', :year => 'yyyy' } %> </td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;" valign="top" style="padding:5px 0 0 0" align="left"><strong>Zip Code</strong></td>
-            <td align="left"><%= f.text_field :zip %><br /><span style="font-size:11px; color:#666666">This is to locate theaters near you</span></td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;" align="left"><strong>Profile Photo </strong></td>
-            <td align="left"> <%= f.file_field :profile_photo %></td>
-        </tr>
-        <tr>
-  	          <td colspan="2" style="padding-top:5px;"></td>
-        </tr>
-        <tr>
-              <td>&nbsp;</td>
-              <td align="right"><%= f.submit "Sign up", :class=>'button' %></td>
-        </tr>
-        </table>
-         <% end %>
-				</td>
-			</tr>
-		</table>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     	<div class="header">
         	<div class="logo"></div>
             <h1 class="title">Welcome, Hot Stuff!</h1>
             <ul class="nav">
             	<li><a href="/matches" class="active_button">matches</a></li>
-                <li><a href="index.html">movies</a></li>
-                <li><a href="javascript:void(0)" >account</a></li>
+                <li><a href="/movies">movies</a></li>
+                <li><a href="/user/account" >account</a></li>
             </ul><!-- .nav -->
             
             <!-- clear the float -->
@@ -112,7 +26,7 @@
             	<h2 class="headshots">Today</h2>
                 <div class="profile_column_left">
                 	<div class="profile_1">
-                    	<div class="avatar"><img src="/images/avatar_1.png" alt=""/></div>
+                    	<div class="avatar"><img src="images/avatar_1.png" alt=""/></div>
                         <div class="profile_con">
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
 Wants to see: Moneyball<br>
@@ -124,7 +38,7 @@ Knocked Up, but not quite as dumb..</p>
                     </div>
                     
                     <div class="profile_2">
-                    	<div class="avatar"><img src="/images/avatar_2.png" alt=""/></div>
+                    	<div class="avatar"><img src="images/avatar_2.png" alt=""/></div>
                         <div class="profile_con">
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
 Wants to see:  What’s Your Number?<br>
@@ -135,7 +49,7 @@ Doppleganger: Chris Rock</p>
                     
                     
                     <div class="profile_1">
-                    	<div class="avatar"><img src="/images/avatar_1.png" alt=""/></div>
+                    	<div class="avatar"><img src="images/avatar_1.png" alt=""/></div>
                         <div class="profile_con">
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
 Wants to see: Moneyball<br>
@@ -147,7 +61,7 @@ Knocked Up, but not quite as dumb..</p>
                     </div>
                     
                     <div class="profile_2">
-                    	<div class="avatar"><img src="/images/avatar_2.png" alt=""/></div>
+                    	<div class="avatar"><img src="images/avatar_2.png" alt=""/></div>
                         <div class="profile_con">
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
 Wants to see:  What’s Your Number?<br>
@@ -162,7 +76,7 @@ Doppleganger: Chris Rock</p>
                 
                  <div class="profile_column_right">
                 	<div class="profile_1">
-                    	<div class="avatar"><img src="/images/avatar_1.png" alt=""/></div>
+                    	<div class="avatar"><img src="images/avatar_1.png" alt=""/></div>
                         <div class="profile_con">
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
 Wants to see: Moneyball<br>
@@ -174,7 +88,7 @@ Knocked Up, but not quite as dumb..</p>
                     </div>
                     
                     <div class="profile_2">
-                    	<div class="avatar"><img src="/images/avatar_2.png" alt=""/></div>
+                    	<div class="avatar"><img src="images/avatar_2.png" alt=""/></div>
                         <div class="profile_con">
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
 Wants to see:  What’s Your Number?<br>
@@ -185,7 +99,7 @@ Doppleganger: Chris Rock</p>
                     
                     
                     <div class="profile_1">
-                    	<div class="avatar"><img src="/images/avatar_1.png" alt=""/></div>
+                    	<div class="avatar"><img src="images/avatar_1.png" alt=""/></div>
                         <div class="profile_con">
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
 Wants to see: Moneyball<br>
@@ -197,7 +111,7 @@ Knocked Up, but not quite as dumb..</p>
                     </div>
                     
                     <div class="profile_2">
-                    	<div class="avatar"><img src="/images/avatar_2.png" alt=""/></div>
+                    	<div class="avatar"><img src="images/avatar_2.png" alt=""/></div>
                         <div class="profile_con">
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
 Wants to see:  What’s Your Number?<br>
@@ -227,7 +141,3 @@ Doppleganger: Chris Rock</p>
             </ul>
         </div><!-- .aside -->
         <!-- END Sidebar (aside) -->
-
-
-
-

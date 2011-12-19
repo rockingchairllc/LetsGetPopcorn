@@ -14,9 +14,20 @@ class User < ActiveRecord::Base
   attr_accessor :login
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :username, :login
+  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :username, :login, :birthday, :zip, :gender, :orientation, :profile_photo
   
   validates_uniqueness_of :email
+  
+  #for profile photo
+  
+  has_attached_file :profile_photo, 
+        :styles => { :thumb => "80x75" },
+        
+        
+        :convert_options => {
+              :thumb => "-background '#F7F4F4' -compose Copy -gravity center -extent 80x75"
+          }
+  
   
   def apply_omniauth(omniauth)
     case omniauth['provider']
@@ -104,6 +115,16 @@ class User < ActiveRecord::Base
       def self.find_record(login)
         where(["username = :value OR email = :value", { :value => login }]).first
       end
+      
+      
+       # After create a new user then send welcome email
+       after_create :send_welcome_email 
+
+        private
+
+          def send_welcome_email
+            Useremailer.deliver_welcome_email(self)
+          end
      
     
 end
