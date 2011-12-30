@@ -678,9 +678,12 @@ p.forgot {
 }
 
 .recent_activity .activity_inner {
-	padding:10px;
-	background: #CCCCCC;
-	margin:8px 0 0 0;
+    background: none repeat scroll 0 0 #E9F0FE;
+    font-size: 12px;
+    line-height: 23px;
+    margin: 8px 0 0;
+    padding: 10px;
+    text-align: justify;
 }
 
 .recent_activity .activity_inner .profile_image {
@@ -722,15 +725,18 @@ p.forgot {
 .recent_activity .activity_inner .profile_con strong{
     font-size:16px;
 }
-
+.recent_activity .activity_inner a {
+    color: #333333;
+    display: block;
+}
 
 /* for modal overlay */
 #dialog .heading
 	{
-		text-align:left;
+		text-align:center;
 		position:absolute;
-		margin:10px auto;
-		width:400px;
+		margin:0px 0px;
+		width:520px;
 		color:#000;
 		font-family:Arial, Helvetica, sans-serif;
 		font-size:20px;
@@ -745,16 +751,11 @@ p.forgot {
 		padding:3px;
 	}
 #dialog	.div_inner
-{   background:#FFFFFF;
+{    background:#D9E5FB;
 	padding:10px;
-	width:870px;
-	height:auto;
-	border:5px solid #000;
-
-	
+	width:570px;
+	border:5px solid #EBDB5B;
 }
-
-
 
 #dialog .div_inner table td form {
 	margin:20px 0 0 0;
@@ -827,11 +828,11 @@ p.forgot {
 .profile_column_left {
 	width:320px;
 	float:left;
-	margin:10px 0 0 0
+	margin:10px 0 0;
 }
 
 .profile_column_left .profile_1 {
-	background:#D6D6D6;
+	background: none repeat scroll 0 0 #E9F0FE;
 }
 
 .profile_column_left .profile_2 {
@@ -898,39 +899,59 @@ p.forgot {
 	margin:10px 0 0 0
 }
 
+.profile_column_left .profile_1 {
+    background: none repeat scroll 0 0 #E9F0FE;
+    font-size: 11px;
+    line-height: 18px;
+    margin: 8px 0 0;
+    padding: 5px;
+}
+
+.profile_column_left .profile_2 {
+    background: none repeat scroll 0 0 #E9F0FE;
+     font-size: 11px;
+    line-height: 18px;
+    margin: 8px 0 0;
+    padding: 5px;
+}
 .profile_column_right .profile_1 {
-	background:#D6D6D6;
-}
-
-.profile_column_right .profile_2 {
-	background:#fff;
-}
-
-.profile_column_right .profile_1 .avatar {
-	width:99px;
-	margin:5px 0 5px 5px;
-	float:left
+    background: none repeat scroll 0 0 #E9F0FE;
+    font-size: 11px;
+    line-height: 18px;
+    margin: 8px 0 0;
+    padding: 5px;
 }
 .profile_column_right .profile_1 .profile_con {
-	float:left;
-	margin:5px 0 0 10px;
-	width:200px;
+	 background: none repeat scroll 0 0 #E9F0FE;
+    font-size: 11px;
+    line-height: 18px;
+    margin: 8px 0 0;
+    padding: 5px;
 }
 .profile_column_right .profile_1 .profile_con p {
-	margin:0;
-	padding:0;
-	font-size:11px;
-	line-height:17px;
+	 background: none repeat scroll 0 0 #E9F0FE;
+    font-size: 11px;
+    line-height: 18px;
+    margin: 8px 0 0;
+    padding: 5px;
 }
 
 
 .profile_column_right .profile_1 .profile_con p span {
-	font-size:13px;
-}
+ background: none repeat scroll 0 0 #E9F0FE;
+    font-size: 11px;
+    line-height: 18px;
+    margin: 8px 0 0;
+    padding: 5px;
+   }
 
 
 .profile_column_right .profile_2 {
-	background:#fff;
+	background: none repeat scroll 0 0 #E9F0FE;
+    font-size: 11px;
+    line-height: 18px;
+    margin: 8px 0 0;
+    padding: 5px;
 }
 
 .profile_column_right .profile_2 .avatar {
@@ -954,9 +975,5 @@ p.forgot {
 .profile_column_right .profile_2 .profile_con p span {
 	font-size:13px;
 }
-
-
-
-
 
 
