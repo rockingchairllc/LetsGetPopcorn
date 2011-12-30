@@ -110,40 +110,47 @@ jQuery(document).ready(function() {
 
 // validation for Contact Us pages
 
-$(document).ready(function() {
-  $("#contactform").validate({
+jQuery(document).ready(function() {
+  jQuery("#contactform").validate({
 	errorElement:'div',
 	rules: {
-		"reset_password[name]":{
+		"contactus[name]":{
 					                  required: true,
-                        			character:true,
-     					              maxlength:49
+									  minlength:2,
+     					              maxlength:29
 			},
 		
-		"reset_password[email]":{
+		"contactus[email]":{
 						required:true,
 						email:true
 		},
+		"contactus[subject]":{
+						required:true
+		},
 		
-		"reset_password[message]":{
+		"contactus[message]":{
 						required:true,
 							minlength:10,
 						maxlength:499
 		}
 		},
 	messages: {
-		"reset_password[name]":{
-			required: "Please enter name",
-                        character: "Please enter only character",
-			                  maxlength:jQuery.format("do not enter more than 50 charecter")
+		"contactus[name]":{
+							required: "Please enter name",
+							minlength:jQuery.format("Please enter at least 2 characters."),
+			                 maxlength:jQuery.format("do not enter more than 30 charecter")
 			},
 		
-		"reset_password[email]":{
+		"contactus[email]":{
 						            required: "Please enter email address",
 						            email: "Please enter valid email id"
 						
 		},
-		"reset_password[message]":{
+		"contactus[subject]":{
+						            required: "Please enter subject"
+						
+		},
+		"contactus[message]":{
 						            required: "Please enter message",
 						            minlength:jQuery.format("Please enter at least 10 characters."),
 						            maxlength:jQuery.format("Can not exceed 500 characters")

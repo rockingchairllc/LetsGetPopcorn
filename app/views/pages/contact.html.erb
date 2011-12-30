@@ -16,7 +16,7 @@
      	<h2 class="headshots">Contact</h2><br>
            
        
-     <% form_for :reset_password, :html=>{:class=>'form', :id=>'contactform'} do |form| %> 
+     <% form_for :contactus, :html=>{:class=>'form', :id=>'contactform'} do |form| %> 
        
        <p class="text_box">*<label for="name">Name:</label></p>
        <p class="text_box1"><%= form.text_field :name %></p>
@@ -27,7 +27,7 @@
        <div class="clearfloat"></div>
        
        <p class="text_box">*<label for="subject">Subject:</label></p>
-       <p class="text_box1"><%= select("reset_password", "subject", @subject.collect {|c|[c.subject_name]},{:include_blank => 'Select Subject'} ) %></p>
+       <p class="text_box1"><%= select("contactus", "subject", @subject.collect {|c|[c.subject_name]},{:include_blank => 'Select Subject'} ) %></p>
        
        <div class="clearfloat"></div>
        

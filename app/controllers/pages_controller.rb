@@ -17,13 +17,13 @@ class PagesController < ApplicationController
   def contact
     @subject = Subject.all
     
-    if request.post? and params[:reset_password]
-            if contact = Contact.new(params[:reset_password])
+    if request.post? and params[:contactus]
+            if contact = Contact.new(params[:contactus])
 
-              contact.name = "#{params[:reset_password][:name]}"
-              contact.email = "#{params[:reset_password][:email]}"
-              contact.subject = "#{params[:reset_password][:subject]}"
-              contact.message = "#{params[:reset_password][:message]}"
+              contact.name = "#{params[:contactus][:name]}"
+              contact.email = "#{params[:contactus][:email]}"
+              contact.subject = "#{params[:contactus][:subject]}"
+              contact.message = "#{params[:contactus][:message]}"
               contact.save
 
              Emailer.deliver_contact_email(contact)
