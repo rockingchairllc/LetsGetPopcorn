@@ -41,60 +41,62 @@
 			<tr>
 				
 				<td style="padding-top:10px;padding-right:10px;padding-left:0px;">
-				<div id="moduleframe">	
-    	<table width="450" border="0" cellspacing="5" cellpadding="2" >
-		<div class="profile_area_next">
-					
-					<h3 id="photos_count"><%= pluralize(@user.albums.size, "Photo")%></h3>
-          <div id="uploads">
+			  	<div id="moduleframe">	
+      
+  		    <div class="profile_area_next">
 
-               
-           <%= render :partial => @user.albums %></div>
-           
-					
-					<div class="clearfloat"></div>
-					<div class="formArea_next">
-					<h3>Upload a Photo</h3> 
-					<%= form_for [:user,Album.new(:user_id => @user.id)], :html => {:multipart => true} do |f| %> 
-            
-            <%= f.hidden_field :user_id, :value => @user.id %>
-            <p class="cont1"><strong>Upload more pictures for your highlight reel! </strong>
-                  <%= f.file_field :photo %>
-            </p> 
-           <% end %>
-						
-						<% form_for :users do |f| %>
-						<table width="100%">
-						<tr>
-						   <td>
-						      <%= f.hidden_field :user_id, :value => @user.id %>
-						        <p class="cont1"> 
-						          <strong>Summary ( a little bit about yourself )</strong><br>
-						          <%= f.text_area :title, :rows => 3, :cols => 58 %>
-						        </p>
-						
-				            <p class="cont1"> 
-                        <strong> What are you looking for in your "best supporting actor/actress?</strong><br>
-                        <%= f.text_area :supporting_actor, :rows => 3, :cols => 58 %>
-                    </p>
-						        <p align="right"  class="cont1_next" style="width:550px;"> 
-						          <%= link_to "Skip for now and start browsing", {:controller=>"dashboard", :action=>'index'} %>
-						          <span style="vertical-align:text-top;">
-						            <%= f.submit "Next", :class=>'button' %>
-						          </span>
-						        </p>
-						    </table>
-               <% end %>
-            </div>
-                
-					
-            </div>
-            </table>
+  					<h3 id="photos_count"><%= pluralize(@user.albums.size, "Photo")%></h3>
+            <div id="uploads">
 
-          </div>
+
+             <%= render :partial => @user.albums %>
+             </div>
+
+
+  					<div class="clearfloat"></div>
+  					<div class="formArea_next">
+
+  					<%= form_for [:user,Album.new(:user_id => @user.id)], :html => {:multipart => true} do |f| %> 
+
+              <%= f.hidden_field :user_id, :value => @user.id %>
+              <p class="cont1"><strong>Upload more pictures for your highlight reel! </strong>
+                    <%= f.file_field :photo %>
+              </p> 
+             <% end %>
+
+  						<% form_for :users do |f| %>
+  						<table width="100%">
+  						<tr>
+  						   <td>
+  						      <%= f.hidden_field :user_id, :value => @user.id %>
+  						        <p class="cont1"> 
+  						          <strong>Summary ( a little bit about yourself )</strong><br>
+  						          <%= f.text_area :title, :rows => 3, :cols => 58 %>
+  						        </p>
+
+  				            <p class="cont1"> 
+                          <strong> What are you looking for in your "best supporting actor/actress?</strong><br>
+                          <%= f.text_area :supporting_actor, :rows => 3, :cols => 58 %>
+                      </p>
+  						        <p align="right"  class="cont1_next" style="width:550px;"> 
+  						          <%= link_to "Skip for now and start browsing", {:controller=>"dashboard", :action=>'index'} %>
+  						          <span style="vertical-align:text-top;">
+  						            <%= f.submit "Next", :class=>'button' %>
+  						          </span>
+  						        </p>
+  						        </td>
+  						      </tr>
+  						    </table>
+                 <% end %>
+              </div>
+
+
+              </div>
+              
 				</td>
 			</tr>
-		</table></div>
+		</table>
+		  </div>
     </div>
 </div> 
 
