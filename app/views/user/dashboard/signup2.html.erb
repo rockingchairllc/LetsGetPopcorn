@@ -1,0 +1,250 @@
+<%= javascript_include_tag "swfobject.js", "jquery.uploadify.v2.1.0.js" %>
+ <script type="text/javascript" charset="utf-8">
+ jQuery(document).ready(function() {
+
+ 	jQuery('#album_photo').click(function(event){ 
+ 		event.preventDefault();
+ 	}); 
+
+ 	jQuery('#album_photo').uploadify({
+   	uploader : '/uploadify/uploadify.swf',
+ 		cancelImg : '/uploadify/cancel.png',
+ 		multi : true,
+ 		auto : true,
+   	script : '/user/albums',
+ 		onComplete : function(event, queueID, fileObj, response, data) { 
+ 			var dat = eval('(' + response + ')');
+ 			jQuery.getScript(dat.upload);},
+   	scriptData : {
+ 	        '_http_accept': 'application/javascript',
+ 					'format' : 'json',
+ 	        '_method': 'post',
+ 	        'user_id' : '<%= @user.id %>'
+ 	      }
+ 	});
+
+ 	jQuery('#upload_submit').click(function(event){ 
+ 			event.preventDefault(); 
+ 			jQuery('#album_photo').uploadifyUpload(); 
+ 		});
+
+ }); 
+ </script>
+ 
+
+
+ <div id="dialog" style="display:none;">
+	<div class="div_inner">
+		<div class="heading" ><strong>You're almost there!</strong></div> 
+        <div style="padding-left:0px;">
+		<table width="95%" border="0" cellspacing="2" cellpadding="2">
+			<tr>
+				
+				<td style="padding-top:10px;padding-right:10px;padding-left:0px;">
+				<div id="moduleframe">	
+    	<table width="450" border="0" cellspacing="5" cellpadding="2" >
+		<div class="profile_area_next">
+					
+					<h3 id="photos_count"><%= pluralize(@user.albums.size, "Photo")%></h3>
+          <div id="uploads">
+
+               
+           <%= render :partial => @user.albums %></div>
+           
+					
+					<div class="clearfloat"></div>
+					<div class="formArea_next">
+					<h3>Upload a Photo</h3> 
+					<%= form_for [:user,Album.new(:user_id => @user.id)], :html => {:multipart => true} do |f| %> 
+            
+            <%= f.hidden_field :user_id, :value => @user.id %>
+            <p class="cont1"><strong>Upload more pictures for your highlight reel! </strong>
+                  <%= f.file_field :photo %>
+            </p> 
+           <% end %>
+						
+						<% form_for :users do |f| %>
+						<table width="100%">
+						<tr>
+						   <td>
+						      <%= f.hidden_field :user_id, :value => @user.id %>
+						        <p class="cont1"> 
+						          <strong>Summary ( a little bit about yourself )</strong><br>
+						          <%= f.text_area :title, :rows => 3, :cols => 58 %>
+						        </p>
+						
+				            <p class="cont1"> 
+                        <strong> What are you looking for in your "best supporting actor/actress?</strong><br>
+                        <%= f.text_area :supporting_actor, :rows => 3, :cols => 58 %>
+                    </p>
+						        <p align="right"  class="cont1_next" style="width:550px;"> 
+						          <%= link_to "Skip for now and start browsing", {:controller=>"dashboard", :action=>'index'} %>
+						          <span style="vertical-align:text-top;">
+						            <%= f.submit "Next", :class=>'button' %>
+						          </span>
+						        </p>
+						    </table>
+               <% end %>
+            </div>
+                
+					
+            </div>
+            </table>
+
+          </div>
+				</td>
+			</tr>
+		</table></div>
+    </div>
+</div> 
+
+ 
+
+
+	<div class="wrapper">
+           
+    	<div class="header">
+        	<div class="logo"></div>
+            <h1 class="title">Welcome, Hot Stuff!</h1>
+            <ul class="nav">
+            	<li><a href="javascript:void(0)" class="active_button">matches</a></li>
+                <li><a href="index.html">movies</a></li>
+                <li><a href="javascript:void(0)" >account</a></li>
+            </ul><!-- .nav -->
+            
+            <!-- clear the float -->
+            <div class="clearfloat"></div>
+        </div><!-- .header -->
+
+
+        <div class="section">
+            
+            <div class="search_filternew">
+               <button type="button">Guys</button> <span class="article1">within [xxx] miles of [zipcode] who want to see: </span><br>
+               <span class="article1">Ides of March, Moneyball, Abduction, Titanic 3d, Mup… (<a href="#">change</a>)</span>
+                   
+                   
+            </div><!-- .search_filter -->
+            
+            <div class="articlenew profile">
+            	<p align="right"><button type="button">Next	7	days</button></p>
+            	<h2 class="headshots">Today</h2>
+                <div class="profile_column_left">
+                	<div class="profile_1">
+                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                        
+                        	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
+Wants to see: Moneyball<br>
+At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
+Looking for: The kinda girl that can pull of Katherine Heigl in 
+Knocked Up.</p>
+                                
+                    <div class="clearfloat"></div> 
+                    </div>
+                    
+                    <div class="profile_2">
+                    	<img src="/images/avatar_2.png" alt=""  align="left" style="padding-right:8px;"/>
+                        
+                        	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
+Wants to see:  What’s Your Number?<br>
+Doppleganger: Chris Rock</p>
+                                   
+                    <div class="clearfloat"></div> 
+                    </div>
+                    
+                    
+                   <div class="profile_1">
+                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                        
+                        	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
+Wants to see: Moneyball<br>
+At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
+Looking for: The kinda girl that can pull of Katherine Heigl in 
+Knocked Up.</p>
+                                
+                    <div class="clearfloat"></div> 
+                    </div>
+                    
+                    <div class="profile_2">
+                    	<img src="/images/avatar_2.png" alt=""  align="left" style="padding-right:8px;"/>
+                        
+                        	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
+Wants to see:  What’s Your Number?<br>
+Doppleganger: Chris Rock</p>
+                                   
+                    <div class="clearfloat"></div> 
+                    </div>
+                    
+                    
+                </div>
+                
+                 <div class="profile_column_right">
+                	<div class="profile_1">
+                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                        
+                        	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
+Wants to see: Moneyball<br>
+At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
+Looking for: The kinda girl that can pull of Katherine Heigl in 
+Knocked Up.</p>
+                                
+                    <div class="clearfloat"></div> 
+                    </div>
+                    
+                    <div class="profile_2">
+                    	<img src="/images/avatar_2.png" alt="" align="left" style="padding-right:8px;"/>
+                        
+                        	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
+Wants to see:  What’s Your Number?<br>
+Doppleganger: Chris Rock</p>
+                                    
+                    <div class="clearfloat"></div> 
+                    </div>
+                    
+                    
+                    
+                   <div class="profile_1">
+                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                        
+                        	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
+Wants to see: Moneyball<br>
+At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
+Looking for: The kinda girl that can pull of Katherine Heigl in 
+Knocked Up.</p>
+                                
+                    <div class="clearfloat"></div> 
+                    </div>
+                    
+                    <div class="profile_2">
+                    	<img src="/images/avatar_2.png" alt="" align="left" style="padding-right:8px;"/>
+                        
+                        	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
+Wants to see:  What’s Your Number?<br>
+Doppleganger: Chris Rock</p>
+                                    
+                    <div class="clearfloat"></div> 
+                    </div>
+                    
+                    
+                    
+                    
+                  <div class="clearfloat"></div>   
+                </div><br><br>
+
+             
+             <div class="clearfloat"></div>
+              <h2 class="headshots" style="padding:10px 0 0 0;">Friday</h2>   
+            </div><!-- article -->
+            <!-- END Aritcle -->
+        </div><!-- .section -->
+            
+        <!-- Start Sidebar (aside) -->
+        <div class="aside">
+            <ul>
+           		<h2>MOVIES</h2>
+                
+            <!-- clear the float -->
+            <div class="clearfloat"></div>
+            </ul>
+        </div><!-- .aside -->
+        <!-- END Sidebar (aside) -->

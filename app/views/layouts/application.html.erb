@@ -9,27 +9,27 @@
   
   <script>
   function showtimes() {
-  	$('.showtimes_wrapper').toggle();
+  	jQuery('.showtimes_wrapper').toggle();
   }
   $(function() {
-  	$('.select_showtime_modal_overlay').click( function () {
-  		$('.showtimes_wrapper').toggle();
+  	jQuery('.select_showtime_modal_overlay').click( function () {
+  		jQuery('.showtimes_wrapper').toggle();
   	});
   });
-  $(function() {
-  $('td').click( function () {
-  		$(this).css( {} );
+  jQuery(function() {
+  jQuery('td').click( function () {
+  		jQuery(this).css( {} );
   	});
   });
   
-  $(function () {
+  jQuery(function () {
 
               //Your logic here to set it true or false;
               //On false the dialog will not be displayed
               var yourCondition = true;
 
               if (yourCondition) {
-                  $('#dialog').dialog({
+                  jQuery('#dialog').dialog({
                       modal: 'true',
                       title: ''
                   });

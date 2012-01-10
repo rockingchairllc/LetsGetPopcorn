@@ -6,6 +6,7 @@ Moviewithme::Application.routes.draw do |map|
 
   devise_for :users, :path_names => { :sign_up => "register", :sign_in =>"login"}
 
+  
   map.connect '/movies', :controller=>'pages', :action=>'movies'
   map.connect '/matches', :controller=>'pages', :action=>'matches'
   map.connect '/contact', :controller=>'pages', :action=>'contact'
@@ -16,6 +17,7 @@ Moviewithme::Application.routes.draw do |map|
   # User
   namespace :user do 
      match '/dashboard' => "dashboard#index", :as => :root
+     match '/dashboard/signup/2' => "dashboard#signup2"
      match '/account' => "account#index"
      resources :albums
      resources :synopses

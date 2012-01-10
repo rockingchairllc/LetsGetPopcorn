@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   
   has_many :authentications
-  has_many :albums
+  has_many :albums, :dependent => :destroy
   has_many :favmovies
   has_many :funnyques
   has_many :synopses
