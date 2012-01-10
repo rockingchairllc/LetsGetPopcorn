@@ -45,12 +45,14 @@
                           <strong> What are you looking for in your "best supporting actor/actress?</strong><br>
                           <%= f.text_area :supporting_actor, :rows => 3, :cols => 58 %>
                       </p>
+                      <div class="formArea_next">
   						        <p align="right"  class="cont1_next" style="width:550px;"> 
   						          <%= link_to "Skip for now and start browsing", {:controller=>"dashboard", :action=>'index'} %>
   						          <span style="vertical-align:text-top;">
   						            <%= f.submit "Next", :class=>'button' %>
   						          </span>
   						        </p>
+  						        </div>
   						        </td>
   						      </tr>
   						    </table>

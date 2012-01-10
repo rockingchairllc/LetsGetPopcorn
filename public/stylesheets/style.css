@@ -998,4 +998,12 @@ p.forgot {
 	font-size:13px;
 }
 
+.formArea_next p.cont1_next a{
+		font-size:13px;		
+		color:#000;
+}
 
+.formArea_next p.cont1_next a:hover{
+		font-size:13px;		
+		color:red;
+}
