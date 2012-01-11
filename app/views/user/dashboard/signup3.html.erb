@@ -1,62 +1,63 @@
- <%= render :partial => "uploadify" %> 
+ 
 
  <div id="dialog" style="display:none;">
 	<div class="div_inner">
-		<div class="heading" ><strong>You're almost there!</strong></div> 
-      <div style="padding-left:0px;">
-		  <table width="95%" border="0" cellspacing="2" cellpadding="2">
+		<div class="heading" ><strong>Last page! Quiet on the set!</strong></div> 
+        <div style="padding-left:0px;">
+		<table width="95%" border="0" cellspacing="2" cellpadding="2">
 			<tr>
-				  <td style="padding-top:10px;padding-right:10px;padding-left:0px;">
-			  	  <div id="moduleframe">	
-              <h3 id="photos_count" style="text-align:left;"><%= pluralize(@user.albums.size, "Photo")%></h3>
-                <div id="uploads">
-                    <%= render :partial => @user.albums %>
-                </div>
-
-                <!-- Upload picture -->
-  					    <%= form_for [:user,Album.new(:user_id => @user.id)], :html => {:multipart => true} do |f| %> 
-                   <table width="100%">
-          					<%= f.hidden_field :user_id, :value => @user.id %>
-          					<tr>
-          						  <td align="left" width="54%" style="vertical-align: top !important;"><strong>Upload more pictures for your highlight reel!</strong></td>
-        						    <td align="left"><%= f.file_field :photo %></td>
-        						</tr>
-                   </table>
-                <% end %>
-                <!-- End Upload picture -->
-                
-
-  						  <% form_for :users do |f| %>
-  						    <table width="100%">
-  						    <%= f.hidden_field :user_id, :value => @user.id %>
-  						    <tr>
-  						        <td align="left" width="50%" style="vertical-align: top !important;"><strong>Summary ( a little bit about yourself )</strong></td>
-  						        <td align="left"><%= f.text_area :title, :rows => 3, :cols => 36 %></td>
-            			</tr>
-  						          
-                  <tr>
-              				<td align="left" width="50%" style="vertical-align: top !important;"><strong> What are you looking for in your "best supporting actor/actress?</strong></td>
-  						        <td align="left"><%= f.text_area :supporting_actor, :rows => 3, :cols => 36 %></td>
-            			</tr>
-            			<tr>
-            			    <td colspan="2">&nbsp;</td>
-            			</tr>
-                          
-                  <tr>
-              				<td colspan="2">    
+				
+				<td style="padding-right:10px;padding-left:0px;">
+			  	<div id="moduleframe">	
+			  	
+  				  <% form_for :users do |f| %>
+  					<table width="100%">
+  					<%= f.hidden_field :user_id, :value => current_user.id %>
+  					<tr>
+  						  <td align="left"><strong>Height</strong></td>
+						    <td align="left"> 
+						        <%= select :users, :height_feet, options_for_select([["--------", ""],3,4,5,6,7]) %>
+						        <%= select :users, :height_inches, options_for_select([["--------", ""],0,1,2,3,4,5,6,7,8,9,10,11]) %>
+  						      
+  						    </td>
+  						</tr>
+  						<tr>
+    						  <td align="left"><strong>Smoke</strong></td>
+  						    <td align="left">  
+  						        <%= select :users, :smoke, options_for_select([["--------------", ""],"Yes","Sometimes","When drinking","Trying to quit","No"]) %>
+    						  </td>
+    					</tr>
+    					<tr>
+    						  <td align="left"><strong>Drink</strong></td>
+  						    <td align="left">
+  						        <%= select :users, :drink, options_for_select([["-------------", ""],"Very Often","Often","Socially","Rarely","Desperately","Not at All"]) %>
+    						  </td>
+    					</tr>
+    					<tr>
+    						  <td align="left"><strong>Favorite movies of all time</strong></td>
+  						    <td style="vertical-align: top !important;" align="left">    
+    						      <%= f.text_area :favorite_movies, :rows => 3, :cols => 30 %>
+    						  </td>
+    					</tr>
+    					<tr>
+    						  <td colspan="2">&nbsp;</td>
+    					</tr>
+  						  <tr>
+      						  <td colspan="2">
+  				            
                       <div class="formArea_next">
   						        <p align="right"  class="cont1_next" style="width:550px;"> 
   						          <%= link_to "Skip for now and start browsing", {:controller=>"dashboard", :action=>'index'} %>
   						          <span style="padding-left:25px;">
-  						            <%= f.submit "Next", :class=>'button' %>
+  						            <%= f.submit "Done", :class=>'button' %>
   						          </span>
   						        </p>
-  						        </div>
-  						        </td>
-  						    </tr>
-  						    </table>
-                 <% end %>
-              
+  						       </div>
+  						     </td>
+  						 </tr>
+  						 </table>
+              <% end %>
+            </div>
               
 				</td>
 			</tr>

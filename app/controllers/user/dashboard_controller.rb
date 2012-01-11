@@ -21,6 +21,30 @@ class User::DashboardController < ApplicationController
              end
           end
    end
+   
+   def signup3
+     
+          
+
+           if request.post? and params[:users]
+                if favmovie = Favmovie.new(params[:users])
+                  
+                  favmovie.height_feet = "#{params[:users][:height_feet]}"
+                  favmovie.height_inches = "#{params[:users][:height_inches]}"
+                  favmovie.smoke = "#{params[:users][:smoke]}"
+                  favmovie.drink = "#{params[:users][:drink]}"
+                  favmovie.title = "#{params[:users][:favorite_movies]}"
+                  favmovie.user_id = "#{params[:users][:user_id]}"
+                  
+
+                  favmovie.save
+
+                  redirect_to("/")
+
+                end
+             end
+             
+   end
   
   
 end

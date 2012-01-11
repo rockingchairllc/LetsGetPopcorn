@@ -49,6 +49,10 @@ class User::AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     @user = User.find(@album.user_id)
     @album.destroy
+    render(:update) do |page|
+      page.replace_html 'photos_count', "#{pluralize(@user.albums.size, "Photo")}"
+      page.replace_html 'uploads', :partial => @user.albums        
+    end
   end
   
   private 
