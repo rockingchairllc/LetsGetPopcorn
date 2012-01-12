@@ -1,71 +1,76 @@
- 
+<div id="dialog" style="display:none;">
 
- <div id="dialog" style="display:none;">
-	<div class="div_inner">
-		<div class="heading" ><strong>Last page! Quiet on the set!</strong></div> 
-        <div style="padding-left:0px;">
+	<center><div class="div_inner">
+		<div class="heading" ><strong>Register FREE and find your movie match!</strong></div> 
+        <div style="padding-left:80px;">
 		<table width="95%" border="0" cellspacing="2" cellpadding="2">
 			<tr>
-				
-				<td style="padding-right:10px;padding-left:0px;">
-			  	<div id="moduleframe">	
-			  	
-  				  <% form_for :users do |f| %>
-  					<table width="100%">
-  					<%= f.hidden_field :user_id, :value => current_user.id %>
-  					<tr>
-  						  <td align="left"><strong>Height</strong></td>
-						    <td align="left"> 
-						        <%= select :users, :height_feet, options_for_select([["--------", ""],3,4,5,6,7]) %>
-						        <%= select :users, :height_inches, options_for_select([["--------", ""],0,1,2,3,4,5,6,7,8,9,10,11]) %>
-  						      
-  						    </td>
-  						</tr>
-  						<tr>
-    						  <td align="left"><strong>Smoke</strong></td>
-  						    <td align="left">  
-  						        <%= select :users, :smoke, options_for_select([["--------------", ""],"Yes","Sometimes","When drinking","Trying to quit","No"]) %>
-    						  </td>
-    					</tr>
-    					<tr>
-    						  <td align="left"><strong>Drink</strong></td>
-  						    <td align="left">
-  						        <%= select :users, :drink, options_for_select([["-------------", ""],"Very Often","Often","Socially","Rarely","Desperately","Not at All"]) %>
-    						  </td>
-    					</tr>
-    					<tr>
-    						  <td align="left"><strong>Favorite movies of all time</strong></td>
-  						    <td style="vertical-align: top !important;" align="left">    
-    						      <%= f.text_area :title, :rows => 3, :cols => 30 %>
-    						  </td>
-    					</tr>
-    					<tr>
-    						  <td colspan="2">&nbsp;</td>
-    					</tr>
-  						  <tr>
-      						  <td colspan="2">
-  				            
-                      <div class="formArea_next">
-  						        <p align="right"  class="cont1_next" style="width:550px;"> 
-  						          <%= link_to "Skip for now and start browsing", {:controller=>"dashboard", :action=>'index'} %>
-  						          <span style="padding-left:25px;">
-  						            <%= f.submit "Done", :class=>'button' %>
-  						          </span>
-  						        </p>
-  						       </div>
-  						     </td>
-  						 </tr>
-  						 </table>
-              <% end %>
-            </div>
-              
+				<!--<td width="43%">
+					<table width="100%" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #FFF;">
+						<tr>
+							<td><div style="position:absolute;padding-left:20px;"><img src="images/warch-movie.jpg" alt="" /></div></td>
+						</tr>
+					</table>-->
+					<!-- <div style="position:absolute;"><img src="images/warch-movie.jpg" alt="" /></div> --></td>
+				<td style="padding-top:10px;padding-right:10px;padding-left:0px;">
+					<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=>{:multipart => true}) do |f| %>
+      	<table width="100%" border="0" cellspacing="2" cellpadding="2">
+      	<%= devise_error_messages! %>
+        <% if request.get? and params[:user] %>
+        <%= f.hidden_field :gender, :value => "#{params[:user][:gender]}" %>
+        <%= f.hidden_field :orientation, :value => "#{params[:user][:orientation]}" %>
+        <% else %>
+        <tr>
+            <td colspan="2">
+              <strong> I am </strong>
+              <%= select :user, :gender, options_for_select([["A Girl", "female"],["A Guy", "male"]]) %>
+             <strong> interested in having popcorn with </strong>
+              <%= select :user, :orientation, options_for_select([["A Guy", "men"], ["A Girl", "women"], ["Any","any"]]) %>
+            </td>
+        </tr>
+        <% end %>
+        <tr>
+            <td style="vertical-align: top;" align="left"><strong>Username </strong></td>
+            <td  align="left"><%= f.text_field :username %></td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;" align="left"><strong>Password</strong></td>
+            <td align="left"><%= f.password_field :password %></td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;" align="left"><strong>Password Confirmation </strong></td>
+            <td align="left"><%= f.password_field :password_confirmation %></td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;" align="left"><strong>E-Mail</strong></td>
+            <td align="left"><%= f.email_field :email %></td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;" align="left"><strong>Birthday </strong></td>
+            <td align="left"><%= f.date_select :birthday, :start_year => 1912, :use_month_numbers => true, :order => [:month, :day, :year], :prompt => {:month => 'mm', :day => 'dd', :year => 'yyyy' } %> </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;" valign="top" style="padding:5px 0 0 0" align="left"><strong>Zip Code</strong></td>
+            <td align="left"><%= f.text_field :zip %><br /><div align="left" style="font-size:11px; color:#666666; text-align:left; margin:-5px 0 0 0;">This is to locate theaters near you</div></td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;" align="left"><strong>Profile Photo </strong></td>
+            <td align="left"> <%= f.file_field :profile_photo %></td>
+        </tr>
+        <tr>
+  	          <td colspan="2" style="padding-top:5px;"></td>
+        </tr>
+        <tr>
+              <td>&nbsp;</td>
+              <td align="right"><%= f.submit "Sign up", :class=>'button' %></td>
+        </tr>
+        </table>
+         <% end %>
 				</td>
 			</tr>
-		</table>
-		  </div>
+		</table></div>
     </div>
-</div> 
-
+</div> </center>
  
 
 
@@ -99,7 +104,7 @@
             	<h2 class="headshots">Today</h2>
                 <div class="profile_column_left">
                 	<div class="profile_1">
-                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                    	<img src="images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
                         
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
 Wants to see: Moneyball<br>
@@ -111,7 +116,7 @@ Knocked Up.</p>
                     </div>
                     
                     <div class="profile_2">
-                    	<img src="/images/avatar_2.png" alt=""  align="left" style="padding-right:8px;"/>
+                    	<img src="images/avatar_2.png" alt=""  align="left" style="padding-right:8px;"/>
                         
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
 Wants to see:  What’s Your Number?<br>
@@ -122,7 +127,7 @@ Doppleganger: Chris Rock</p>
                     
                     
                    <div class="profile_1">
-                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                    	<img src="images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
                         
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
 Wants to see: Moneyball<br>
@@ -134,7 +139,7 @@ Knocked Up.</p>
                     </div>
                     
                     <div class="profile_2">
-                    	<img src="/images/avatar_2.png" alt=""  align="left" style="padding-right:8px;"/>
+                    	<img src="images/avatar_2.png" alt=""  align="left" style="padding-right:8px;"/>
                         
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
 Wants to see:  What’s Your Number?<br>
@@ -148,7 +153,7 @@ Doppleganger: Chris Rock</p>
                 
                  <div class="profile_column_right">
                 	<div class="profile_1">
-                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                    	<img src="images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
                         
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
 Wants to see: Moneyball<br>
@@ -160,7 +165,7 @@ Knocked Up.</p>
                     </div>
                     
                     <div class="profile_2">
-                    	<img src="/images/avatar_2.png" alt="" align="left" style="padding-right:8px;"/>
+                    	<img src="images/avatar_2.png" alt="" align="left" style="padding-right:8px;"/>
                         
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
 Wants to see:  What’s Your Number?<br>
@@ -172,7 +177,7 @@ Doppleganger: Chris Rock</p>
                     
                     
                    <div class="profile_1">
-                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                    	<img src="images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
                         
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
 Wants to see: Moneyball<br>
@@ -184,7 +189,7 @@ Knocked Up.</p>
                     </div>
                     
                     <div class="profile_2">
-                    	<img src="/images/avatar_2.png" alt="" align="left" style="padding-right:8px;"/>
+                    	<img src="images/avatar_2.png" alt="" align="left" style="padding-right:8px;"/>
                         
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
 Wants to see:  What’s Your Number?<br>
