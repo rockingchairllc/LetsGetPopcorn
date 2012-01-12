@@ -613,6 +613,11 @@ ul.profile_pics {
 	width:200px;
 }
 
+.form select {
+	border: 1px solid #CCCCCC;
+    padding: 2px;
+}
+
 p.forgot {
 	font-size:13px;
 	line-height:17px;
@@ -765,7 +770,8 @@ p.forgot {
 	font-size:13px;
 }
 
-#dialog .div_inner table td form input[type="text"], input[type="password"], input[type="email"]  {
+#dialog .div_inner table td form input[type="text"], #dialog .div_inner table td form input[type="password"], 
+#dialog .div_inner table td form input[type="email"]  {
 	width:200px;
 	border: solid 1px #ccc;
 	padding:2px;
@@ -786,7 +792,8 @@ p.forgot {
 	font-size:13px;
 }
 
-#dialog .div_inner table td #moduleframe input[type="text"], input[type="password"], input[type="email"]  {
+#dialog .div_inner table td #moduleframe input[type="text"],#dialog .div_inner table td #moduleframe input[type="password"], 
+#dialog .div_inner table td #moduleframe input[type="email"]  {
 	width:200px;
 	border: solid 1px #ccc;
 	padding:2px;
