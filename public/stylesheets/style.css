@@ -1086,3 +1086,5 @@ ul.image_list li a.delete-no-conf img {
 }
 ul#position_container li div { cursor: move; }
 
+.buriedlink {color:#274A9C; font-size: 19px;}
+.buriedlink:hover {text-decoration: underline;}
