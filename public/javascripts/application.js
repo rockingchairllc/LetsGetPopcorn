@@ -159,58 +159,5 @@ jQuery(document).ready(function() {
 	});
 });
 
-// validation for Add highlight reel pages
 
-jQuery(document).ready(function() {
-  jQuery("#add_photo").validate({
-	
-	rules: {
-		
-	
-		     "album[name]":{
-						required:true,
-						minlength: 2
-		     },
-			"album[photo]":{
-						required:true			
-		     }
-		},
-	messages: {
-		
-	
-		"album[name]":{
-						            required: "Please enter photo name",
-						            minlength: "Your photo name must consist of at least 2 characters"	
-					 },
-		"album[photo]":{
-									required:"Please enter photo"			
-					    }
-					
-		}
-	});
-});
 
-// validation for Edit highlight reel pages
-
-jQuery(document).ready(function() {
-  jQuery("#edit_photo").validate({
-	
-	rules: {
-		
-	
-		     "album[name]":{
-						required:true,
-						minlength: 2
-		     }
-		},
-	messages: {
-		
-	
-		"album[name]":{
-						            required: "Please enter photo name",
-						            minlength: "Your photo name must consist of at least 2 characters"	
-					 }
-					
-		}
-	});
-});
