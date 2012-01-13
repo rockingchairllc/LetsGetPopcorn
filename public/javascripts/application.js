@@ -1,6 +1,5 @@
 // validation for registration pages
 
-
 jQuery(document).ready(function() {
   jQuery("#user_new").validate({
 	

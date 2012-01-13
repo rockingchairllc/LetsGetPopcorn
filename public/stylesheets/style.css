@@ -1088,3 +1088,6 @@ ul#position_container li div { cursor: move; }
 
 .buriedlink {color:#274A9C; font-size: 19px;}
 .buriedlink:hover {text-decoration: underline;}
+
+#dialog .div_inner table td #user_gender {width:199px;}
+#dialog .div_inner table td #user_orientation {width:199px;}

@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :username, :login, :birthday, :zip, :gender, :orientation, :profile_photo
   
-  validates_uniqueness_of :email
+  
   
   #for profile photo
   

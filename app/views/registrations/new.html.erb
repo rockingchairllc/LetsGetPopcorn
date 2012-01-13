@@ -19,15 +19,19 @@
         <% if request.get? and params[:user] %>
         <%= f.hidden_field :gender, :value => "#{params[:user][:gender]}" %>
         <%= f.hidden_field :orientation, :value => "#{params[:user][:orientation]}" %>
+        <% elsif request.post? and params[:user] %>
+        <%= f.hidden_field :gender, :value => "#{params[:user][:gender]}" %>
+        <%= f.hidden_field :orientation, :value => "#{params[:user][:orientation]}" %>
         <% else %>
         <tr>
-            <td colspan="2">
-              <strong> I am </strong>
-              <%= select :user, :gender, options_for_select([["A Girl", "female"],["A Guy", "male"]]) %>
-             <strong> interested in having popcorn with </strong>
-              <%= select :user, :orientation, options_for_select([["A Guy", "men"], ["A Girl", "women"], ["Any","any"]]) %>
-            </td>
+        <td align="left"><strong> I am </strong></td>
+        <td align="left"><%= select :user, :gender, options_for_select([["A Girl", "female"],["A Guy", "male"]]) %></td>
         </tr>
+        <tr>
+        <td align="left"> <strong> interested in having popcorn with </strong></td>
+        <td align="left"><%= select :user, :orientation, options_for_select([["A Guy", "men"], ["A Girl", "women"], ["Any","any"]]) %></td>
+        </tr>
+        
         <% end %>
         <tr>
             <td style="vertical-align: top;" align="left"><strong>Username </strong></td>
