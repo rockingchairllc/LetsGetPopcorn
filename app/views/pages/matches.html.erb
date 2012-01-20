@@ -2,9 +2,9 @@
         	<div class="logo"></div>
             <h1 class="title">Welcome, Hot Stuff!</h1>
             <ul class="nav">
-            	<li><a href="/matches" class="active_button">matches</a></li>
-                <li><a href="/movies">movies</a></li>
-                <li><a href="/user/account" >account</a></li>
+            	<li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'}, :class=>"active_button" %></li>
+              <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'} %></li>
+              <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'} %></li>
             </ul><!-- .nav -->
             
             <!-- clear the float -->

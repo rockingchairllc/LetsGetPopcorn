@@ -2,9 +2,9 @@
    		<h1 class="title">GOOD DIALOG, GOOD STORY"</h1>
        	<div class="logo"></div>
          <ul class="nav">
-           	<li><a href="/matches">matches</a></li>
-               <li><a href="/movies" <% if @title == 'movies' %> class="active_button" <% end %>>movies</a></li>
-               <li><a href="/user/account" <% if @title == 'account' %> class="active_button" <% end %> >account</a></li>
+           	<li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'} %></li>
+            <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'} %></li>
+            <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'} %></li>
            </ul><!-- .nav -->
            
            <!-- clear the float -->
