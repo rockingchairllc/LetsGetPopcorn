@@ -22,3 +22,5 @@ gem "omniauth", "0.3.0"
 
 gem 'aws-s3'
 
+gem 'nokogiri'
+

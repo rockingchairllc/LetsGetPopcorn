@@ -31,20 +31,27 @@
          
          <div class="articlenew">
          	<ul class="movie_list">
-             	<li>
+         	    <% @doc.css("movie").each do |item| %>
+             	<li><%  movieId = item.attr('movieid') %>
                  	<div class="movie_outter_content">
-                         <a href="#"><img src="images/moneyball.png" class="movie_cover_image" alt="" /></a>
+                         <a href="#"><img src="<%= item.css('asseturi').text %>" width="162"></a>
                          <a href="#">@ 8 Theaters</a>
                      </div><!-- movie_outter_content -->
                      
                      <div class="movie_inner_content">
                      	<h3 class="movie_title">
-                         	<a href="#">Moneyball</a>, R <br />
-                             Rotten Tomatoes Score: 96%
+                         	<a href="#"><%=  item.css('title').css('text')[0].text %></a> <br />
+                             
                      	</h3>
-                         <strong>Genre:</strong> Action <br />
-                         <strong>Starring:</strong> Bradd Pitt, Jonah Hill <br />
-                         <strong>Imdb Summary:</strong> The story of Oakland A's General manager Billy Beane's successful attempt to...  
+                         
+                         <strong>Starring:</strong> 
+                         <% item.css("cast").each do |casts| %>
+                              <%=  casts.css('name').css('first').text %> <%=  casts.css('name').css('last').text %>,
+                         <% end %> <br />
+                         <% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
+                          <% @doc2 = Nokogiri::HTML(open(url2)) %>
+                          
+                         <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
                          (<a href="#">open IMDB page in popup</a>) <br />
                              
                          <ul>
@@ -63,33 +70,9 @@
                      </div><!-- .movie_buttons -->
                  </li><!-- end movie list item -->
                  
-             	<li>
-                 	<div class="movie_outter_content">
-                         <a href="#"><img src="images/abduction.png" class="movie_cover_image" /></a>
-                         <a href="#">@ 12 Theaters</a>
-                     </div><!-- movie_outter_content -->
-                     
-                     <div class="movie_inner_content">
-                     	<h3 class="movie_title">
-                         	<a href="#">Moneyball</a>, R <br />
-                             Rotten Tomatoes Score: 96%
-                     	</h3>
-                         <strong>Genre:</strong> Action, Starring: Taylor Lautner, Lilly Collins <br />
-                         <strong>Imdb Summary:</strong> 
-                         A thriller centered on a young man who sets out to uncover the truth about his life 
-                         after finding his baby photo on a missing persons website.
-                         
-                         <ul>
-                         	<a href="#">2 Guys</a> in your area want to see this movie: <br />
-                         	<li><a href="#"><img src="http://graph.facebook.com/501344395/picture?type=square" height="32" width="32" alt="" /></a></li>
-                         	<li><a href="#"><img src="http://graph.facebook.com/12441640/picture?type=square" height="32" width="32" alt="" /></a></li>
-                     	</ul>
-                     </div><!-- .movie_inner_content -->
-                     <div class="movie_buttons">
-                         <button type="button" onClick="showtimes()">Add to Watchlist</button><br />
-                         <button type="button">View on IMDB</button>
-                     </div><!-- .movie_buttons -->
-                 </li><!-- end movie list item -->
+              <% end %>
+                 
+             
                  
              </ul><!-- .movie_list -->
          </div><!-- article -->

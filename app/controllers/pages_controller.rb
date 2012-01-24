@@ -1,7 +1,17 @@
+require 'rubygems'
+require 'nokogiri'
+require 'open-uri'
+
 class PagesController < ApplicationController
   
   def movies
-    @meta_title = " - Movies"
+     time = Time.new 
+      current_date = time.strftime("%Y%m%d")
+      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=10098&country=USA&date=#{current_date}&numDays=3&radius=50&radiusUnit=mi&rhDays=2"
+
+        @doc = Nokogiri::HTML(open(url))
+        
+        @meta_title = " - Movies"
   end
   
   def matches

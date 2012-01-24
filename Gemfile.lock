@@ -170,6 +170,7 @@ DEPENDENCIES
   devise (= 1.2.rc)
   friendly_id (= 3.2.1)
   geocoder
+  nokogiri
   omniauth (= 0.3.0)
   paperclip
   rails (= 3.0.7)
