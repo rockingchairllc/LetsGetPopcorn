@@ -1,0 +1,34 @@
+<script>
+jQuery(function()
+{
+    jQuery("#div2 a").click(function(event) {
+        event.preventDefault();
+        jQuery("#div2").slideUp();
+        jQuery("#favmovie").slideToggle();
+    });
+        
+});
+
+</script>
+<% if @favmovie.nil? %>
+  <div id="favmovie" style="display:block;">Add Favorite movie</div>
+<% else %>
+  <div id="favmovie" style="display:block;"><%= @favmovie.title %></div>
+<% end %>
+
+
+<div id="div2" style="display:none; border-top: 1px solid #D8D5D5;padding: 10px 0 16px;position: relative;border-bottom: 1px solid #D8D5D5;">
+
+  <% form_for :users, :url=>{:controller=>"user/account", :action => "update_favmovie"}, :remote =>'true' do |f| %>
+    <% if @favmovie.nil? %>
+      <p><%= f.text_area :title, :rows => 4, :cols => 34, :class=>'profile_textarea' %></p>
+    <% else %>
+      <p><%= f.text_area :title, :rows => 4, :cols => 34, :class=>'profile_textarea', :value=>"#{@favmovie.title}" %></p>
+    <% end %>
+    
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.submit 'Save', :class => 'button_to' %>
+    <a href="javascript:void(0);" class="button_to">Cancel</a>
+    
+  <% end %>
+</div>

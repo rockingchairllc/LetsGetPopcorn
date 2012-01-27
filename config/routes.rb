@@ -13,6 +13,10 @@ Moviewithme::Application.routes.draw do |map|
   map.connect '/contact', :controller=>'pages', :action=>'contact'
   match '/auth/:provider/callback' => 'authentications#create'
   map.connect '/pages/:id', :controller=>'pages', :action=>'show'
+  map.connect '/edit/synopsis', :controller=>'user/account', :action=>'update_synopsis'
+  map.connect '/edit/favmovie', :controller=>'user/account', :action=>'update_favmovie'
+  map.connect '/edit/funnyque', :controller=>'user/account', :action=>'update_funnyque'
+  
   root :to => "home#index"
   
   # User

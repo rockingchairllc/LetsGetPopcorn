@@ -1091,3 +1091,17 @@ ul#position_container li div { cursor: move; }
 
 #dialog .div_inner table td #user_gender {width:199px;}
 #dialog .div_inner table td #user_orientation {width:199px;}
+
+.profile span.edit{ background: url("/images/edit_icons.png") no-repeat scroll 0 0 transparent;
+    float: right;
+    height: 21px;
+    margin: 0 0 0 10px;
+    width: 21px;
+	cursor: pointer;
+}
+
+.profile_textarea {border: 1px solid #D8D5D5;
+   border-radius: 3px 3px 3px 3px;
+   box-shadow: 0 0 0 2px transparent;
+   resize: none;
+}
