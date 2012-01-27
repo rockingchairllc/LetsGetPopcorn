@@ -157,7 +157,7 @@ The Document
 ******************************************************************************************************************************************************/
 body {
 	color: #333;
-	background: #a5c8ff url(/images/curtain_new.jpg) top left no-repeat;
+	background: #a5c8ff url(/images/curtain_new.jpg) top left repeat-x;
 	font-family: "Gill Sans", "Lucida Grande", Arial, sans-serif;
 }
 .wrapper {
