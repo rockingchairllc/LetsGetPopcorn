@@ -5,7 +5,7 @@
 jQuery("#click_here").click(function(event) {
   event.preventDefault();
   jQuery("#div1").slideToggle();
-  jQuery("#synopsis").slideUp();
+  jQuery("#synopsis").slideToggle();
 
 });
 
@@ -18,7 +18,7 @@ jQuery("#div1 a").click(function(event) {
 jQuery("#click_favmovie").click(function(event) {
     event.preventDefault();
     jQuery("#div2").slideToggle();
-    jQuery("#favmovie").slideUp();
+    jQuery("#favmovie").slideToggle();
 
 });
 
@@ -31,7 +31,7 @@ jQuery("#div2 a").click(function(event) {
 jQuery("#click_funnyque").click(function(event) {
       event.preventDefault();
       jQuery("#div3").slideToggle();
-      jQuery("#funnyque").slideUp();
+      jQuery("#funnyque").slideToggle();
 
   });
 
