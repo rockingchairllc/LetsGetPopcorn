@@ -55,6 +55,14 @@ class User::AlbumsController < ApplicationController
     end
   end
   
+  def upload_photo
+    @user = User.find(current_user.id, :include => :albums)
+    @albums = current_user.albums.find(:all, :limit => 5)
+    @favmovie = Favmovie.find_by_user_id(current_user)
+    @funnyque = Funnyque.find_by_user_id(current_user)
+    @synopse = Synopsis.find_by_user_id(current_user)
+  end
+  
   private 
   def coerce(params)
     if params[:album].nil? 

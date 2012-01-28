@@ -1,0 +1,211 @@
+<%= render :partial => "user/dashboard/uploadify" %> 
+
+ <div id="dialog" style="display:none;">
+	<div class="div_inner">
+		<div class="heading" ><strong>Upload Photo</strong></div> 
+      <div style="padding-left:0px;">
+		  <table width="95%" border="0" cellspacing="2" cellpadding="2">
+			<tr>
+				  <td style="padding-top:10px;padding-right:10px;padding-left:0px;">
+			  	  <div id="moduleframe">	
+              <h3 id="photos_count" style="text-align:left;"><%= pluralize(@user.albums.size, "Photo")%></h3>
+                <div id="uploads">
+                    <%= render :partial => @user.albums %>
+                </div>
+
+                <!-- Upload picture -->
+  					    <%= form_for [:user,Album.new(:user_id => @user.id)], :html => {:multipart => true} do |f| %> 
+                   <table width="100%">
+          					<%= f.hidden_field :user_id, :value => @user.id %>
+          					<tr>
+          					    <td align="center" width="24%%" style="vertical-align: top !important;"><strong>Upload pictures : </strong></td>
+          						  <td align="left" width="34%" style="vertical-align: top !important;"><%= f.file_field :photo %></td>
+        						    <td align="right" class="cont1_next"><%= link_to "Skip for now and start browsing", {:controller=>"account", :action=>'index'} %></td>
+        						</tr>
+                   </table>
+                <% end %>
+                <!-- End Upload picture --> 
+				</td>
+			</tr>
+		</table>
+		  </div>
+    </div>
+</div> 
+
+ 
+
+
+	<div class="wrapper">
+	
+    <div class="header">
+    		<h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.username %>  <% else %> <% end %></h1>
+        	<div class="logo"></div>
+          <ul class="nav">
+            		<li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'} %></li>
+                <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'} %></li>
+                <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'}, :class=>"active_button" %></li>
+            </ul><!-- .nav -->
+
+            <!-- clear the float -->
+            <div class="clearfloat"></div>
+        </div><!-- .header -->
+
+
+  <div class="section">
+
+
+
+      <div class="articlenew profile">
+        <div style="margin-left: 140px;">
+      	<h2 class="headshots">Head Shots!</h2>
+
+          <p class="headshot_msg">
+          	Now it's time to fil in your profile with details about your glamorous life.  
+          	(Don't worry, it won't go on Imdb!)
+          </p><!-- .headshot_msg -->
+         </div> 
+          <h3>The highlight reel</h3>
+
+           <div class=" jcarousel-skin-tango">
+              <div style="position: relative; display: block;" class="jcarousel-container jcarousel-container-horizontal">
+                  <div style="position: relative;" class="jcarousel-clip jcarousel-clip-horizontal">
+
+                    <ul style="overflow: hidden; position: relative; top: 0px; margin: 0px; padding: 0px; left: 0px; width:550px;" id="mycarousel" class="jcarousel-list jcarousel-list-horizontal">
+                      <% @albums.each do |album| %>
+                      <li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-1 jcarousel-item-1-horizontal"><%= link_to image_tag(album.photo.url(:thumb)), edit_user_album_path(album) %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <div disabled="true" style="display: block;" class="jcarousel-prev jcarousel-prev-horizontal jcarousel-prev-disabled jcarousel-prev-disabled-horizontal"></div>
+                  <div disabled="false" style="display: block;" class="jcarousel-next jcarousel-next-horizontal"></div>
+                </div>
+            </div>
+
+          <%= link_to "Upload", {:controller=>"user/albums", :action =>"upload_photo"}, :class=>"button_to" %>
+
+
+          <h3>The Synopsis <span class="edit" id="click_here"></span></h3>
+
+
+          <div id="maindiv">
+          <% if @synopse.nil? %>
+            <div id="synopsis" style="display:block;">Add Synopsis</div>
+          <% else %>
+            <div id="synopsis" style="display:block;"><%= @synopse.title %></div>
+          <% end %>
+
+
+          <div id="div1" style="display:none; border-top: 1px solid #D8D5D5;padding: 10px 0 16px;position: relative;border-bottom: 1px solid #D8D5D5;">
+
+            <% form_for :users, :url=>{:controller=>"user/account", :action => "update_synopsis"}, :remote =>'true' do |f| %>
+              <% if @synopse.nil? %>
+                <p><%= f.text_area :title, :rows => 4, :cols => 34, :class=>"profile_textarea" %></p>
+              <% else %>
+                <p><%= f.text_area :title, :rows => 4, :cols => 34, :value=>"#{@synopse.title}", :class=>"profile_textarea" %></p>
+              <% end %>
+
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.submit 'Save', :class => 'button_to' %>
+              <a href="#" class="button_to">Cancel</a>
+            <% end %>
+          </div>
+          </div>
+
+          <h3>Favorite movie of all time <span class="edit" id="click_favmovie"></span></h3>
+
+           	 <div id="maindiv2">
+             <% if @favmovie.nil? %>
+               <div id="favmovie" style="display:block;">Add Favorite movie</div>
+             <% else %>
+               <div id="favmovie" style="display:block;"><%= @favmovie.title %></div>
+             <% end %>
+
+
+             <div id="div2" style="display:none; border-top: 1px solid #D8D5D5;padding: 10px 0 16px;position: relative;border-bottom: 1px solid #D8D5D5;">
+
+               <% form_for :users, :url=>{:controller=>"user/account", :action => "update_favmovie"}, :remote =>'true' do |f| %>
+                 <% if @favmovie.nil? %>
+                   <p><%= f.text_area :title, :rows => 4, :cols => 34, :class=>"profile_textarea" %></p>
+                 <% else %>
+                   <p><%= f.text_area :title, :rows => 4, :cols => 34, :value=>"#{@favmovie.title}", :class=>"profile_textarea" %></p>
+                 <% end %>
+
+                   <%= f.hidden_field :user_id, :value => current_user.id %>
+                 <%= f.submit 'Save', :class => 'button_to' %>
+                 <a href="#" class="button_to">Cancel</a>
+               <% end %>
+             </div>
+             </div>
+
+
+          <h3>Funny Question <span class="edit" id="click_funnyque"></span></h3>	
+         	<div id="maindiv3">
+           <% if @funnyque.nil? %>
+             <div id="funnyque" style="display:block;">Add Funny Question</div>
+           <% else %>
+             <div id="funnyque" style="display:block;"><%= @funnyque.title %></div>
+           <% end %>
+
+
+           <div id="div3" style="display:none; border-top: 1px solid #D8D5D5;padding: 10px 0 16px;position: relative;border-bottom: 1px solid #D8D5D5;">
+
+             <% form_for :users, :url=>{:controller=>"user/account", :action => "update_funnyque"}, :remote =>'true' do |f| %>
+               <% if @funnyque.nil? %>
+                 <p><%= f.text_area :title, :rows => 4, :cols => 34, :class=>"profile_textarea" %></p>
+               <% else %>
+                 <p><%= f.text_area :title, :rows => 4, :cols => 34, :value=>"#{@funnyque.title}", :class=>"profile_textarea" %></p>
+               <% end %>
+
+                 <%= f.hidden_field :user_id, :value => current_user.id %>
+               <%= f.submit 'Save', :class => 'button_to' %>
+               <a href="#" class="button_to">Cancel</a>
+             <% end %>
+           </div>
+           </div>
+
+
+
+          <p style="padding-top:115px;"><%= link_to "Saved / Buried Dates", {:controller=>"/pages", :action=>'matches'}, :class=>'buriedlink' %> </p>
+
+      </div><!-- article -->
+      <!-- END Aritcle -->
+  </div><!-- .section -->
+
+  <!-- Start Sidebar (aside) -->
+  <div class="aside">
+      <ul>
+     		<h2>Recent Activity</h2>
+          <li>
+              <a href="javascript:void(0)">
+                  <img src="http://graph.facebook.com/502489573/picture?type=square" height="32" width="32" alt="" />
+                  <span class="user_name">Paul</span>,
+                  24, New York City <br />
+                  Movie: <span class="user_movie">Moneyball</span> 
+              </a>
+              <div class="clearfloat"></div>
+          </li>
+          <li>
+              <a href="javascript:void(0)">
+                  <img src="http://graph.facebook.com/12412651/picture?type=square" height="32" width="32" alt="" />
+                  <span class="user_name">Jim</span>,
+                  21, New York City <br />
+                  Movie: <span class="user_movie">What's...</span> 
+              </a>
+              <div class="clearfloat"></div>
+          </li>
+          <li>
+              <a href="javascript:void(0)">
+                  <img src="http://graph.facebook.com/12415713/picture?type=square" height="32" width="32" alt="" />
+                  <span class="user_name">Bob</span>,
+                  44, New York City <br />
+                  Movie: <span class="user_movie">Abduction</span> 
+              </a>
+              <div class="clearfloat"></div>
+          </li>
+      <!-- clear the float -->
+      <div class="clearfloat"></div>
+      </ul>
+  </div><!-- .aside -->
+  <!-- END Sidebar (aside) -->
+
+

@@ -1015,6 +1015,11 @@ p.forgot {
 		color:red;
 }
 
+.cont1_next a:hover{
+		font-size:13px;		
+		color:red;
+}
+
 #users_smoke, #users_drink {width: 230px !important;}
 #users_height_feet, #users_height_inches {width: 114px !important;}
 

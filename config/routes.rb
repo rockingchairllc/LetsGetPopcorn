@@ -26,6 +26,7 @@ Moviewithme::Application.routes.draw do |map|
      match '/dashboard/signup/3' => "dashboard#signup3"
      match '/account' => "account#index"
      match '/albums/:id/delete'=> "albums#destroy"
+     match '/albums/upload'=> "albums#upload_photo"
      resources :albums
      resources :synopses
      resources :favmovies
