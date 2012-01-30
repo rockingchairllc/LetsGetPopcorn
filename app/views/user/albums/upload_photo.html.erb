@@ -19,8 +19,8 @@
           					<%= f.hidden_field :user_id, :value => @user.id %>
           					<tr>
           					    <td align="center" width="24%%" style="vertical-align: top !important;"><strong>Upload pictures : </strong></td>
-          						  <td align="left" width="34%" style="vertical-align: top !important;"><%= f.file_field :photo %></td>
-        						    <td align="right" class="cont1_next"><%= link_to "Skip for now and start browsing", {:controller=>"account", :action=>'index'} %></td>
+          						  <td align="center" width="34%" style="vertical-align: top !important;"><%= f.file_field :photo %></td>
+        						    <td align="left" style="vertical-align: top !important;"><%= link_to "DONE", {:controller=>"account", :action=>'index'}, :class=>"done" %></td>
         						</tr>
                    </table>
                 <% end %>

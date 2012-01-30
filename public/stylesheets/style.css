@@ -1110,3 +1110,10 @@ ul#position_container li div { cursor: move; }
    box-shadow: 0 0 0 2px transparent;
    resize: none;
 }
+
+.done
+ { background:url(/images/button_bg.jpg) no-repeat;
+    border:0; border-width:0;
+    color:#FFF !important;
+    padding:5px 16px 9px 19px; 
+}
