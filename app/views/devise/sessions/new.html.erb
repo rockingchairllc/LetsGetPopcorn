@@ -55,7 +55,7 @@
           <p class="text_box1"><%= f.password_field :password %></p>
           <div class="clearfloat"></div>
 
-          <p style="margin:10px 0 0 160px;"><%= f.submit "Sign in" %></p>
+          <p style="margin:10px 0 0 160px;"><%= f.submit "Sign in", :class=>"button_to" %></p>
       <% end %>
 
       <p style="margin:10px 0 0 188px;"><%= render :partial => "devise/shared/links" %></p>
