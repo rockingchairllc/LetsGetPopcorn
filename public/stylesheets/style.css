@@ -157,8 +157,18 @@ The Document
 ******************************************************************************************************************************************************/
 body {
 	color: #333;
-	background: #a5c8ff url(/images/curtain_new.jpg) top left repeat-x;
+	
 	font-family: "Gill Sans", "Lucida Grande", Arial, sans-serif;
+	 /* fallback DIY*/ /* Safari 4-5, Chrome 1-9 */ background: -webkit-gradient(linear, left top, right top, from(#000000), color-stop(0.02, #8A0000), color-stop(0.04, #000000), color-stop(0.06, #8A0000), color-stop(0.08, #000000), color-stop(0.10, #8A0000), color-stop(0.12, #000000), color-stop(0.14, #8A0000), color-stop(0.16, #000000) , color-stop(0.18, #8A0000), color-stop(0.20, #000000), color-stop(0.22, #8A0000), color-stop(0.24, #000000), color-stop(0.26, #8A0000), color-stop(0.28, #000000) , color-stop(0.30, #8A0000), color-stop(0.32, #000000) , color-stop(0.34, #8A0000), color-stop(0.36, #000000) , color-stop(0.38, #8A0000),color-stop(0.40, #000000) , color-stop(0.42, #8A0000), color-stop(0.44, #000000) , color-stop(0.46, #8A0000), color-stop(0.48, #000000) , color-stop(0.50, #8A0000), color-stop(0.52, #000000) , color-stop(0.54, #8A0000),color-stop(0.56, #000000) , color-stop(0.58, #8A0000), color-stop(0.60, #000000) , color-stop(0.62, #8A0000), color-stop(0.64, #000000) , color-stop(0.66, #8A0000), color-stop(0.68, #000000) , color-stop(0.70, #8A0000), color-stop(0.72, #000000) , color-stop(0.74, #8A0000), color-stop(0.76, #000000) , color-stop(0.78, #8A0000), color-stop(0.80, #000000) , color-stop(0.82, #8A0000), color-stop(0.86, #000000) , color-stop(0.88, #8A0000), color-stop(0.90, #000000) , color-stop(0.92, #8A0000), color-stop(0.94, #000000) , color-stop(0.96, #8A0000), color-stop(0.98, #000000), to(#8A0000));
+
+	/* Safari 5.1+, Chrome 10+ */ background: -webkit-linear-gradient(left, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000,#000000, #8A0000);
+
+	/* Firefox 3.6+ */ background: -moz-linear-gradient(left, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000,#000000, #8A0000 );
+
+	/* IE 10 */ background: -ms-linear-gradient(left, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000,#000000, #8A0000);
+
+	/* Opera 11.10+ */ background: -o-linear-gradient(left,#8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000, #000000, #8A0000,#000000, #8A0000);
+	
 }
 .wrapper {
 	width: 960px;
@@ -176,17 +186,13 @@ body {
 Login Page
 ******************************************************************************************************************/
 .login {
-	position: fixed;
-	left: 50%;
-	top:	50%;
-	margin: -225px 0 0 -480px;
-	width: 920px;
+	width: 920px; padding:20px 0 0 0;
 	height: 410px;
-	padding: 20px;
+	margin:60px 0 0 0;
 	background-color: #d9e5fb;
 	background-image: url(/images/login_popcorn.png);
-	background-position: 20px center;
-	background-repeat: no-repeat;	
+	background-repeat: no-repeat;
+	background-position: 20px 20px;
 }
 .login,
 form.login_search {
@@ -199,27 +205,19 @@ form.login_search {
 }
 
 .login h1 {
-	position: absolute;
-	top: 50%;
-	right: 40px;
-	margin-top: -90px;
-	font-size: 1em;
+	font-size: 1em; margin:100px 50px 0 0;
 	text-transform: uppercase;
-	font-family: "Trajan Pro", Trajan, Serif;
+	font-family: "Trajan Pro", Trajan, Serif; text-align:right
 }
 /* forms */
 .login form {
-	position: absolute;
-	top: 50%;
-	margin-top: -60px;
 	height: 120px; 
 	padding: 20px 10px;
 	text-align: center;
 }
 
 form.login_search {
-	width: 325px;
-	right: 225px;
+	width: 325px; float:left; margin:0 0 0 350px;
 	font-size: 1.2em;
 	line-height: 30px;
 	background: rgb(242,224,94); /* Old browsers */
@@ -235,8 +233,7 @@ form.login_search {
 }
 form.login_options {
 	width: 155px;
-	padding: 10px 20px;
-	right: 20px;
+	padding: 10px 20px; float:left
 }
 
 /* form elements */
@@ -246,18 +243,14 @@ form.login_options button {
 	padding: 5px 10px;
 }
 form.login_search button {
-	position: absolute;
 	bottom: 10px;
-	right: 10px;
-	cursor: pointer;
+	right: 10px; float:right
 }
 form.login_options input {width: 152px; cursor: pointer;}
 /* Footer Links */
-.footer_links {
-	position: absolute;
-	bottom: -35px;
-	right: 10px;
-}
+.footer_links { bottom: -35px;
+    position: absolute;
+    right: 10px;}
 .footer_links li {display: inline-block; color: #fff}
 .footer_links li a {color: #fff; padding: 10px;}
 .footer_links li a:hover {text-decoration: underline;}
@@ -641,7 +634,7 @@ p.forgot {
     width: 145px;
 }
 
-.button_to {
+.button_to  {
 	padding: 5px;
 	border: none;
 	-webkit-border-radius: 5px;
@@ -662,6 +655,7 @@ p.forgot {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 ); /* IE6-8 */
 	color: #333333;
 	font-size: 12px;
+	
 }
 .button_to:hover {
 	background: rgb(255,255,255); /* Old browsers */
@@ -676,7 +670,7 @@ p.forgot {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e2e2e2',GradientType=0 ); /* IE6-8 */
 }
 
-.gpop{bottom: 10px; cursor: pointer; position: absolute; right: 10px;}
+.gpop{bottom: 10px; cursor: pointer; right: 10px;float: right;}
 
 .recent_activity {
 	padding:10px 0 0 0;
@@ -1117,3 +1111,9 @@ ul#position_container li div { cursor: move; }
     color:#FFF !important;
     padding:5px 16px 9px 19px; 
 }
+
+.movie_buttons a {
+    margin-bottom: 5px;
+    width: 120px;
+}
+

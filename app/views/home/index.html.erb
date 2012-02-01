@@ -1,67 +1,67 @@
 
 
-    
-  
-		<!-- login_popcorn.png - 274x357 -->
-        <div class="login">
-        <center><%= content_tag 'div', h(flash[:notice]), :class => 'errorMsg', :id => 'notice' if flash[:notice] %></center>
-        	<h1>Start browsing for your perfect movie date now!</h1>
-            
-            
-            <% form_for :user,:url=>{:action=>"new", :controller=>"registrations"}, :html=>{:class=>'login_search', :method=>'get'} do |f| %>
-            	<fieldset>
-                	
-                    I am 
-                    <%= select :user, :gender, options_for_select([["A Girl", "female"],["A Guy", "male"]]) %>
-                    
-                    <br />
-                    
-                    interested in having popcorn <br />
-                    with
-                    <%= select :user, :orientation, options_for_select([["A Guy", "men"], ["A Girl", "women"], ["Any","any"]]) %>
-                    
-                    
-                    
-                    <br />
-                    <%= f.submit 'Get Popcorn', :class=>'input-submit gpop' %>
-                    
-                    
-                </fieldset>
-           <% end %>
-            <% if user_signed_in? %>
-              <form class='login_options'>
-                Signed in as <%= current_user.first_name %>. Not you?
-                  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-              </form>
-            <% else %>
-            <%= form_for("user", :url => user_session_path, :html=>{:class=>'login_options'}) do |f| %>
-            
-            	<fieldset>
-                
-                <!-- facebook JSSDK login to generate button -->
-                    <a href="/auth/facebook" class="auth_provider">
-                      <img src="/images/facebook-login.png", alt ="Facebook">
-                    </a>
-                    
-                    <!-- .fb_login -->
-                    
-                    or<br />
-                    
-                    
-                    
-        						  
-        									 <%= f.text_field :login, :onFocus=>"if(this.value=='username')this.value='';", :onBlur=>"if (this.value == '') this.value = 'username';", :value=>'username' %>
-        							
-        									 <%= f.password_field :password, :onFocus=>"if(this.value=='password')this.value='';", :onBlur=>"if (this.value == '') this.value = 'password';", :value=>'password' %>
-        							
-        							
-        								<%= f.submit 'SIGN IN', :class => 'input-submit' %>
-        								<p><a href="/users/password/new">Forgot your password?</a></p>
 
-        						    
+
+<!-- login_popcorn.png - 274x357 -->
+    <div class="login">
+    <center><%= content_tag 'div', h(flash[:notice]), :class => 'errorMsg', :id => 'notice' if flash[:notice] %></center>
+    	<div><h1>Start browsing for your perfect movie date now!</h1></div>
+        
+        
+        <% form_for :user,:url=>{:action=>"new", :controller=>"registrations"}, :html=>{:class=>'login_search', :method=>'get'} do |f| %>
+        	<fieldset>
+            	
+                I am 
+                <%= select :user, :gender, options_for_select([["A Girl", "female"],["A Guy", "male"]]) %>
                 
-                </fieldset>
-            <% end %>
-            <% end %>
+                <br />
+                
+                interested in having popcorn <br />
+                with
+                <%= select :user, :orientation, options_for_select([["A Guy", "men"], ["A Girl", "women"], ["Any","any"]]) %>
+                
+                
+                
+                <br />
+                <%= f.submit 'Get Popcorn', :class=>'input-submit gpop' %>
+                
+                
+            </fieldset>
+       <% end %>
+        <% if user_signed_in? %>
+          <form class='login_options'>
+            Signed in as <%= current_user.first_name %>. Not you?
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+          </form>
+        <% else %>
+        <%= form_for("user", :url => user_session_path, :html=>{:class=>'login_options'}) do |f| %>
+        
+        	<fieldset>
             
+            <!-- facebook JSSDK login to generate button -->
+                <a href="/auth/facebook" class="auth_provider">
+                  <img src="/images/facebook-login.png", alt ="Facebook">
+                </a>
+                
+                <!-- .fb_login -->
+                
+                or<br />
+                
+                
+                
+    						  
+    									 <%= f.text_field :login, :onFocus=>"if(this.value=='username')this.value='';", :onBlur=>"if (this.value == '') this.value = 'username';", :value=>'username' %>
+    							
+    									 <%= f.password_field :password, :onFocus=>"if(this.value=='password')this.value='';", :onBlur=>"if (this.value == '') this.value = 'password';", :value=>'password' %>
+    							
+    							
+    								<%= f.submit 'SIGN IN', :class => 'input-submit' %>
+    								<p><a href="/users/password/new">Forgot your password?</a></p>
+
+    						    
             
+            </fieldset>
+        <% end %>
+        <% end %>
+        
+        
