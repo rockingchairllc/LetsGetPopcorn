@@ -165,12 +165,13 @@
         <% if user_signed_in? %>
           <li>|</li>
           <li>
-          <form class='login_options'>
+          <form>
             
               <%= link_to "Sign out", destroy_user_session_path %>
           </form>
-        <% end %>
+        
          </li>
+        <% end %>
     </ul><!-- .footer_links -->
     
     </div><!-- wrapper -->

@@ -52,7 +52,7 @@
                           <% @doc2 = Nokogiri::HTML(open(url2)) %>
                           
                          <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
-                           <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0] %>  
+                           <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
                          <% end %>
                          (<a href="#">open IMDB page in popup</a>) <br />
                              
