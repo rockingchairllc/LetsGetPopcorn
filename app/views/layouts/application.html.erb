@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>LetsGetPopcorn <%=  @meta_title %></title>
-  <%= stylesheet_link_tag 'reset', 'style','jquery-ui', 'skin' %>
+  <%= stylesheet_link_tag 'reset', 'style','jquery-ui', 'skin', 'jquery.lightbox-0.5' %>
   <link rel="shortcut icon" href="images/favicon.png" />
-  <%= javascript_include_tag 'jquery-1.6.2.min', 'modal/jquery-ui.min', 'jquery.validate.min', 'application', 'prototype', 'jquery.rails', 'jquery.jcarousel.min', 'toggle'%>
+  <%= javascript_include_tag 'jquery-1.6.2.min', 'modal/jquery-ui.min', 'jquery.validate.min', 'application', 'prototype', 'jquery.rails', 'jquery.jcarousel.min', 'toggle', 'jquery.lightbox-0.5' %>
   
   <script>
   function showtimes() {
@@ -39,7 +39,11 @@
   
     jQuery(document).ready(function() {
           jQuery('#mycarousel').jcarousel();
-    }); 
+    });
+    
+      jQuery(function() {
+         jQuery('#gallery a').lightBox();
+      }); 
           
   </script>
 </head>

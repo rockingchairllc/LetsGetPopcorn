@@ -30,12 +30,13 @@
          <div class=" jcarousel-skin-tango">
             <div style="position: relative; display: block;" class="jcarousel-container jcarousel-container-horizontal">
                 <div style="position: relative;" class="jcarousel-clip jcarousel-clip-horizontal">
-
+                  <div id="gallery">
                   <ul style="overflow: hidden; position: relative; top: 0px; margin: 0px; padding: 0px; left: 0px; width:550px;" id="mycarousel" class="jcarousel-list jcarousel-list-horizontal">
                     <% @albums.each do |album| %>
-                    <li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-1 jcarousel-item-1-horizontal"><%= link_to image_tag(album.photo.url(:thumb)), edit_user_album_path(album) %></li>
+                    <li class="jcarousel-item jcarousel-item-horizontal jcarousel-item-1 jcarousel-item-1-horizontal"><%= link_to image_tag(album.photo.url(:thumb)), album.photo.url() %></li>
                     <% end %>
                   </ul>
+                  </div>
                 </div>
                 <div disabled="true" style="display: block;" class="jcarousel-prev jcarousel-prev-horizontal jcarousel-prev-disabled jcarousel-prev-disabled-horizontal"></div>
                 <div disabled="false" style="display: block;" class="jcarousel-next jcarousel-next-horizontal"></div>
