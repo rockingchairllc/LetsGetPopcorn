@@ -51,7 +51,9 @@
                          <% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
                           <% @doc2 = Nokogiri::HTML(open(url2)) %>
                           
-                         <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0] %>  
+                         <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
+                           <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0] %>  
+                         <% end %>
                          (<a href="#">open IMDB page in popup</a>) <br />
                              
                          <ul>
