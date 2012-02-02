@@ -91,7 +91,7 @@
 #MB_loading {
 	padding: 1.5em;
 	text-indent: -10000px;
-	background: transparent url(spinner.gif) 50% 0 no-repeat;
+	background: transparent url(/images/lightbox-ico-loading.gif) 50% 0 no-repeat;
 }
 
 /* Color scheme */

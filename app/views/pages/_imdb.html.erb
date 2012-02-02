@@ -1,31 +1,61 @@
 <h1><%= @doc2.css("movie").css('title').css('text')[0].text %></h1>
-<strong>Genre:</strong> 
- <% @doc2.css("movie").css("genre").each do |genre| %>
-      <%=  genre.css('text').text %> <%= "," unless genre == @doc2.css("movie").css("genre").last %>
- <% end %>
- <br/>
- 
- Director : <%  @doc2.css("movie").css("crew").each do |role| %>
-   <% if role.attr('role') == 'Director' %>
-   <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> <%= "," unless role == @doc2.css("movie").css("crew").last %>
-   <% end %>
- <% end %>
- <br/>
- 
- Producer : <%  @doc2.css("movie").css("crew").each do |role| %>
-     <% if role.attr('role') == 'Producer' %>
-     <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> &nbsp;&nbsp;
-     <% end %>
-   <% end %>
- 
- 
 
-<strong>Cast:</strong> 
- <% @doc2.css("movie").css("cast").each do |casts| %>
-      <p><%=  casts.css('name').css('first').text %> <%=  casts.css('name').css('last').text %>,</p>
- <% end %>
-<br/>
-<% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
-<p> <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  </p>
-<% end %>
+<table width="100%">
+<tr>
+    <td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+    <td valign="top">
+        <% unless @doc2.css("movie").css("thumburi").text.empty? %>
+         <a href="javascript:void(0);"><img src="<%= @doc2.css("movie").css("thumburi")[0].text %>"></a>
+        <% else %>
+          <img src="/images/blank_movie.jpg">
+        <% end %>
+        
+    </td>
+    <td align="left" style="vertical-align:top;">
+        <strong>Genre:</strong> 
+         <% @doc2.css("movie").css("genre").each do |genre| %>
+              <%=  genre.css('text').text %> <%= "," unless genre == @doc2.css("movie").css("genre").last %>
+         <% end %>
+         <br/>
+
+         <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
+           <p> <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  </p>
+         <% end %>
+    </td>
+</tr>
+<tr>
+    <td colspan="2" align="left">
+        <strong>Cast : </strong> 
+         <% @doc2.css("movie").css("cast").each do |casts| %>
+              <%=  casts.css('name').css('first').text %> <%=  casts.css('name').css('last').text %> <%= "," unless casts == @doc2.css("movie").css("cast").last %>
+         <% end %>
+    </td>
+</tr>
+ 
+<tr>
+    <td colspan="2" align="left">
+        <strong>Director : </strong><%  @doc2.css("movie").css("crew").each do |role| %>
+          <% if role.attr('role') == 'Director' %>
+          <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> 
+          <% end %>
+        <% end %>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2" align="left">
+        <strong>Producer : </strong><%  @doc2.css("movie").css("crew").each do |role| %>
+            <% if role.attr('role') == 'Producer' %>
+            <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> &nbsp;&nbsp;
+            <% end %>
+          <% end %>
+    </td>
+</tr>
+
+
+
+
+</table>
 

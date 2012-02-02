@@ -34,29 +34,37 @@
          <div class="articlenew">
          	<ul class="movie_list">
          	    <% @doc.css("movie").each do |item| %>
-             	<li><%  movieId = item.attr('movieid') %>
-                 	<div class="movie_outter_content">
-                         <a href="#"><img src="<%= item.css('asseturi').text %>" width="162"></a>
-                         <a href="#">@ 8 Theaters</a>
-                     </div><!-- movie_outter_content -->
-                     
-                     <div class="movie_inner_content">
-                     	<h3 class="movie_title">
-                         	<a href="#"><%=  item.css('title').css('text')[0].text %></a> <br />
-                             
-                     	</h3>
-                         
-                         <strong>Starring:</strong> 
-                         <% item.css("cast").each do |casts| %>
-                              <%=  casts.css('name').css('first').text %> <%=  casts.css('name').css('last').text %>,
-                         <% end %> <br />
-                         <% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
-                          <% @doc2 = Nokogiri::HTML(open(url2)) %>
-                          
-                         <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
-                           <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
-                         <% end %>
-                         (<a href="#">open IMDB page in popup</a>) <br />
+             	  	<li><%  movieId = item.attr('movieid') %>
+                     	<div class="movie_outter_content">
+                     	      <% unless item.css("asseturi").text.empty? %>
+                             <a href="javascript:void(0);"><img src="<%= item.css('asseturi').text %>" width="162"></a>
+                            <% else %>
+                              <img src="/images/blank_movie.jpg">
+                            <% end %>
+                             <a href="#">@ 8 Theaters</a>
+                         </div><!-- movie_outter_content -->
+
+                         <div class="movie_inner_content">
+                         	<h3 class="movie_title">
+                             	<a href="#"><%=  item.css('title').css('text')[0].text %></a> <br />
+
+                         	</h3>
+                         	<% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
+                            <% @doc2 = Nokogiri::HTML(open(url2)) %>
+                            <strong>Genre:</strong><% @doc2.css("movie").css("genre").each do |genre| %>
+                                   <%=  genre.css('text').text %> <%= "," unless genre == @doc2.css("movie").css("genre").last %>
+                                 <% end %> <br />
+
+                             <strong>Starring:</strong> 
+                             <% item.css("cast").each do |casts| %>
+                                  <%=  casts.css('name').css('first').text %> <%=  casts.css('name').css('last').text %> <%= "," unless casts == item.css("cast").last %>
+                             <% end %> <br />
+
+
+                             <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
+                              <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
+                             <% end %>
+                             (<a href="#">open IMDB page in popup</a>) <br />
                              
                          <ul>
                              <a href="#">19 Guys</a> in your area want to see this movie: <br />
