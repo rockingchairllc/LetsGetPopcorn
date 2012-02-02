@@ -1,11 +1,14 @@
 <h1><%= @doc2.css("movie").css('title').css('text')[0].text %></h1>
 
-<table width="100%">
+<table width="100%" cellpadding="5" cellspacing="10">
 <tr>
     <td colspan="2">&nbsp;</td>
 </tr>
 <tr>
-    <td valign="top">
+    <td colspan="2" align="left"><strong>Release Date : </strong> <%= @doc2.css("movie").css('release').attr('date') %> </td>
+</tr>
+<tr>
+    <td valign="top" width="18%" align="left">
         <% unless @doc2.css("movie").css("thumburi").text.empty? %>
          <a href="javascript:void(0);"><img src="<%= @doc2.css("movie").css("thumburi")[0].text %>"></a>
         <% else %>
@@ -14,17 +17,21 @@
         
     </td>
     <td align="left" style="vertical-align:top;">
+        <% unless @doc2.css("movie").css('genre').css('text')[0].nil? %>
         <strong>Genre:</strong> 
          <% @doc2.css("movie").css("genre").each do |genre| %>
               <%=  genre.css('text').text %> <%= "," unless genre == @doc2.css("movie").css("genre").last %>
          <% end %>
          <br/>
+         <% end %>
 
          <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
            <p> <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  </p>
          <% end %>
     </td>
 </tr>
+
+<% unless @doc2.css("movie").css('cast').css('name').css('first')[0].nil? %>
 <tr>
     <td colspan="2" align="left">
         <strong>Cast : </strong> 
@@ -33,7 +40,9 @@
          <% end %>
     </td>
 </tr>
- 
+<% end %>
+
+<% unless @doc2.css("movie").css('crew').css('name').css('first')[0].nil? %>
 <tr>
     <td colspan="2" align="left">
         <strong>Director : </strong><%  @doc2.css("movie").css("crew").each do |role| %>
@@ -43,7 +52,9 @@
         <% end %>
     </td>
 </tr>
+<% end %>
 
+<% unless @doc2.css("movie").css('crew').css('name').css('first')[0].nil? %>
 <tr>
     <td colspan="2" align="left">
         <strong>Producer : </strong><%  @doc2.css("movie").css("crew").each do |role| %>
@@ -53,6 +64,7 @@
           <% end %>
     </td>
 </tr>
+<% end %>
 
 
 
