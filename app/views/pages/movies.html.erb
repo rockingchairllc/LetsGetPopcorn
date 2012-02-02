@@ -59,7 +59,7 @@
                             <% end %>
                             
                            
-                            <% item.css('name').css('text')[0].nil? %> 
+                            <% unless item.css('name').css('text')[0].nil? %> 
                              <strong>Starring:</strong> 
                              <% item.css("cast").each do |casts| %>
                                   <%=  casts.css('name').css('first').text %> <%=  casts.css('name').css('last').text %> <%= "," unless casts == item.css("cast").last %>
