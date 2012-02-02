@@ -70,7 +70,7 @@
                              <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
                               <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
                              <% end %>
-                             (<a href="#">open IMDB page in popup</a>) <br />
+                             (<%= link_to "open IMDB page in popup", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :remote => true %>) <br />
                              
                          <ul>
                              <a href="#">19 Guys</a> in your area want to see this movie: <br />
