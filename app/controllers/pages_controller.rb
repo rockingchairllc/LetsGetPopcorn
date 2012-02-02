@@ -46,6 +46,18 @@ class PagesController < ApplicationController
            @meta_title = " - Contact"
         end
     end
+    
+   
+    # View imdb sumary  
+    def imdb
+
+      url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:id]}&country=USA&lang=en"
+      @doc2 = Nokogiri::HTML(open(url2))
+      respond_to do |format|
+            format.js { render :action => 'imdb' }
+      end
+
+    end
   
   
   

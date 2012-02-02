@@ -29,6 +29,8 @@
              </form>
          </div><!-- .search_filter -->
          
+         <div id="modal-box" style="display:none;"></div>
+         
          <div class="articlenew">
          	<ul class="movie_list">
          	    <% @doc.css("movie").each do |item| %>
@@ -68,7 +70,7 @@
                      </div><!-- .movie_inner_content -->
                      <div class="movie_buttons">
                          <button type="button" onClick="showtimes()">Add to Watchlist</button><br />
-                         <button type="button">View on IMDB</button>
+                         <%= link_to "View on IMDB", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
                      </div><!-- .movie_buttons -->
                  </li><!-- end movie list item -->
                  

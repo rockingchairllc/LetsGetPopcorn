@@ -1,2 +1,2 @@
-$('#photos_count').html('<%= pluralize(@total_uploads.count, "Photo") %>');
-$('#uploads').append("<%= escape_javascript(render(:partial => "user/albums/album", :locals => {:album => @album})) %>");
+jQuery('#photos_count').html('<%= pluralize(@total_uploads.count, "Photo") %>');
+jQuery('#uploads').append("<%= escape_javascript(render(:partial => "user/albums/album", :locals => {:album => @album})) %>");
