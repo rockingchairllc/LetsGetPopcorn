@@ -51,14 +51,20 @@
                          	</h3>
                          	<% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
                             <% @doc2 = Nokogiri::HTML(open(url2)) %>
-                            <strong>Genre:</strong><% @doc2.css("movie").css("genre").each do |genre| %>
+                            
+                           <% unless @doc2.css("movie").css('genre').css('text')[0].nil? %>
+                              <strong>Genre:</strong><% @doc2.css("movie").css("genre").each do |genre| %>
                                    <%=  genre.css('text').text %> <%= "," unless genre == @doc2.css("movie").css("genre").last %>
                                  <% end %> <br />
-
+                            <% end %>
+                            
+                           
+                            <% item.css('name').css('text')[0].nil? %> 
                              <strong>Starring:</strong> 
                              <% item.css("cast").each do |casts| %>
                                   <%=  casts.css('name').css('first').text %> <%=  casts.css('name').css('last').text %> <%= "," unless casts == item.css("cast").last %>
                              <% end %> <br />
+                            <% end %>
 
 
                              <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
