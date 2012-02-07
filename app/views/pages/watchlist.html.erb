@@ -1,0 +1,168 @@
+<div id="dialog" style="display:none; padding: 1.5em 1em !important;">
+
+	<div class="div_inner1">
+		<div class="showtimeheading" ><strong>Show My Theaters: </strong></div> 
+        <div>
+ <table width="100%" border="1" cellspacing="10" cellpadding="10">
+  <tr>
+    <td>
+    
+    <ul id="theatre">
+      <%  @doc3.css("theatre").each do |theatre| %>
+        <li> <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showtime'} %></li>
+      <% end %>
+      
+      </ul>
+    </td>
+  
+   
+  </tr>
+
+  
+</table>
+ 
+  <%= link_to "x", {:controller=>"/pages", :action=>'movies'}, :class=>"modalcancel" %>     
+        
+</div>
+    </div>
+</div>
+
+
+
+	<div class="wrapper">
+	
+	<div class="header">
+     		<h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.username %> <% else %> <% end %></h1>
+         	<div class="logo"></div>
+           <ul class="nav">
+             	<li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'} %></li>
+              <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'}, :class=>"active_button" %></li>
+              <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'} %></li>
+             </ul><!-- .nav -->
+
+             <!-- clear the float -->
+             <div class="clearfloat"></div>
+         </div><!-- .header -->
+
+
+  <div class="section">
+
+           <div class="search_filternew">
+
+                <form>
+                     <fieldset>
+                         Movies playing within <input type="text" class="miles" /> 
+                         miles of <input type="text" class="zip" />
+                         <input type="text" value="genre" /><br />
+                         <span class="search_for">
+                             <u>S</u>earch for: 
+                             <input type="text" class="search_movies" value="search movies..." />
+                             <button type="button">Go</button>
+                         </span><!-- .search_for -->
+                     </fieldset>
+                 </form>
+
+           </div><!-- .search_filter -->
+           <div id="modal-box" style="display:none;"></div>
+           <div class="articlenew">
+           	<ul class="movie_list">
+
+           	    <% @doc.css("movie").each do |item| %>
+               	<li><%  movieId = item.attr('movieid') %>
+                   	<div class="movie_outter_content">
+                   	      <% unless item.css("asseturi").text.empty? %>
+                           <a href="javascript:void(0);"><img src="<%= item.css('asseturi').text %>" width="162"></a>
+                          <% else %>
+                            <img src="/images/blank_movie.jpg">
+                          <% end %>
+                           <a href="#">@ 8 Theaters</a>
+                       </div><!-- movie_outter_content -->
+
+                       <div class="movie_inner_content">
+                       	<h3 class="movie_title">
+                           	<a href="#"><%=  item.css('title').css('text')[0].text %></a> <br />
+
+                       	</h3>
+                       	<% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
+                          <% @doc2 = Nokogiri::HTML(open(url2)) %>
+
+                           <% unless @doc2.css("movie").css('genre').css('text')[0].nil? %>
+                              <strong>Genre:</strong><% @doc2.css("movie").css("genre").each do |genre| %>
+                                 <%=  genre.css('text').text %> <%= "," unless genre == @doc2.css("movie").css("genre").last %>
+                               <% end %> <br />
+                           <% end %>
+
+                           <% unless item.css('name').css('text')[0].nil? %> 
+                              <strong>Starring:</strong> 
+                              <% item.css("cast").each do |casts| %>
+                                  <%=  casts.css('name').css('first').text %> <%=  casts.css('name').css('last').text %> <%= "," unless casts == item.css("cast").last %>
+                              <% end %> <br />
+                           <% end %>
+
+                           <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
+                            <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
+                           <% end %>
+                           (<a href="#">open IMDB page in popup</a>) <br />
+
+                           <ul>
+                               <a href="#">19 Guys</a> in your area want to see this movie: <br />
+                               <li><a href="#"><img src="http://graph.facebook.com/1000499831/picture?size=square" height="32" width="32" alt="" /></a></li>
+                               <li><a href="#"><img src="http://graph.facebook.com/82701710/picture?type=square" height="32" width="32" alt="" /></a></li>
+                               <li><a href="#"><img src="http://graph.facebook.com/813525525/picture?type=square" height="32" width="32" alt="" /></a></li>
+                               <li><a href="#"><img src="http://graph.facebook.com/1622498061/picture?size=square" height="32" width="32" alt="" /></a></li>
+                               <li><a href="#"><img src="http://graph.facebook.com/1466760040/picture?type=square" height="32" width="32" alt="" /></a></li>
+                               <li><a href="#" class="more_matches">more...</a>
+                           </ul>
+                       </div><!-- .movie_inner_content -->
+                       <div class="movie_buttons">
+                            <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %><br />
+
+                            <%= link_to "View on IMDB", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
+                       </div><!-- .movie_buttons -->
+                   </li><!-- end movie list item -->
+
+                <% end %>
+
+
+
+               </ul><!-- .movie_list -->
+           </div><!-- article -->
+           <!-- END Aritcle -->
+       </div><!-- .section -->
+
+       <!-- Start Sidebar (aside) -->
+       <div class="aside">
+           <ul>
+          		<h2>Recent Activity</h2>
+               <li>
+                   <a href="#">
+                       <img src="http://graph.facebook.com/502489573/picture?type=square" height="32" width="32" alt="" />
+                       <span class="user_name">Paul</span>,
+                       24, New York City <br />
+                       Movie: <span class="user_movie">Moneyball</span> 
+                   </a>
+                   <div class="clearfloat"></div>
+               </li>
+               <li>
+                   <a href="#">
+                       <img src="http://graph.facebook.com/12412651/picture?type=square" height="32" width="32" alt="" />
+                       <span class="user_name">Jim</span>,
+                       21, New York City <br />
+                       Movie: <span class="user_movie">What's...</span> 
+                   </a>
+                   <div class="clearfloat"></div>
+               </li>
+               <li>
+                   <a href="#">
+                       <img src="http://graph.facebook.com/12415713/picture?type=square" height="32" width="32" alt="" />
+                       <span class="user_name">Bob</span>,
+                       44, New York City <br />
+                       Movie: <span class="user_movie">Abduction</span> 
+                   </a>
+                   <div class="clearfloat"></div>
+               </li>
+           <!-- clear the float -->
+           <div class="clearfloat"></div>
+           </ul>
+       </div><!-- .aside -->
+       <!-- END Sidebar (aside) -->

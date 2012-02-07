@@ -83,7 +83,7 @@
                          </ul>
                      </div><!-- .movie_inner_content -->
                      <div class="movie_buttons">
-                         <button type="button" onClick="showtimes()">Add to Watchlist</button><br />
+                         <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :id=>"#{movieId}"}, :class=>"button_to" %><br />
                          <%= link_to "View on IMDB", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
                      </div><!-- .movie_buttons -->
                  </li><!-- end movie list item -->

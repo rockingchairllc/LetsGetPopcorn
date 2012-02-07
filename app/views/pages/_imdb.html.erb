@@ -12,7 +12,7 @@
         <% unless @doc2.css("movie").css("thumburi").text.empty? %>
          <a href="javascript:void(0);"><img src="<%= @doc2.css("movie").css("thumburi")[0].text %>"></a>
         <% else %>
-          <img src="/images/blank_movie.jpg">
+          <img src="/images/blank_movie.jpg"  height="125">
         <% end %>
         
     </td>
