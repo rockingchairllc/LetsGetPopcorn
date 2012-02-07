@@ -1248,4 +1248,7 @@ ul#position_container li div { cursor: move; }
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 ); /* IE6-8 */
 }
 
+.search_for input[type="submit"] {
+    width: 11% !important;
+}
 

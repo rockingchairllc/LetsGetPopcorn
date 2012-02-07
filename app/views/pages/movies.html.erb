@@ -18,8 +18,8 @@
              <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
                 <fieldset>
                     Movies playing within <%= f.text_field :miles, :class=>"miles" %>
-                    miles of <%= f.text_field :zip, :class=>"zip" %>
-                    
+                    miles of <%= f.text_field :zip, :onFocus=>"if(this.value=='10098')this.value='';", :onBlur=>"if (this.value == '') this.value = '10098';", :value => "10098", :class=>"zip" %>
+                     
                     <span class="search_for">
                         <u>S</u>earch for: 
                         <%= f.text_field :movie, :class=>"search_movies" %>

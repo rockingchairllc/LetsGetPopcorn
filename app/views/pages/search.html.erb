@@ -19,12 +19,13 @@
              
               <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
                  <fieldset>
-                     Movies playing within <%= f.text_field :miles, :class=>"miles" %>
-                     miles of <%= f.text_field :zip, :class=>"zip" %>
+                     Movies playing within <%= f.text_field :miles, :value => "#{params['search']['miles']}", :class=>"miles" %>
+                     miles of <%= f.text_field :zip, :value => "#{params['search']['zip']}", :class=>"zip" %>
                      
-                     <span class="search_for">
+                     
+                     <span class="search_for"> 
                          <u>S</u>earch for: 
-                         <%= f.text_field :movie, :class=>"search_movies" %>
+                         <%= f.text_field :movie, :value => "#{params['search']['movie']}", :class=>"search_movies" %>
                          <%= submit_tag 'Go', :class=>'button_to go_width' %>
                          
                      </span><!-- .search_for -->
@@ -37,7 +38,10 @@
          	<ul class="movie_list">
               
          	    <% @doc.css("movie").each do |item| %>
-         	      <% if item.css('title').css('text')[0].text.include?("#{params[:search][:movie]}") %>
+         	      
+         	   <% movie_name = item.css('title').css('text')[0].text %>
+         	      
+         	   <% if movie_name.include?("#{params[:search][:movie]}") || movie_name.downcase.include?("#{params[:search][:movie]}") || movie_name.upcase.include?("#{params[:search][:movie]}") || movie_name.capitalize.include?("#{params[:search][:movie]}") %>
          	    
              	<li><%  movieId = item.attr('movieid') %>
                  	<div class="movie_outter_content">
