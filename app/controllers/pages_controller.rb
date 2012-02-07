@@ -83,6 +83,16 @@ class PagesController < ApplicationController
       @doc = Nokogiri::HTML(open(url))
 
     end
+    
+    def search
+
+      time = Time.new 
+      current_date = time.strftime("%Y%m%d")
+
+      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{params[:search][:zip]}&country=USA&date=#{current_date}&numDays=3&radius=#{params[:search][:miles]}&radiusUnit=mi&rhDays=2"
+       @doc = Nokogiri::HTML(open(url))
+       @meta_title = " - Movies"
+    end
   
   
   

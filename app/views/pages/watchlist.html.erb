@@ -49,18 +49,19 @@
 
            <div class="search_filternew">
 
-                <form>
-                     <fieldset>
-                         Movies playing within <input type="text" class="miles" /> 
-                         miles of <input type="text" class="zip" />
-                         <input type="text" value="genre" /><br />
-                         <span class="search_for">
-                             <u>S</u>earch for: 
-                             <input type="text" class="search_movies" value="search movies..." />
-                             <button type="button">Go</button>
-                         </span><!-- .search_for -->
-                     </fieldset>
-                 </form>
+                <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
+                   <fieldset>
+                       Movies playing within <%= f.text_field :miles, :class=>"miles" %>
+                       miles of <%= f.text_field :zip, :class=>"zip" %>
+
+                       <span class="search_for">
+                           <u>S</u>earch for: 
+                           <%= f.text_field :movie, :class=>"search_movies" %>
+                           <%= submit_tag 'Go', :class=>'button_to go_width' %>
+
+                       </span><!-- .search_for -->
+                   </fieldset>
+               <% end %>
 
            </div><!-- .search_filter -->
            <div id="modal-box" style="display:none;"></div>
