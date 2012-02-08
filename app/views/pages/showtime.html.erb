@@ -4,87 +4,36 @@
 		<div class="showtimeheading" ><strong>Select Showtimes </strong></div> 
       
     <div>    
-        
-		<table width="100%" class="showtimes">
-                    <tbody><tr>
-                        <th>Today</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td style="color: rgb(255, 255, 255); background: none repeat scroll 0% 0% rgb(168, 2, 2);">5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Tomorrow</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Wednesday</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td style="color: rgb(255, 255, 255); background: none repeat scroll 0% 0% rgb(168, 2, 2);">5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Thursday</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Friday</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Saturday</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Sunday</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                </tbody></table>
+     
+		          <table width="100%" class="showtimes">
+		          <tbody> 
+		           <% @doc3.css("theatre").css("movie").each do |movie| %>
+                <% if movie.attr("movieid") == "#{params[:movieid]}" %> 
+                <tr>
+                <% cnt = 1 %>
+                <% movie.css("showtime").each do |showtime| %>
+                  <% if cnt == 1 %>
+                    <th><%= Date.strptime("#{showtime.attr("datetime")}", "%Y-%m-%d").strftime("%A") %></th>
+                  <% end %>
+                    
+                    <td><%= DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%I:%M%p") %></td>
+                  <% cnt= cnt + 1 %>
+                 <% end %>   
+                </tr>
+                <% end %>
+               <% end %>
+                </tbody>
+                </table>
                 
+                
+                 
+                  
             <%= link_to "x", {:controller=>"/pages", :action=>'movies'}, :class=>"modalcancel" %>
             
               
   </div>
     </div>
 </div>
-
 
 
 

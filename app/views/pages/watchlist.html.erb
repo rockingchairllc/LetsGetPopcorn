@@ -9,7 +9,7 @@
     
     <ul id="theatre">
       <%  @doc3.css("theatre").each do |theatre| %>
-        <li> <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showtime'} %></li>
+        <li> <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showtime', :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params['id']}" } %></li>
       <% end %>
       
       </ul>
