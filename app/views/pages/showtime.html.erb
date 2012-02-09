@@ -35,7 +35,7 @@
                 </table>
                 
                 
-                <% form_for :showtime do |f| %> 
+                <% form_for :showtime, :url=>{:controller=>"pages", :action => "addtime"} do |f| %> 
                 <table width="100%">
                 <tr>
                     <td>&nbsp;</td>

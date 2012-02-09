@@ -13,6 +13,9 @@
 
 
 <div class="section">
+         <% if !flash.empty? %>
+           <div id="notice" style="margin:10px 0 0 140px;"><%= alert %><%= notice %></div>
+         <% end %>
          
          <div class="search_filternew">
              <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
