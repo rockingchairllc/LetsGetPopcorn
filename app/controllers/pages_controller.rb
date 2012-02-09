@@ -78,6 +78,23 @@ class PagesController < ApplicationController
 
       time = Time.new 
       current_date = time.strftime("%Y%m%d")
+      
+       if request.post? and params[:showtime]
+
+           if showtime = Showtime.new(params[:showtime])
+
+              showtime.seltime = "#{params[:showtime][:seltime]}"
+              showtime.movieid = "#{params[:showtime][:movieid]}"
+              showtime.theatreid = "#{params[:showtime][:theatreid]}"
+              showtime.showdate = "#{params[:showtime][:showdate]}"
+              showtime.user_id = "#{params[:showtime][:user_id]}"
+              showtime.save
+
+              flash[:notice] = "Movie Added to your watchlist."
+              redirect_to("/movies")
+
+            end
+        end
 
       url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=10098&country=USA&date=#{current_date}&numDays=7&radius=100&radiusUnit=mi&rhDays=14"
       @doc = Nokogiri::HTML(open(url))

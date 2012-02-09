@@ -12,11 +12,20 @@
                 <tr>
                 <% cnt = 1 %>
                 <% movie.css("showtime").each do |showtime| %>
+                  <% datetime = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y-%m-%d %H:%M:%S") %>
+                  <% movdt = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y%m%d%H%M%S") %>
                   <% if cnt == 1 %>
-                    <th><%= Date.strptime("#{showtime.attr("datetime")}", "%Y-%m-%d").strftime("%A") %></th>
+                    <th style="vertical-align:middle"><%= Date.strptime("#{showtime.attr("datetime")}", "%Y-%m-%d").strftime("%A") %></th>
                   <% end %>
                     
-                    <td><%= DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%I:%M%p") %></td>
+                  <td id="mt_<%= movdt %>">
+                    <ul id="time">
+                      <li>
+                        <% movie_time = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%I:%M%p") %>
+                        <%= link_to "#{movie_time}", 'javascript:void(0);', :onclick =>"selectTime('#{datetime}','#{movdt}')" %>
+                        </li>
+                    </ul>  
+                  </td>
                   <% cnt= cnt + 1 %>
                  <% end %>   
                 </tr>
@@ -26,6 +35,27 @@
                 </table>
                 
                 
+                <% form_for :showtime do |f| %> 
+                <table width="100%">
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                      <%= f.hidden_field :seltime, :value =>"" %>
+                      <%= f.hidden_field :showdate, :value =>"" %>
+                      <%= f.hidden_field :movieid, :value =>"#{params['movieid']}" %>
+                      <%= f.hidden_field :theatreid, :value =>"#{params['theatreid']}" %>
+                      <% if user_signed_in? %>
+                      <%= f.hidden_field :user_id, :value =>"#{current_user.id}" %>
+                      <% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center"><%= submit_tag 'Add', :class=>'input-submit' %></td>
+                </tr>
+                </table>
+                <% end %>
                  
                   
             <%= link_to "x", {:controller=>"/pages", :action=>'movies'}, :class=>"modalcancel" %>
