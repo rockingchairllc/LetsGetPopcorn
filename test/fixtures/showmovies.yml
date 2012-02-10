@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  movieid: 1
+  user_id: 1
+  showdate: 2012-02-10 17:01:52
+
+two:
+  movieid: 1
+  user_id: 1
+  showdate: 2012-02-10 17:01:52

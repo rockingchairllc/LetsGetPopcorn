@@ -90,33 +90,46 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
     end
     
     
+    
     #Movie add into the watchlist
-    def addtime
-        
-        if request.post? and params[:showtime]
-          
-          mymovie = Showtime.find(:all, :conditions => "movieid=#{params[:showtime][:movieid]} and user_id = #{params[:showtime][:user_id]}").count
-          
-          unless mymovie >= 2
-            
-              if showtime = Showtime.new(params[:showtime])
-                showtime.seltime = "#{params[:showtime][:seltime]}"
-                showtime.movieid = "#{params[:showtime][:movieid]}"
-                showtime.theatreid = "#{params[:showtime][:theatreid]}"
-                showtime.showdate = "#{params[:showtime][:showdate]}"
-                showtime.user_id = "#{params[:showtime][:user_id]}"
-                showtime.save
+      def addtime
 
-                flash[:notice] = "Movie added to your watchlist."
-                redirect_to("/movies")
+        time = Time.new
+        current_date = time.strftime("%Y-%m-%d %H:%M:%S ")
+
+          if request.post? and params[:showtime]
+
+
+              mymovie = Showmovie.find(:all, :conditions => "user_id = #{params[:showtime][:user_id]} and showdate >= '#{current_date}'").count
+
+              unless mymovie >= 2
+
+                  showmovie = Showmovie.create(:movieid=> params[:showtime][:movieid], :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
+                  showtime = Showtime.create(:movieid=> params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
+
+                  flash[:notice] = "Movie added to your watchlist."
+                  redirect_to("/movies")
+
+              else
+
+                  @cnt = Showmovie.find(:all, :conditions => "movieid = #{params[:showtime][:movieid]} and user_id = #{params[:showtime][:user_id]}")
+
+                  unless @cnt.empty?
+                    @cnt.each do |c|
+                      showmovie = Showmovie.update(c.id, :movieid => c.movieid, :user_id => c.user_id, :showdate => params[:showtime][:showdate])
+                    end
+                    showtime = Showtime.create(:movieid => params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
+
+                    flash[:notice] = "Movie added to your watchlist."
+                    redirect_to("/movies")
+                  else
+                    flash[:notice] = "You can not add more than 2 movies in your watchlist." 
+                    redirect_to("/movies")
+                  end
               end
-           else
-               flash[:notice] = "You can not add more than 2 watchlist for same movie." 
-                redirect_to("/movies")
-           end
           end
-          
-    end
+
+      end
     
     
     
