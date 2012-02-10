@@ -1,6 +1,11 @@
 <div id="dialog" style="display:none; padding: 1.5em 1em !important;">
 
 	<div class="div_inner1">
+	
+	  <% if !flash.empty? %>
+       <div id="notice" style="color:#490000; text-align: center;"><%= alert %><%= notice %></div>
+     <% end %>
+     
 		<div class="showtimeheading" ><strong>Select Showtimes </strong></div> 
       
     <div>    

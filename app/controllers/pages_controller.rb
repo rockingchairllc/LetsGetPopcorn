@@ -108,7 +108,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
                   showtime = Showtime.create(:movieid=> params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
 
                   flash[:notice] = "Movie added to your watchlist."
-                  redirect_to("/movies")
+                  redirect_to("/movies/showtime?movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}")
 
               else
 
@@ -121,10 +121,10 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
                     showtime = Showtime.create(:movieid => params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
 
                     flash[:notice] = "Movie added to your watchlist."
-                    redirect_to("/movies")
+                    redirect_to("/movies/showtime?movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}")
                   else
-                    flash[:notice] = "You can not add more than 2 movies in your watchlist." 
-                    redirect_to("/movies")
+                    flash[:notice] = "Love the enthusiasm! But, unfortunately, we can only handle 2 movies on your watchlist right now." 
+                    redirect_to("/movies/showtime?movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}")
                   end
               end
           end
