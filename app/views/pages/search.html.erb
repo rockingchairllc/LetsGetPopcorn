@@ -89,8 +89,8 @@
                              <li><a href="#" class="more_matches">more...</a>
                          </ul>
                      </div><!-- .movie_inner_content -->
-                     <div class="movie_buttons">
-                          <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :id=>"#{movieId}"}, :class=>"button_to" %><br />
+                     <div class="movie_buttons"> 
+                          <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :miles=>"#{params['search']['miles']}", :zip=>"#{params['search']['zip']}", :movieid=>"#{movieId}" }, :class=>"button_to" %><br />
                           <%= link_to "View on IMDB", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
                      </div><!-- .movie_buttons -->
                  </li><!-- end movie list item -->

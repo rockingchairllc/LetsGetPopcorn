@@ -9,7 +9,7 @@
     
     <ul id="theatre">
       <%  @doc3.css("theatre").each do |theatre| %>
-        <li> <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showtime', :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params['id']}" } %></li>
+        <li> <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showtime', :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params['movieid']}" } %></li>
       <% end %>
       
       </ul>
@@ -51,12 +51,13 @@
 
                 <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
                    <fieldset>
-                       Movies playing within <%= f.text_field :miles, :class=>"miles" %>
-                       miles of <%= f.text_field :zip, :class=>"zip" %>
+                       Movies playing within <%= f.text_field :miles, :value => "#{params['miles']}", :class=>"miles" %>
+                       miles of <%= f.text_field :zip, :value => "#{params['zip']}", :class=>"zip" %>
 
-                       <span class="search_for">
+
+                       <span class="search_for"> 
                            <u>S</u>earch for: 
-                           <%= f.text_field :movie, :class=>"search_movies" %>
+                           <%= f.text_field :movie, :value => "", :class=>"search_movies" %>
                            <%= submit_tag 'Go', :class=>'button_to go_width' %>
 
                        </span><!-- .search_for -->
@@ -116,7 +117,7 @@
                            </ul>
                        </div><!-- .movie_inner_content -->
                        <div class="movie_buttons">
-                           <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :id=>"#{movieId}"}, :class=>"button_to" %><br />
+                           <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"}, :class=>"button_to" %><br />
                             <%= link_to "View on IMDB", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
                        </div><!-- .movie_buttons -->
                    </li><!-- end movie list item -->
