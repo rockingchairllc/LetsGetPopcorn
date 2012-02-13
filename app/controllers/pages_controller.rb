@@ -70,7 +70,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=10098&country=USA&date=#{current_date}&numDays=7&radius=100&radiusUnit=mi&rhDays=14"
       @doc = Nokogiri::HTML(open(url))
 
-      url3 = "http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:id]}&postalCode=60611&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=100&radiusUnit=mi"
+      url3 = "http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:id]}&postalCode=10098&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=100&radiusUnit=mi"
       @doc3 = Nokogiri::HTML(open(url3))
 
     end
