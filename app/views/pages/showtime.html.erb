@@ -51,6 +51,8 @@
                       <%= f.hidden_field :showdate, :value =>"" %>
                       <%= f.hidden_field :movieid, :value =>"#{params['movieid']}" %>
                       <%= f.hidden_field :theatreid, :value =>"#{params['theatreid']}" %>
+                      <%= f.hidden_field :miles, :value =>"#{params['miles']}" %>
+                      <%= f.hidden_field :zip, :value =>"#{params['zip']}" %>
                       <% if user_signed_in? %>
                       <%= f.hidden_field :user_id, :value =>"#{current_user.id}" %>
                       <% end %>
