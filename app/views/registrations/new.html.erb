@@ -8,10 +8,10 @@
 				<!--<td width="43%">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #FFF;">
 						<tr>
-							<td><div style="position:absolute;padding-left:20px;"><img src="/images/warch-movie.jpg" alt="" /></div></td>
+							<td><div style="position:absolute;padding-left:20px;"><img src="images/warch-movie.jpg" alt="" /></div></td>
 						</tr>
 					</table>-->
-					<!-- <div style="position:absolute;"><img src="/images/warch-movie.jpg" alt="" /></div> --></td>
+					<!-- <div style="position:absolute;"><img src="images/warch-movie.jpg" alt="" /></div> --></td>
 				<td style="padding-top:10px;padding-right:10px;padding-left:0px;">
 					<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=>{:multipart => true}) do |f| %>
       	<table width="100%" border="0" cellspacing="2" cellpadding="2">
@@ -19,19 +19,15 @@
         <% if request.get? and params[:user] %>
         <%= f.hidden_field :gender, :value => "#{params[:user][:gender]}" %>
         <%= f.hidden_field :orientation, :value => "#{params[:user][:orientation]}" %>
-        <% elsif request.post? and params[:user] %>
-        <%= f.hidden_field :gender, :value => "#{params[:user][:gender]}" %>
-        <%= f.hidden_field :orientation, :value => "#{params[:user][:orientation]}" %>
         <% else %>
         <tr>
-        <td align="left"><strong> I am </strong></td>
-        <td align="left"><%= select :user, :gender, options_for_select([["A Girl", "female"],["A Guy", "male"]]) %></td>
+            <td colspan="2">
+              <strong> I am </strong>
+              <%= select :user, :gender, options_for_select([["A Girl", "female"],["A Guy", "male"]]) %>
+             <strong> interested in having popcorn with </strong>
+              <%= select :user, :orientation, options_for_select([["A Guy", "men"], ["A Girl", "women"], ["Any","any"]]) %>
+            </td>
         </tr>
-        <tr>
-        <td align="left"> <strong> interested in having popcorn with </strong></td>
-        <td align="left"><%= select :user, :orientation, options_for_select([["A Guy", "men"], ["A Girl", "women"], ["Any","any"]]) %></td>
-        </tr>
-        
         <% end %>
         <tr>
             <td style="vertical-align: top;" align="left"><strong>Username </strong></td>
@@ -104,76 +100,73 @@
             </div><!-- .search_filter -->
             
             <div class="articlenew profile">
-            	<p align="right"><button type="button">Next	7	days</button></p>
+            	<p align="right">&nbsp;</p>
             	<h2 class="headshots">Today</h2>
                 <div class="profile_column_left">
                 	<div class="profile_1">
-                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                    	<img src="/images/photo.jpg" class="photo" />
                         
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
-Wants to see: Moneyball<br>
-At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
-Looking for: The kinda girl that can pull of Katherine Heigl in 
-Knocked Up.</p>
+                            Wants to see: Moneyball<br>
+                              At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
+                              Looking for: The kinda girl that can pull of Katherine Heigl in 
+                              Knocked Up.</p>
                                 
-                    <div class="clearfloat"></div> 
+                              <div class="clearfloat"></div> 
                     </div>
                     
-                    <div class="profile_2">
-                    	<img src="/images/avatar_2.png" alt=""  align="left" style="padding-right:8px;"/>
+                    <div class="profile_1">
+                    	<img src="/images/photo.jpg" class="photo" />
                         
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
-Wants to see:  What’s Your Number?<br>
-Doppleganger: Chris Rock</p>
+                          Wants to see:  What’s Your Number?<br>
+                          Doppleganger: Chris Rock</p>
                                    
-                    <div class="clearfloat"></div> 
+                          <div class="clearfloat"></div> 
                     </div>
                     
                     
                    <div class="profile_1">
-                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                    	<img src="/images/photo.jpg" class="photo" />
                         
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
-Wants to see: Moneyball<br>
-At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
-Looking for: The kinda girl that can pull of Katherine Heigl in 
-Knocked Up.</p>
+                          Wants to see: Moneyball<br>
+                          At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
+                          Looking for: The kinda girl that can pull of Katherine Heigl in 
+                          Knocked Up.</p>
                                 
-                    <div class="clearfloat"></div> 
+                          <div class="clearfloat"></div> 
                     </div>
                     
-                    <div class="profile_2">
-                    	<img src="/images/avatar_2.png" alt=""  align="left" style="padding-right:8px;"/>
+                    <div class="profile_1">
+                    	<img src="/images/photo.jpg" class="photo" />
                         
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
-Wants to see:  What’s Your Number?<br>
-Doppleganger: Chris Rock</p>
+                          Wants to see:  What’s Your Number?<br>
+                          Doppleganger: Chris Rock</p>
                                    
-                    <div class="clearfloat"></div> 
+                          <div class="clearfloat"></div> 
                     </div>
                     
                     
-                </div>
-                
-                 <div class="profile_column_right">
                 	<div class="profile_1">
-                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                    	<img src="/images/photo.jpg" class="photo" />
                         
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
-Wants to see: Moneyball<br>
-At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
-Looking for: The kinda girl that can pull of Katherine Heigl in 
-Knocked Up.</p>
+                          Wants to see: Moneyball<br>
+                          At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
+                          Looking for: The kinda girl that can pull of Katherine Heigl in 
+                          Knocked Up.</p>
                                 
                     <div class="clearfloat"></div> 
                     </div>
                     
-                    <div class="profile_2">
-                    	<img src="/images/avatar_2.png" alt="" align="left" style="padding-right:8px;"/>
+                    <div class="profile_1">
+                    	<img src="/images/photo.jpg" class="photo" />
                         
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
-Wants to see:  What’s Your Number?<br>
-Doppleganger: Chris Rock</p>
+                          Wants to see:  What’s Your Number?<br>
+                          Doppleganger: Chris Rock</p>
                                     
                     <div class="clearfloat"></div> 
                     </div>
@@ -181,23 +174,23 @@ Doppleganger: Chris Rock</p>
                     
                     
                    <div class="profile_1">
-                    	<img src="/images/avatar_1.png" alt="" align="left" style="padding-right:8px;" />
+                    	<img src="/images/photo.jpg" class="photo" />
                         
                         	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
-Wants to see: Moneyball<br>
-At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
-Looking for: The kinda girl that can pull of Katherine Heigl in 
-Knocked Up.</p>
+                          Wants to see: Moneyball<br>
+                          At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
+                          Looking for: The kinda girl that can pull of Katherine Heigl in 
+                          Knocked Up.</p>
                                 
                     <div class="clearfloat"></div> 
                     </div>
                     
-                    <div class="profile_2">
-                    	<img src="/images/avatar_2.png" alt="" align="left" style="padding-right:8px;"/>
+                    <div class="profile_1">
+                    	<img src="/images/photo.jpg" class="photo" />
                         
                         	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
-Wants to see:  What’s Your Number?<br>
-Doppleganger: Chris Rock</p>
+                          Wants to see:  What’s Your Number?<br>
+                          Doppleganger: Chris Rock</p>
                                     
                     <div class="clearfloat"></div> 
                     </div>
