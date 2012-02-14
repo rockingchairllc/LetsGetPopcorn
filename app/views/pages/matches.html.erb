@@ -53,7 +53,10 @@
                 	<% if user.birthday? %>
                 	  <% now, birthday = Time.now.utc.to_date, user.birthday %> <%= now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)%>,
                 	<% end %> <br>
-                  Wants to see: Moneyball<br>
+                  <% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{matche.movieid}&country=USA&lang=en" %>
+                  <% @doc2 = Nokogiri::HTML(open(url2)) %>
+                  
+                  Wants to see: <%= @doc2.css("movie").css('title').css('text')[0].text %><br>
                   At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
                   Looking for: The kinda girl that can pull of Katherine Heigl in 
                   Knocked Up.</p>
