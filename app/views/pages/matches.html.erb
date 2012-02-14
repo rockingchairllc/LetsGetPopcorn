@@ -22,21 +22,30 @@
       </div><!-- .search_filter -->
       
       <div class="articlenew profile">
-      	<p align="right"><button type="button">Next	7	days</button></p>
-      	<h2 class="headshots">Today</h2>
+      	<p align="right">&nbsp;</p>
       	
+      	<% previousday = "" %>
+      	
+      	<div class="profile_column_left">
       	<% @matches.each do |matche| %>
-    	  
-        <div class="<%= cycle("profile_column_left", "profile_column_right", :name => "colors") -%>">
-        
-        	<div class="<%= cycle("profile_1", "profile_2", :name => "profile") -%>">
+      	  
+      	  <% if previousday !=  matche.showdate.strftime("%Y-%m-%d") %>
+            	<div class="clearfloat"></div>
+          <% end %>
+            	 
+    	  <% if previousday !=  matche.showdate.strftime("%Y-%m-%d") %>
+            <h2 class="headshots"><%= matche.showdate.strftime("%A") %></h2>
+        <% end %>
+        	<div class="profile_1">
         	
         	  <% user = User.find_by_id(matche.user_id) %>
         	  
-        	  <% if user.profile_photo.url(:thumb) == "/profile_photos/thumb/missing.png" %> 
-        	    <img src="/images/photo.jpg" width="80" class="photo" />
+        	  <% if user.profile_photo.url(:thumb) == "/profile_photos/thumb/missing.png" %>
+        	     
+        	    <%= link_to image_tag("/images/photo.jpg", :border => 0), {:action => 'profile', :controller => '/pages'}, :class => 'photo' %>
+              
         	  <% else %>
-            	<%= image_tag(user.profile_photo.url(:thumb), :class=>"photo") %>
+            	<%= link_to image_tag(user.profile_photo.url(:thumb), :class=>"photo"), {:controller=>"/pages", :action=>'profile', :id=>"#{user.id}"} %>
             <% end %>
                 
                 	<p><span><strong><%= link_to "#{user.username}", {:controller=>"/pages", :action=>'profile', :id=>"#{user.id}"} %></strong></span>, Straight, 
@@ -49,16 +58,16 @@
                   Looking for: The kinda girl that can pull of Katherine Heigl in 
                   Knocked Up.</p>
                         
-            <div class="clearfloat"></div> 
+            
             </div>
-          </div>
+          <% previousday = matche.showdate.strftime("%Y-%m-%d") %>
         <% end %>
           
-          <br><br>
+          </div>
 
        
        <div class="clearfloat"></div>
-        <h2 class="headshots" style="padding:10px 0 0 0;">Friday</h2>   
+        
       </div><!-- article -->
       <!-- END Aritcle -->
   </div><!-- .section -->

@@ -851,7 +851,7 @@ p.forgot {
 
 
 .profile_column_left {
-	width:320px;
+	width:100%;
 	float:left;
 	margin:10px 0 0;
 }
@@ -926,10 +926,12 @@ p.forgot {
 
 .profile_column_left .profile_1 {
     background: none repeat scroll 0 0 #E9F0FE;
+    float: left;
     font-size: 11px;
     line-height: 18px;
-    margin: 8px 0 0;
+    margin: 8px 0 0 10px;
     padding: 5px;
+    width: 300px;
 }
 
 .profile_column_left .profile_2 {

@@ -19,7 +19,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
   def matches
     time = Time.new
     current_date = time.strftime("%Y-%m-%d %H:%M:%S ")
-    @matches = Showtime.find(:all, :conditions => "showdate >= '#{current_date}'")
+    @matches = Showtime.find(:all, :conditions => "showdate >= '#{current_date}'", :order =>"showdate ASC")
   end
   
   def profile
