@@ -1,0 +1,154 @@
+    	<div class="header">
+        	<div class="logo"></div>
+            <h1 class="title">Lights, Camera... Passion!</h1>
+            <ul class="nav">
+            	<li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'}, :class=>"active_button" %></li>
+              <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'} %></li>
+              <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'} %></li>
+            </ul><!-- .nav -->
+            
+            <!-- clear the float -->
+            <div class="clearfloat"></div>
+        </div><!-- .header -->
+
+
+        <div class="section">
+            
+            
+            
+            <div class="matchesnew">
+            	<ul class="movie_profile">
+                	<li>
+                    	<div class="movie_outter_content">
+                    	    <% if @user.profile_photo.url(:thumb) == "/profile_photos/thumb/missing.png" %> 
+                      	    <img src="/images/photo.jpg" width="80" class="photo" />
+                      	  <% else %>
+                          	<%= image_tag(@user.profile_photo.url(:thumb), :class=>"photo") %>
+                          <% end %>
+                          
+                            
+                         
+                        </div><!-- movie_outter_content -->
+                        
+                        <div class="movie_inner_content2">
+                        	<h2><%= @user.username %></h2>
+                          <strong><% if @user.birthday? %>
+                        	  <% now, birthday = Time.now.utc.to_date, @user.birthday %> <%= now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)%>
+                        	 /<% end %> <%= @user.gender %> </strong><br />
+                            <strong>Location:</strong> <br />
+                            
+                      </div><!-- .movie_inner_content -->
+                        <div class="movie_buttons">
+                        <a href="#"> Message Him</a><br>
+                        <a href="#"> Save Him</a>
+                        </div><!-- .movie_buttons -->
+                    </li><!-- end movie list item -->
+                   
+                    
+              </ul>
+              <!-- tabs start -->
+              <div id="TabbedPanels1" class="TabbedPanels">
+                  <ul class="TabbedPanelsTabGroup">
+                    <li class="TabbedPanelsTab" tabindex="0">About</li>
+                    <li class="TabbedPanelsTab" tabindex="0">Watchlist</li>
+                </ul>
+                  <div class="TabbedPanelsContentGroup">
+                    <div class="TabbedPanelsContent">
+                    <% synopse = Synopsis.find_by_user_id(@user.id) %>
+                     <h3>The Synopsis</h3>
+                         <% if synopse.nil? %>
+                         <% else %>
+                         <p><%= synopse.title %></p>
+                         <% end %>
+                       <p>&nbsp;</p>
+                       
+                     <% favmovie = Favmovie.find_by_user_id(@user.id) %>  
+                     <h3>Favorite Movie of All Time</h3>
+                        <% if favmovie.nil? %>
+                        <% else %>
+                        <p><%= favmovie.title %></p>
+                        <% end %>
+                      <p>&nbsp;</p>
+                      
+                      <% funnyque = Funnyque.find_by_user_id(@user.id) %>  
+                       <h3>Funny Question </h3>
+                          <% if funnyque.nil? %>
+                          <% else %>
+                          <p><%= funnyque.title %></p>
+                          <% end %>
+                        <p>&nbsp;</p>
+                        
+                    </div>
+                    <div class="TabbedPanelsContent">
+                    <div class="redlink" align="right"> To ask him out, just click a time below!</div>
+                    <% @mymovies.each do |mymovie| %>
+                     
+                      <% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{mymovie.movieid}&country=USA&lang=en" %>
+                      <% @doc2 = Nokogiri::HTML(open(url2)) %>
+                      <h3><%= @doc2.css("movie").css('title').css('text')[0].text %>:</h3>
+                      
+                       <% time = Time.new %> <% current_date = time.strftime("%Y-%m-%d %H:%M:%S ") %>
+                      
+                       <% mytimes = Showtime.find(:all, :conditions => "movieid= '#{mymovie.movieid}' and showdate >= '#{current_date}'", :order =>"showdate ASC") %>
+                       <% mytimes.each do |mytime| %>
+                         <strong><%= mytime.showdate.strftime("%A") %></strong> at <%= mytime.showdate.strftime("%I:%M%p") %><br>
+                       <% end %>
+                    <% end %>
+                    (clicking on the times asks out for that time directly)
+                    
+                    
+                    
+                    
+                    
+                    </div>
+                  </div>
+              </div>
+              
+              <!-- tabs end -->
+      </div><!-- article -->
+            <!-- END Aritcle -->
+        </div><!-- .section -->
+            
+        <!-- Start Sidebar (aside) -->
+        <div class="aside">
+            <ul>
+           		<h2>More Guys Who Like
+Moneyball</h2>
+                <li>
+                    <a href="#">
+                        <img src="http://graph.facebook.com/502489573/picture?type=square" height="32" width="32" alt="" />
+                        <span class="user_name">Jim,l</span>,
+                         21, New York City
+8pm Today @ Loews 42nd <br />
+                    </a>
+                    <div class="clearfloat"></div>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://graph.facebook.com/12412651/picture?type=square" height="32" width="32" alt="" />
+                        <span class="user_name">Jim</span>,
+                        21, New York City <br />
+                        8pm Today @ Loews 42nd<span class="user_movie"></span> 
+                    </a>
+                    <div class="clearfloat"></div>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="http://graph.facebook.com/12415713/picture?type=square" height="32" width="32" alt="" />
+                        <span class="user_name">Bob</span>,
+                        44, New York City <br />
+                        8pm Today @ Loews 42nd<span class="user_movie"></span> 
+                    </a>
+                    <div class="clearfloat"></div>
+                </li>
+            <!-- clear the float -->
+            <div class="clearfloat"></div>
+            </ul>
+    </div><!-- .aside -->
+        <!-- END Sidebar (aside) -->
+        
+        <script type="text/javascript">
+        <!--
+          var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+        //-->
+        </script>

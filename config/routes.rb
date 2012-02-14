@@ -17,6 +17,7 @@ Moviewithme::Application.routes.draw do |map|
    
   
   map.connect '/matches', :controller=>'pages', :action=>'matches'
+  map.connect '/matches/profile/:id', :controller=>'pages', :action=>'profile'
   map.connect '/contact', :controller=>'pages', :action=>'contact'
   match '/auth/:provider/callback' => 'authentications#create'
   map.connect '/pages/:id', :controller=>'pages', :action=>'show'

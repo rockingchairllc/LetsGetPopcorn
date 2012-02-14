@@ -1,145 +1,75 @@
-    	<div class="header">
-        	<div class="logo"></div>
-            <h1 class="title">Welcome, Hot Stuff!</h1>
-            <ul class="nav">
-            	<li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'}, :class=>"active_button" %></li>
-              <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'} %></li>
-              <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'} %></li>
-            </ul><!-- .nav -->
-            
-            <!-- clear the float -->
-            <div class="clearfloat"></div>
-        </div><!-- .header -->
+<div class="header">
+  	<div class="logo"></div>
+      <h1 class="title">Welcome, Hot Stuff!</h1>
+      <ul class="nav">
+      	<li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'}, :class=>"active_button" %></li>
+        <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'} %></li>
+        <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'} %></li>
+      </ul><!-- .nav -->
+      
+      <!-- clear the float -->
+      <div class="clearfloat"></div>
+  </div><!-- .header -->
 
 
-        <div class="section">
-            
-            <div class="search_filternew">
-               <button type="button">Guys</button> <span class="article1">within [xxx] miles of [zipcode] who want to see: </span><br>
-               <span class="article1">Ides of March, Moneyball, Abduction, Titanic 3d, Mup… (<a href="#">change</a>)</span>
-                   
-                   
-            </div><!-- .search_filter -->
-            
-            <div class="articlenew profile">
-            	<p align="right"><button type="button">Next	7	days</button></p>
-            	<h2 class="headshots">Today</h2>
-                <div class="profile_column_left">
-                	<div class="profile_1">
-                    	<img src="images/avatar_1.png" alt="" align="left" style="padding-right:5px;" />
-                        
-                        	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
-Wants to see: Moneyball<br>
-At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
-Looking for: The kinda girl that can pull of Katherine Heigl in 
-Knocked Up.</p>
-                                
-                    <div class="clearfloat"></div> 
-                    </div>
-                    
-                     <div class="profile_2">
-                    	<img src="images/avatar_2.png" alt=""  align="left" style="padding-right:5px;"/>
-                        
-                        	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
-Wants to see:  What’s Your Number?<br>
-Doppleganger: Chris Rock</p>
-                                   
-                    <div class="clearfloat"></div> 
-                    </div>
-                    
-                    
-                    <div class="profile_1">
-                    	<img src="images/avatar_1.png" alt="" align="left" style="padding-right:5px;" />
-                        
-                        	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
-Wants to see: Moneyball<br>
-At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
-Looking for: The kinda girl that can pull of Katherine Heigl in 
-Knocked Up.</p>
-                                
-                    <div class="clearfloat"></div> 
-                    </div>
-                    
-                    <div class="profile_2">
-                    	<img src="images/avatar_2.png" alt=""  align="left" style="padding-right:5px;"/>
-                        
-                        	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
-Wants to see:  What’s Your Number?<br>
-Doppleganger: Chris Rock</p>
-                                   
-                    <div class="clearfloat"></div> 
-                    </div>
-                    
-                    
-                    
-                </div>
-                
-                 <div class="profile_column_right">
-                	<div class="profile_1">
-                    	<img src="images/avatar_1.png" alt="" align="left" style="padding-right:5px;" />
-                        
-                        	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
-Wants to see: Moneyball<br>
-At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
-Looking for: The kinda girl that can pull of Katherine Heigl in 
-Knocked Up.</p>
-                                
-                    <div class="clearfloat"></div> 
-                    </div>
-                    
-                     <div class="profile_2">
-                    	<img src="images/avatar_2.png" alt=""  align="left" style="padding-right:5px;"/>
-                        
-                        	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
-Wants to see:  What’s Your Number?<br>
-Doppleganger: Chris Rock</p>
-                                   
-                    <div class="clearfloat"></div> 
-                    </div>
-                    
-                    
-                    
-                   <div class="profile_1">
-                    	<img src="images/avatar_1.png" alt="" align="left" style="padding-right:5px;" />
-                        
-                        	<p><span><strong>Guy</strong></span>, Straight, 38, New York City<br>
-Wants to see: Moneyball<br>
-At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
-Looking for: The kinda girl that can pull of Katherine Heigl in 
-Knocked Up.</p>
-                                
-                    <div class="clearfloat"></div> 
-                    </div>
-                    
-                    <div class="profile_2">
-                    	<img src="images/avatar_2.png" alt=""  align="left" style="padding-right:5px;"/>
-                        
-                        	<p><span><strong>Seth</strong></span>, Straight, 28, New York City<br>
-Wants to see:  What’s Your Number?<br>
-Doppleganger: Chris Rock</p>
-                                   
-                    <div class="clearfloat"></div> 
-                    </div>
-                    
-                    
-                    
-                  <div class="clearfloat"></div>   
-                </div><br><br>
-
+  <div class="section">
+      
+      <div class="search_filternew">
+         <button type="button">Guys</button> <span class="article1">within [xxx] miles of [zipcode] who want to see: </span><br>
+         <span class="article1">Ides of March, Moneyball, Abduction, Titanic 3d, Mup… (<a href="#">change</a>)</span>
              
-             <div class="clearfloat"></div>
-              <h2 class="headshots" style="padding:10px 0 0 0;">Friday</h2>   
-            </div><!-- article -->
-            <!-- END Aritcle -->
-        </div><!-- .section -->
-            
-        <!-- Start Sidebar (aside) -->
-        <div class="aside">
-            <ul>
-           		<h2>MOVIES</h2>
+             
+      </div><!-- .search_filter -->
+      
+      <div class="articlenew profile">
+      	<p align="right"><button type="button">Next	7	days</button></p>
+      	<h2 class="headshots">Today</h2>
+      	
+      	<% @matches.each do |matche| %>
+    	  
+        <div class="<%= cycle("profile_column_left", "profile_column_right", :name => "colors") -%>">
+        
+        	<div class="<%= cycle("profile_1", "profile_2", :name => "profile") -%>">
+        	
+        	  <% user = User.find_by_id(matche.user_id) %>
+        	  
+        	  <% if user.profile_photo.url(:thumb) == "/profile_photos/thumb/missing.png" %> 
+        	    <img src="/images/photo.jpg" width="80" class="photo" />
+        	  <% else %>
+            	<%= image_tag(user.profile_photo.url(:thumb), :class=>"photo") %>
+            <% end %>
                 
-            <!-- clear the float -->
-            <div class="clearfloat"></div>
-            </ul>
-        </div><!-- .aside -->
-        <!-- END Sidebar (aside) -->
+                	<p><span><strong><%= link_to "#{user.username}", {:controller=>"/pages", :action=>'profile', :id=>"#{user.id}"} %></strong></span>, Straight, 
+                	
+                	<% if user.birthday? %>
+                	  <% now, birthday = Time.now.utc.to_date, user.birthday %> <%= now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)%>,
+                	<% end %> <br>
+                  Wants to see: Moneyball<br>
+                  At 8pm, 9:30pm, 10:30pm or 11:15pm<br>
+                  Looking for: The kinda girl that can pull of Katherine Heigl in 
+                  Knocked Up.</p>
+                        
+            <div class="clearfloat"></div> 
+            </div>
+          </div>
+        <% end %>
+          
+          <br><br>
+
+       
+       <div class="clearfloat"></div>
+        <h2 class="headshots" style="padding:10px 0 0 0;">Friday</h2>   
+      </div><!-- article -->
+      <!-- END Aritcle -->
+  </div><!-- .section -->
+      
+  <!-- Start Sidebar (aside) -->
+  <div class="aside">
+      <ul>
+     		<h2>MOVIES</h2>
+          
+      <!-- clear the float -->
+      <div class="clearfloat"></div>
+      </ul>
+  </div><!-- .aside -->
+  <!-- END Sidebar (aside) -->

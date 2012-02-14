@@ -1253,3 +1253,32 @@ ul#position_container li div { cursor: move; }
     width: 11% !important;
 }
 
+#time{
+    
+    padding:0;
+}
+#time li{
+    margin:0;
+    padding:0;
+    list-style:none;
+    float: left;
+}
+#time li a, #time li a:visited{
+    text-align: center;
+    width:78px;
+    float:left;
+    color:#000;
+    text-decoration:none;
+}
+#time li a:hover{
+color:#A80202
+}
+
+.matchesphoto {float: left; padding-right:5px;}
+
+.photo{ width:80px; height:75px; padding:15px 7px 15px 7px; margin:5px; background:url(/images/reel_bg.png) no-repeat; float: left;}
+.movie_profile li {height: auto; position: relative; padding: 10px 10px 20px 0px;}
+.matchesnew {background: none repeat scroll 0 0 #D9E5FB; border-radius: 10px 10px 10px 10px; margin-left: 124px; padding: 20px; width: 536px;}
+
+
+

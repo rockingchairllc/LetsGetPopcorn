@@ -17,6 +17,19 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
   end
   
   def matches
+    time = Time.new
+    current_date = time.strftime("%Y-%m-%d %H:%M:%S ")
+    @matches = Showtime.find(:all, :conditions => "showdate >= '#{current_date}'")
+  end
+  
+  def profile
+    time = Time.new
+    current_date = time.strftime("%Y-%m-%d %H:%M:%S ")
+    
+    @user = User.find(params[:id])
+    @mymovies = Showmovie.find(:all, :conditions => "user_id= '#{@user.id}' and showdate >= '#{current_date}'")
+    
+    
   end
   
   #  For Static Pages 
