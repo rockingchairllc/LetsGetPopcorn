@@ -134,7 +134,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
                   showtime = Showtime.create(:movieid=> params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
 
                   flash[:notice] = "Movie added to your watchlist."
-                  redirect_to("/movies/showtime?miles=#{params[:miles]}&movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}&zip=#{[:zip]}")
+                  redirect_to("/movies/showtime?miles=#{params[:miles]}&movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}&zip=#{params[:zip]}")
 
               else
 
@@ -147,11 +147,11 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
                     showtime = Showtime.create(:movieid => params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
 
                     flash[:notice] = "Movie added to your watchlist."
-                    redirect_to("/movies/showtime?miles=#{params[:miles]}&movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}&zip=#{[:zip]}")
+                    redirect_to("/movies/showtime?miles=#{params[:miles]}&movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}&zip=#{params[:zip]}")
                     
                   else
                     flash[:notice] = "Love the enthusiasm! But, unfortunately, we can only handle 2 movies on your watchlist right now." 
-                    redirect_to("/movies/showtime?miles=#{params[:miles]}&movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}&zip=#{[:zip]}")
+                    redirect_to("/movies/showtime?miles=#{params[:miles]}&movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}&zip=#{params[:zip]}")
                     
                   end
               end
