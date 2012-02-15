@@ -106,15 +106,29 @@
                            <% end %>
                            (<a href="#">open IMDB page in popup</a>) <br />
 
-                           <ul>
-                               <a href="#">19 Guys</a> in your area want to see this movie: <br />
-                               <li><a href="#"><img src="http://graph.facebook.com/1000499831/picture?size=square" height="32" width="32" alt="" /></a></li>
-                               <li><a href="#"><img src="http://graph.facebook.com/82701710/picture?type=square" height="32" width="32" alt="" /></a></li>
-                               <li><a href="#"><img src="http://graph.facebook.com/813525525/picture?type=square" height="32" width="32" alt="" /></a></li>
-                               <li><a href="#"><img src="http://graph.facebook.com/1622498061/picture?size=square" height="32" width="32" alt="" /></a></li>
-                               <li><a href="#"><img src="http://graph.facebook.com/1466760040/picture?type=square" height="32" width="32" alt="" /></a></li>
-                               <li><a href="#" class="more_matches">more...</a>
-                           </ul>
+                            <% showusers = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'", :order => 'id desc', :limit => 5) %>
+
+                            <ul>
+                                <a href="#"><%= usercount = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'").count %> Guys</a> in your area want to see this movie: <br />
+                                <% showusers.each do |showuser| %>
+                                <li>
+
+                                    <% user = User.find_by_id(showuser.user_id) %>
+
+                               	  <% if user.profile_photo.url(:thumb) == "/profile_photos/thumb/missing.png" %>
+
+                               	    <%= link_to image_tag("/images/photo.jpg", :border => 0, :width=>"42"), {:action => 'profile', :controller => '/pages', :id=>"#{user.id}"} %>
+
+                               	  <% else %>
+                                   	<%= link_to image_tag(user.profile_photo.url(:thumb), :width=>"42"), {:controller=>"/pages", :action=>'profile', :id=>"#{user.id}"} %>
+                                   <% end %>
+
+                                </li>
+                                <% end %>
+                                <% if usercount >= 5 %>
+                                <a href="#" class="more_matches">more...</a>
+                                <% end %>
+                            </ul>
                        </div><!-- .movie_inner_content -->
                        <div class="movie_buttons">
                            <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"}, :class=>"button_to" %><br />

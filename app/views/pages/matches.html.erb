@@ -42,7 +42,7 @@
         	  
         	  <% if user.profile_photo.url(:thumb) == "/profile_photos/thumb/missing.png" %>
         	     
-        	    <%= link_to image_tag("/images/photo.jpg", :border => 0), {:action => 'profile', :controller => '/pages'}, :class => 'photo' %>
+        	    <%= link_to image_tag("/images/photo.jpg", :border => 0), {:action => 'profile', :controller => '/pages', :id=>"#{user.id}"}, :class => 'photo' %>
               
         	  <% else %>
             	<%= link_to image_tag(user.profile_photo.url(:thumb), :class=>"photo"), {:controller=>"/pages", :action=>'profile', :id=>"#{user.id}"} %>
