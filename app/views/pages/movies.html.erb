@@ -76,14 +76,16 @@
                              <% end %>
                              (<%= link_to "open IMDB page in popup", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :remote => true %>) <br />
                              
+                          
+                             
                          <ul>
-                             <a href="#">19 Guys</a> in your area want to see this movie: <br />
+                             <a href="#"><%= showuser = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'").count %> Guys</a> in your area want to see this movie: <br />
                              <li><a href="#"><img src="http://graph.facebook.com/1000499831/picture?size=square" height="32" width="32" alt="" /></a></li>
                              <li><a href="#"><img src="http://graph.facebook.com/82701710/picture?type=square" height="32" width="32" alt="" /></a></li>
                              <li><a href="#"><img src="http://graph.facebook.com/813525525/picture?type=square" height="32" width="32" alt="" /></a></li>
                              <li><a href="#"><img src="http://graph.facebook.com/1622498061/picture?size=square" height="32" width="32" alt="" /></a></li>
                              <li><a href="#"><img src="http://graph.facebook.com/1466760040/picture?type=square" height="32" width="32" alt="" /></a></li>
-                             <li><a href="#" class="more_matches">more...</a>
+                             <a href="#" class="more_matches">more...</a>
                          </ul>
                      </div><!-- .movie_inner_content -->
                      <div class="movie_buttons">

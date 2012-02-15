@@ -98,7 +98,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
 
     def showtime
       
-      unless params[:zip].nil?
+      unless params[:zip].empty?
         zip, miles = "#{params[:zip]}", "#{params[:miles]}"
       else
         zip, miles = "10098", "100"
@@ -126,7 +126,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
           if request.post? and params[:showtime]
 
 
-              mymovie = Showmovie.find(:all, :conditions => "user_id = #{params[:showtime][:user_id]} and showdate >= '#{current_date}'").count
+              mymovie = Showmovie.select('DISTINCT movieid').find(:all, :conditions => "user_id = #{params[:showtime][:user_id]} and showdate >= '#{current_date}'").count
 
               unless mymovie >= 2
 
@@ -142,7 +142,13 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
 
                   unless @cnt.empty?
                     @cnt.each do |c|
-                      showmovie = Showmovie.update(c.id, :movieid => c.movieid, :user_id => c.user_id, :showdate => params[:showtime][:showdate])
+                        unless "#{c.showdate}" >=  "#{params[:showtime][:showdate]}"
+                          myshowtime = "#{params[:showtime][:showdate]}"
+                        else
+                          myshowtime = "#{c.showdate}"
+                        end
+                        
+                      showmovie = Showmovie.update(c.id, :movieid => c.movieid, :user_id => c.user_id, :showdate => myshowtime)
                     end
                     showtime = Showtime.create(:movieid => params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
 
@@ -153,7 +159,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
                     flash[:notice] = "Love the enthusiasm! But, unfortunately, we can only handle 2 movies on your watchlist right now." 
                     redirect_to("/movies/showtime?miles=#{params[:showtime][:miles]}&movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}&zip=#{params[:showtime][:zip]}")
                     
-                  end
+                 end
               end
           end
 
