@@ -19,18 +19,22 @@
          
          <div class="search_filternew">
              <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
-                <fieldset>
-                    Movies playing within <%= f.text_field :miles, :class=>"miles" %>
-                    miles of <%= f.text_field :zip, :onFocus=>"if(this.value=='10098')this.value='';", :onBlur=>"if (this.value == '') this.value = '10098';", :value => "10098", :class=>"zip" %>
-                     
-                    <span class="search_for">
-                        <u>S</u>earch for: 
-                        <%= f.text_field :movie, :class=>"search_movies" %>
-                        <%= submit_tag 'Go', :class=>'button_to go_width' %>
-                        
-                    </span><!-- .search_for -->
-                </fieldset>
-            <% end %>
+                 <fieldset>
+                     Movies playing within <%= select :search, :miles, options_for_select([5,10,15,20,25]), :class=>"miles" %>
+
+                     miles of <%= f.text_field :zip, :onFocus=>"if(this.value=='10098')this.value='';", :onBlur=>"if (this.value == '') this.value = '10098';", :value => "10098", :class=>"zip", :size=>"15" %>
+                     <%= select :search, :genre, options_for_select([['select genre',''], 'Action', 'Thriller', 'Adventure', 'Drama', 'Crime Drama', 'Comedy', 'Comedy Drama', 'Dark Comedy', 'Historical Drama', 'Romantic Comedy', 'Musical', 'Romance', 'Science Fiction', 'Fantasy', 'Horror', 'Documentary']), :class=>"miles" %><br />
+
+                     <span class="search_for">
+                         <u>S</u>earch for: 
+                         <%= f.text_field :movie, :class=>"search_movies" %>
+                         <%= submit_tag 'Go', :class=>'button_to go_width' %>
+                         
+                         
+                         
+                     </span><!-- .search_for -->
+                 </fieldset>
+             <% end %>
          </div><!-- .search_filter -->
          
          <div id="modal-box" style="display:none;"></div>
@@ -72,9 +76,9 @@
 
 
                              <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
-                              <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
+                              <strong>Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
                              <% end %>
-                             (<%= link_to "open IMDB page in popup", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :remote => true %>) <br />
+                             (<%= link_to "More Info", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :remote => true %>) <br />
                              
                           <% showusers = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'", :order => 'id desc', :limit => 5) %>
                              
@@ -102,7 +106,7 @@
                      </div><!-- .movie_inner_content -->
                      <div class="movie_buttons">
                          <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"}, :class=>"button_to" %><br />
-                         <%= link_to "View on IMDB", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
+                         <%= link_to "More Info", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
                      </div><!-- .movie_buttons -->
                  </li><!-- end movie list item -->
                  

@@ -51,13 +51,13 @@
 
                 <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
                    <fieldset>
-                       Movies playing within <%= f.text_field :miles, :value => "#{params['miles']}", :class=>"miles" %>
+                       Movies playing within <%= select :search, :miles, options_for_select([5,10,15,20,25], { :selected => "#{params['miles']}" }), :class=>"miles" %>
                        miles of <%= f.text_field :zip, :value => "#{params['zip']}", :class=>"zip" %>
-
+                      <%= select :search, :genre, options_for_select([['select genre',''], 'Action', 'Thriller', 'Adventure', 'Drama', 'Crime Drama', 'Comedy', 'Comedy Drama', 'Dark Comedy', 'Historical Drama', 'Romantic Comedy', 'Musical', 'Romance', 'Science Fiction', 'Fantasy', 'Horror', 'Documentary'], { :selected => "#{params['genre']}" }), :class=>"miles" %><br />
 
                        <span class="search_for"> 
                            <u>S</u>earch for: 
-                           <%= f.text_field :movie, :value => "", :class=>"search_movies" %>
+                           <%= f.text_field :movie, :value => "#{params['movie']}", :class=>"search_movies" %>
                            <%= submit_tag 'Go', :class=>'button_to go_width' %>
 
                        </span><!-- .search_for -->
@@ -70,14 +70,28 @@
            	<ul class="movie_list">
 
            	    <% @doc.css("movie").each do |item| %>
-               	<li><%  movieId = item.attr('movieid') %>
+
+           	   <% movie_name = item.css('title').css('text')[0].text %>
+
+           	   <% if movie_name.include?("#{params['movie']}") || movie_name.downcase.include?("#{params['movie']}") || movie_name.upcase.include?("#{params['movie']}") || movie_name.capitalize.include?("#{params['movie']}") %>
+
+           	    <%  movieId = item.attr('movieid') %>
+
+           	    <% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
+                   <% @doc2 = Nokogiri::HTML(open(url2)) %>
+
+                <% genre = @doc2.css("movie").css('genre').css('text').text %>
+
+                <% if genre.include?("#{params['genre']}") %>   
+
+               	<li>
                    	<div class="movie_outter_content">
                    	      <% unless item.css("asseturi").text.empty? %>
                            <a href="javascript:void(0);"><img src="<%= item.css('asseturi').text %>" width="162"></a>
                           <% else %>
                             <img src="/images/blank_movie.jpg">
                           <% end %>
-                           
+
                        </div><!-- movie_outter_content -->
 
                        <div class="movie_inner_content">
@@ -85,8 +99,7 @@
                            	<a href="#"><%=  item.css('title').css('text')[0].text %></a> <br />
 
                        	</h3>
-                       	<% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
-                          <% @doc2 = Nokogiri::HTML(open(url2)) %>
+
 
                            <% unless @doc2.css("movie").css('genre').css('text')[0].nil? %>
                               <strong>Genre:</strong><% @doc2.css("movie").css("genre").each do |genre| %>
@@ -102,9 +115,9 @@
                            <% end %>
 
                            <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
-                            <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
+                            <strong>Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
                            <% end %>
-                           (<a href="#">open IMDB page in popup</a>) <br />
+                           (<%= link_to "More Info", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :remote => true %>) <br />
 
                             <% showusers = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'", :order => 'id desc', :limit => 5) %>
 
@@ -130,14 +143,16 @@
                                 <% end %>
                             </ul>
                        </div><!-- .movie_inner_content -->
-                       <div class="movie_buttons">
-                           <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"}, :class=>"button_to" %><br />
+                       <div class="movie_buttons"> 
+                            <%= link_to "Add to Watchlist",  :class=>"button_to" %><br />
                             <%= link_to "View on IMDB", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
                        </div><!-- .movie_buttons -->
                    </li><!-- end movie list item -->
 
-                <% end %>
+                  <% end %>
 
+                <% end %>
+                <% end %>
 
 
                </ul><!-- .movie_list -->

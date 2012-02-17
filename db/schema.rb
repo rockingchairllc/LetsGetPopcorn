@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112062602) do
+ActiveRecord::Schema.define(:version => 20120215123122) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(:version => 20120112062602) do
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "buries", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "viewer_id"
+    t.string   "bury"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,18 +96,6 @@ ActiveRecord::Schema.define(:version => 20120112062602) do
     t.datetime "updated_at"
     t.string   "header_title"
   end
-
-  create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-
-  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
-  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "subjects", :force => true do |t|
     t.string   "subject_name"
@@ -160,5 +156,12 @@ ActiveRecord::Schema.define(:version => 20120112062602) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "viewprofiles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "viewer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

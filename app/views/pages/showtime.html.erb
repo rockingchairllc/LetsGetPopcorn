@@ -147,9 +147,9 @@
                            <% end %>
 
                            <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
-                            <strong>Imdb Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
+                            <strong>Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
                            <% end %>
-                           (<a href="#">open IMDB page in popup</a>) <br />
+                           (<%= link_to "More Info", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :remote => true %>) <br />
 
                             <% showusers = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'", :order => 'id desc', :limit => 5) %>
 
