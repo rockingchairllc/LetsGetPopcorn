@@ -1,5 +1,7 @@
 Moviewithme::Application.routes.draw do |map|
   
+  
+
   devise_for :admins, :path_names => { :sign_in =>"login", :sign_out =>"logout"}
 
   resources :authentications
@@ -19,6 +21,7 @@ Moviewithme::Application.routes.draw do |map|
   map.connect '/matches', :controller=>'pages', :action=>'matches'
   map.connect '/matches/profile/:id', :controller=>'pages', :action=>'profile'
   map.connect '/contact', :controller=>'pages', :action=>'contact'
+  map.connect '/thank-you', :controller=>'pages', :action=>'thankyou'
   match '/auth/:provider/callback' => 'authentications#create'
   map.connect '/pages/:id', :controller=>'pages', :action=>'show'
   map.connect '/edit/synopsis', :controller=>'user/account', :action=>'update_synopsis'
@@ -46,6 +49,7 @@ Moviewithme::Application.routes.draw do |map|
     match '/dashboard' => "dashboard#index", :as => :root
     resources :pages 
     resources :contacts
+    resources :zipcodes
    end
   
 end

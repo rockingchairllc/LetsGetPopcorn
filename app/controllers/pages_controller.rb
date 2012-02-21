@@ -4,7 +4,7 @@ require 'open-uri'
 
 class PagesController < ApplicationController
   
-before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search]
+before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou]
   
   def movies
      time = Time.new 
@@ -177,6 +177,9 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
        @doc = Nokogiri::HTML(open(url))
        @meta_title = " - Movies"
        
+    end
+    
+    def thankyou
     end
   
   

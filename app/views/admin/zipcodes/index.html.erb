@@ -1,0 +1,29 @@
+ <div id="content">
+ 	<p class='buttons'>
+ 		
+ 		<%= link_to  "Add Zipcode", new_admin_zipcode_path, :class => 'button positive' %>
+ 		</p>
+		<p class='clear'></p>
+		   
+
+			<table class="admintable">
+			  <tr class="admintablehd">
+			    <td width="25%">Borough</td>
+			    <td>Neighborhood</td>
+			    <td width="27%" style="text-align: center !important;">Action</td>
+			  </tr>
+			
+			<% @zipcodes.each do |zipcode| %>
+			 
+			  <tr>
+			    <td><%= zipcode.borough %></td>
+			    <td><%= zipcode.codes %></td>
+			    <td style="text-align: center !important;" > <%= link_to "Edit", edit_admin_zipcode_path(zipcode), :class=>'button positive' %>  &nbsp;&nbsp; 
+			    </td>
+			    
+			  </tr>
+			<% end %>
+			</table>
+			<br />
+			<p><%= will_paginate @zipcodes, :class=>'pagination_magArticles' %></p>
+</div>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  borough: MyString
+  neighborhood: MyString
+  codes: MyString
+
+two:
+  borough: MyString
+  neighborhood: MyString
+  codes: MyString

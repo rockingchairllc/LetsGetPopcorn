@@ -1,0 +1,40 @@
+
+
+  <div id="content">
+
+	<% form_for [:admin, @zipcode],:html => { :multipart => true } do |f| %>
+	
+	
+	  
+	  <%- @zipcode.errors.full_messages.each do |message| -%>
+	   <div class="errorExplanation"> <p><%= message %></p></div>
+	  <%- end -%>
+	   
+	  
+	  <div id="breadcrumb">
+	  	   <%= link_to "Pages", admin_zipcodes_path %> &raquo; New
+	  </div>
+	 
+	  <p>
+	    <%= f.label :borough %>
+	    <%= f.text_field :borough, :class => 'text' %>
+	  </p>
+	  
+	   <p>
+	    <%= f.label :neighborhood %>
+	    <%= f.text_field :neighborhood, :class => 'text' %>
+	  </p>
+	  
+	  <p>
+	    <%= f.label :codes %>
+	    <%= f.text_field :codes, :class => 'text' %>
+	  </p>
+	   
+	
+	  
+	 <%= render :partial =>"admin/pages/button" %>
+	
+	<% end %>
+
+
+</div>

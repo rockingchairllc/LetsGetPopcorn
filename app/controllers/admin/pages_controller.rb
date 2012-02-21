@@ -1,6 +1,6 @@
 class Admin::PagesController < Admin::BaseController
   
-  
+  before_filter :authenticate_admin!, :except => []
   
   def index
       @pages = Page.find(:all)
