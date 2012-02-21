@@ -101,7 +101,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       unless params[:zip].empty?
         zip, miles = "#{params[:zip]}", "#{params[:miles]}"
       else
-        zip, miles = "10098", "100"
+        zip, miles = "10098", "5"
       end
 
       time = Time.new 

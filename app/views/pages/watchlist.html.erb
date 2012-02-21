@@ -91,6 +91,23 @@
                           <% else %>
                             <img src="/images/blank_movie.jpg">
                           <% end %>
+                          
+                          <!-- start theaters -->    
+                            <% time = Time.new %>
+                            <% current_date = time.strftime("%Y%m%d") %>
+                            
+                            <% unless params[:zip].nil? %>
+                             <%  zip, miles = "#{params[:zip]}", "#{params[:miles]}" %>
+                            <% else %>
+                             <% zip, miles = "10098", "5" %>
+                            <% end %>
+
+                            <% url4 ="http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi" %>
+                            <% @doc4 = Nokogiri::HTML(open(url4)) %>
+
+                            <%= link_to "@ #{@doc4.css("theatre").count} Theaters", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"} %>
+
+                          <!-- end theaters -->
 
                        </div><!-- movie_outter_content -->
 
@@ -144,7 +161,7 @@
                             </ul>
                        </div><!-- .movie_inner_content -->
                        <div class="movie_buttons"> 
-                            <%= link_to "Add to Watchlist",  :class=>"button_to" %><br />
+                            <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"}, :class=>"button_to" %><br />
                             <%= link_to "View on IMDB", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
                        </div><!-- .movie_buttons -->
                    </li><!-- end movie list item -->
