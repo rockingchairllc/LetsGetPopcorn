@@ -55,7 +55,9 @@
              	<li>
                  	<div class="movie_outter_content">
                  	      <% unless item.css("asseturi").text.empty? %>
-                         <a href="javascript:void(0);"><img src="<%= item.css('asseturi').text %>" width="162"></a>
+                 	        <%= link_to image_tag("#{item.css('asseturi').text}", :width=>162), {:controller=>"pages", :action=>"moreinfo", :movieid=>"#{movieId}" } %>
+                          
+                         
                         <% else %>
                           <img src="/images/blank_movie.jpg">
                         <% end %>
@@ -75,7 +77,7 @@
                      
                      <div class="movie_inner_content">
                      	<h3 class="movie_title">
-                         	<a href="#"><%=  item.css('title').css('text')[0].text %></a> <br />
+                         	<%= link_to "#{item.css('title').css('text')[0].text}", { :controller=>"pages", :action=>"moreinfo", :movieid=>"#{movieId}"} %> <br />
                              
                      	</h3>
                      	
@@ -96,7 +98,7 @@
                          <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
                           <strong>Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
                          <% end %>
-                         (<%= link_to "More Info", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :remote => true %>) <br />
+                         (<%= link_to "More Info", { :controller=>"pages", :action=>"moreinfo", :movieid=>"#{movieId}"} %>) <br />
                          
                           <% showusers = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'", :order => 'id desc', :limit => 5) %>
 
@@ -124,7 +126,7 @@
                      </div><!-- .movie_inner_content -->
                      <div class="movie_buttons"> 
                           <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :miles=>"#{params['search']['miles']}", :zip=>"#{params['search']['zip']}", :genre=>"#{params['search']['genre']}", :movie=>"#{params['search']['movie']}", :movieid=>"#{movieId}" }, :class=>"button_to" %><br />
-                          <%= link_to "View on IMDB", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
+                          <%= link_to "More Info", { :controller=>"pages", :action=>"moreinfo", :movieid=>"#{movieId}"}, :class=>"button_to" %>
                      </div><!-- .movie_buttons -->
                  </li><!-- end movie list item -->
                 

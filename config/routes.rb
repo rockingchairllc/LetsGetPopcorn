@@ -12,6 +12,7 @@ Moviewithme::Application.routes.draw do |map|
   
   map.connect '/movies', :controller=>'pages', :action=>'movies'
   map.connect '/movies/imdb', :controller=>'pages', :action=>'imdb'
+  map.connect '/movies/details', :controller=>'pages', :action=>'moreinfo'
   map.connect '/movies/watchlist', :controller=>'pages', :action=>'watchlist'
   map.connect '/movies/showtime', :controller=>'pages', :action=>'showtime'
   map.connect '/movies/showtime/addtime', :controller=>'pages', :action=>'addtime'

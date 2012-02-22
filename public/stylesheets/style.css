@@ -1282,5 +1282,29 @@ color:#A80202
 .movie_profile li {height: auto; position: relative; padding: 10px 10px 20px 0px;}
 .matchesnew {background: none repeat scroll 0 0 #D9E5FB; border-radius: 10px 10px 10px 10px; margin-left: 124px; padding: 20px; width: 536px;}
 
+.good { 
+    padding:5px 10px 5px 25px;
+    background: url(images/good.png) no-repeat;
+    color:#A80202; font-weight:bold}
+    
+.good:hover {color:#494949;}
+
+.bad { 
+    padding:5px 10px 5px 25px;
+    background: url(images/bad.png) no-repeat;
+    color:#A80202; font-weight:bold}
+    
+.bad:hover {color:#494949;}
+
+.articlenew2 {
+	width: 550px;
+	padding: 20px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin: 20px 0 0 120px; float:left
+}
+.movie_inner_content2 {position: relative; width:586px; }
+
 
 

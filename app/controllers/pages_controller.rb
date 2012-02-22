@@ -4,7 +4,7 @@ require 'open-uri'
 
 class PagesController < ApplicationController
   
-before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou]
+before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou, :moreinfo]
   
   def movies
      time = Time.new 
@@ -72,6 +72,13 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
             format.js { render :action => 'imdb' }
       end
 
+    end
+    
+    def moreinfo
+      
+      url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:movieid]}&country=USA&lang=en"
+      @doc2 = Nokogiri::HTML(open(url2))
+    
     end
     
     

@@ -1,0 +1,220 @@
+<div class="header">
+    	<div class="logo"></div>
+        <h1 class="title">Lights, Camera... Passion!</h1>
+        <ul class="nav">
+          <li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'} %></li>
+          <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'}, :class=>"active_button" %></li>
+          <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'} %></li>
+        </ul><!-- .nav -->
+        
+        <!-- clear the float -->
+        <div class="clearfloat"></div>
+    </div><!-- .header -->
+
+
+   
+        
+        <!-- .search_filter -->
+        
+        <div class="articlenew2">
+                    <div align="right"><a href="/movies" style="font-size:16px;">Back to search results</a></div>
+                    <div class="movie_inner_content2">
+                    <% unless @doc2.css("movie").css("asseturi").text.empty? %>
+                     <img src="<%= @doc2.css("movie").css("asseturi")[0].text %>"  width="162" style="float:left;margin-right:10px;">
+                    <% else %>
+                      <img src="/images/blank_movie.jpg">
+                    <% end %>
+                    
+                    	<h3 class="movie_title"><%= @doc2.css("movie").css('title').css('text')[0].text %></h3>
+                    	
+                    	<% unless @doc2.css("movie").css("rating").css('code').text.empty? %>
+                    	<p><strong>Rating :</strong> <%= @doc2.css("movie").css('rating').css('code').text %></p>
+                    	<% end %>
+   	          
+                       <strong>Release Date :  </strong> <%= @doc2.css("movie").css('release').attr('date') %> <br />
+                         <% unless @doc2.css("movie").css('genre').css('text')[0].nil? %>
+                         <strong>Genre:</strong> 
+                          <% @doc2.css("movie").css("genre").each do |genre| %>
+                               <%=  genre.css('text').text %> <%= "," unless genre == @doc2.css("movie").css("genre").last %>
+                          <% end %>
+                          <br/>
+                          <% end %>
+                          
+                          <% unless @doc2.css("movie").css('cast').css('name').css('first')[0].nil? %>  
+                          <strong>Cast:</strong>     
+                                  <% @doc2.css("movie").css("cast").each do |casts| %>
+                                     <%=  casts.css('name').css('first').text %> <%=  casts.css('name').css('last').text %> <%= "," unless casts == @doc2.css("movie").css("cast").last %>
+                                <% end %>
+                          <% end %>
+                          
+                          <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
+                             <p> <strong>Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  </p>
+                           <% end %>
+                          
+                           <% unless @doc2.css("movie").css('crew').css('name').css('first')[0].nil? %>
+                          
+                                   <strong>Director : </strong><%  @doc2.css("movie").css("crew").each do |role| %>
+                                     <% if role.attr('role') == 'Director' %>
+                                     <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> &nbsp;&nbsp;
+                                     <% end %>
+                                   <% end %>
+                           <% end %> <br/>
+
+                           <% unless @doc2.css("movie").css('crew').css('name').css('first')[0].nil? %>
+                           
+                                   <strong>Producer : </strong><%  @doc2.css("movie").css("crew").each do |role| %>
+                                       <% if role.attr('role') == 'Producer' %>
+                                       <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> &nbsp;&nbsp;
+                                       <% end %>
+                                     <% end %>
+                             
+                           <% end %> <br/>
+                           
+                           <% unless @doc2.css("movie").css('crew').css('name').css('first')[0].nil? %>
+                                    <% cnt = 1 %>
+                                      <%  @doc2.css("movie").css("crew").each do |role| %>
+                                        
+                                        <% if role.attr('role') == 'Executive Producer' %>
+                                          <% if cnt == 1 %>
+                                            <strong>Executive Producer : </strong>
+                                          <% end %>
+                                            
+                                            <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> &nbsp;&nbsp;
+                                          <% cnt= cnt + 1 %> 
+                                        <% end %>
+                                      <% end %>
+
+                            <% end %><br/>
+                           
+                           <% unless @doc2.css("movie").css('crew').css('name').css('first')[0].nil? %>
+                                    <% cnt = 1 %>
+                                        <%  @doc2.css("movie").css("crew").each do |role| %>
+                                        <% if role.attr('role') == 'Screenwriter' %>
+                                        <% if cnt == 1 %>
+                                          <strong>Screenwriter : </strong>
+                                        <% end %>
+                                        <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> &nbsp;&nbsp;
+                                        <% cnt= cnt + 1 %>
+                                        <% end %>
+                                      <% end %>
+
+                            <% end %> <br/>
+                            
+                            <% unless @doc2.css("movie").css('crew').css('name').css('first')[0].nil? %>
+                                      <% cnt = 1 %>
+                                      <%  @doc2.css("movie").css("crew").each do |role| %>
+                                          
+                                          <% if role.attr('role') == 'Cinematographer' %>
+                                            <% if cnt == 1 %>
+                                              <strong>Cinematographer : </strong>
+                                            <% end %>
+                                              <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> &nbsp;&nbsp;
+                                            <% cnt= cnt + 1 %>
+                                          <% end %>
+                                        <% end %>
+
+                              <% end %> <br/>
+                              
+                              <% unless @doc2.css("movie").css('crew').css('name').css('first')[0].nil? %>
+                                        <% cnt = 1 %>
+                                          <%  @doc2.css("movie").css("crew").each do |role| %>
+                                            <% if role.attr('role') == 'Film Editor' %>
+                                              <% if cnt == 1 %>
+                                                <strong>Film Editor : </strong>
+                                              <% end %>
+                                                <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> &nbsp;&nbsp;
+                                              <% cnt= cnt + 1 %>
+                                            <% end %>
+                                          <% end %>
+
+                                <% end %> <br/>
+                                
+                                <% unless @doc2.css("movie").css('crew').css('name').css('first')[0].nil? %>
+                                          <% cnt = 1 %>
+                                          <%  @doc2.css("movie").css("crew").each do |role| %>
+                                              <% if role.attr('role') == 'Production Design' %>
+                                                <% if cnt == 1 %>
+                                                  <strong>Production Design : </strong>
+                                                <% end %>
+                                                  <%=  role.css('name').css('first').text %> <%=  role.css('name').css('last').text %> &nbsp;&nbsp;
+                                                <% cnt= cnt + 1 %>
+                                              <% end %>
+                                            <% end %>
+
+                                  <% end %> <br/>
+                        
+                      
+                </div>
+                <br/>
+                
+                
+                <div id="gallery">
+               
+                  <% cnt = 1 %>
+                  <% @doc2.css("movie").css("photo").each do |photo| %>
+                    
+                    <% if photo.css('description').text == 'Production Image.' %> 
+                      <% if cnt == 1 %>
+                        <p><strong><%= @doc2.css("movie").css('title').css('text')[0].text %> Pictures</strong></p>
+                      <% end %>
+                        <%= link_to image_tag("#{photo.css('thumburi').text}"), "#{photo.css('asseturi').text}" %> 
+                     <% cnt= cnt + 1 %>
+                    <% end %> 
+                    
+                  <% end %>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+        <div>
+          <p>&nbsp;</p>
+          
+        </div>
+        
+    </div><!-- article -->
+        <!-- END Aritcle -->
+   
+        
+    <!-- Start Sidebar (aside) -->
+    <div class="aside">
+        <ul>
+       		<h2>Recent Activity</h2>
+            <li>
+                <a href="#">
+                    <img src="http://graph.facebook.com/502489573/picture?type=square" height="32" width="32" alt="" />
+                    <span class="user_name">Paul</span>,
+                    24, New York City <br />
+                    Movie: <span class="user_movie">Moneyball</span> 
+                </a>
+                <div class="clearfloat"></div>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="http://graph.facebook.com/12412651/picture?type=square" height="32" width="32" alt="" />
+                    <span class="user_name">Jim</span>,
+                    21, New York City <br />
+                    Movie: <span class="user_movie">What's...</span> 
+                </a>
+                <div class="clearfloat"></div>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="http://graph.facebook.com/12415713/picture?type=square" height="32" width="32" alt="" />
+                    <span class="user_name">Bob</span>,
+                    44, New York City <br />
+                    Movie: <span class="user_movie">Abduction</span> 
+                </a>
+                <div class="clearfloat"></div>
+            </li>
+        <!-- clear the float -->
+        <div class="clearfloat"></div>
+        </ul>
+    </div><!-- .aside -->
+    <!-- END Sidebar (aside) -->

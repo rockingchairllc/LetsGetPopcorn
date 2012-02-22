@@ -97,7 +97,10 @@
                 <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
                    <fieldset>
                        Movies playing within <%= f.text_field :miles, :value => "#{params['miles']}", :class=>"miles" %>
-                       miles of <%= f.text_field :zip, :value => "#{params['zip']}", :class=>"zip" %>
+                
+                       miles of <%= f.text_field :zip, :value => "#{params['zip']}", :class=>"zip", :size=>"15" %>
+                       <%= select :search, :genre, options_for_select([['select genre',''], 'Action', 'Thriller', 'Adventure', 'Drama', 'Crime Drama', 'Comedy', 'Comedy Drama', 'Dark Comedy', 'Historical Drama', 'Romantic Comedy', 'Musical', 'Romance', 'Science Fiction', 'Fantasy', 'Horror', 'Documentary'], { :selected => "#{params['genre']}" }), :class=>"miles" %><br />
+                       
 
 
                        <span class="search_for"> 
@@ -195,7 +198,7 @@
                        </div><!-- .movie_inner_content -->
                        <div class="movie_buttons">
                             <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"}, :class=>"button_to" %><br />
-                             <%= link_to "View on IMDB", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
+                             <%= link_to "More Info", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
                        </div><!-- .movie_buttons -->
                    </li><!-- end movie list item -->
 
