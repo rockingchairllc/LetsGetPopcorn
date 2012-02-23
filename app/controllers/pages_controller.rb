@@ -11,12 +11,12 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       current_date = time.strftime("%Y%m%d")
       
       if user_signed_in?
-        zip, miles = "#{current_user.zip}", "5"
+        @zip, @miles = "#{current_user.zip}", "5"
       else
-        zip, miles = "10098", "5"
+        @zip, @miles = "10026", "5"
       end
       
-       url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&radius=#{miles}&radiusUnit=mi&rhDays=14"
+       url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{@zip}&country=USA&date=#{current_date}&numDays=7&radius=#{@miles}&radiusUnit=mi&rhDays=14"
           @doc = Nokogiri::HTML(open(url))
           @meta_title = " - Movies"
          
@@ -94,7 +94,11 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       unless params[:zip].nil?
         zip, miles = "#{params[:zip]}", "#{params[:miles]}"
       else
-        zip, miles = "10098", "5"
+        if user_signed_in?
+          zip, miles = "#{current_user.zip}", "5"
+        else
+          zip, miles = "10026", "5"
+        end
       end
 
       time = Time.new 
@@ -114,7 +118,11 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       unless params[:zip].empty?
         zip, miles = "#{params[:zip]}", "#{params[:miles]}"
       else
-        zip, miles = "10098", "5"
+        if user_signed_in?
+          zip, miles = "#{current_user.zip}", "5"
+        else
+          zip, miles = "10026", "5"
+        end
       end
 
       time = Time.new 
@@ -182,13 +190,21 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
     
     
     def search
+      
+        check_zip = Zipcode.find_by_codes(params[:search][:zip])
+       
+        unless check_zip.nil?
 
-      time = Time.new 
-      current_date = time.strftime("%Y%m%d")
+          time = Time.new 
+          current_date = time.strftime("%Y%m%d")
 
-      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{params[:search][:zip]}&country=USA&date=#{current_date}&numDays=7&radius=#{params[:search][:miles]}&radiusUnit=mi&rhDays=14"
-       @doc = Nokogiri::HTML(open(url))
-       @meta_title = " - Movies"
+          url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{params[:search][:zip]}&country=USA&date=#{current_date}&numDays=7&radius=#{params[:search][:miles]}&radiusUnit=mi&rhDays=14"
+          @doc = Nokogiri::HTML(open(url))
+          @meta_title = " - Movies"
+          
+        else
+          redirect_to("/thank-you")
+        end
        
     end
     

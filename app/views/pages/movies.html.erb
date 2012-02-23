@@ -25,7 +25,7 @@
                     <% if user_signed_in? %>  
                       miles of <%= f.text_field :zip, :onFocus=>"if(this.value=='#{current_user.zip}')this.value='';", :onBlur=>"if (this.value == '') this.value = '#{current_user.zip}';", :value => "#{current_user.zip}", :class=>"zip", :size=>"15" %>
                     <% else %> 
-                      miles of <%= f.text_field :zip, :onFocus=>"if(this.value=='10098')this.value='';", :onBlur=>"if (this.value == '') this.value = '10098';", :value => "10098", :class=>"zip", :size=>"15" %>
+                      miles of <%= f.text_field :zip, :onFocus=>"if(this.value=='10026')this.value='';", :onBlur=>"if (this.value == '') this.value = '10026';", :value => "10026", :class=>"zip", :size=>"15" %>
                     <% end %>
                     <%= select :search, :genre, options_for_select([['select genre',''], 'Action', 'Thriller', 'Adventure', 'Drama', 'Crime Drama', 'Comedy', 'Comedy Drama', 'Dark Comedy', 'Historical Drama', 'Romantic Comedy', 'Musical', 'Romance', 'Science Fiction', 'Fantasy', 'Horror', 'Documentary']), :class=>"miles" %><br />
 
@@ -56,9 +56,9 @@
                             
                             <!-- start theaters -->    
                               <% time = Time.new %>
-                              <% current_date = time.strftime("%Y%m%d") %>
+                              <% current_date = time.strftime("%Y%m%d") %> 
 
-                              <% url4 ="http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&postalCode=10098&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=5&radiusUnit=mi" %>
+                              <% url4 ="http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&postalCode=#{@zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{@miles}&radiusUnit=mi" %>
                               <% @doc4 = Nokogiri::HTML(open(url4)) %>
 
                               <%= link_to "@ #{@doc4.css("theatre").count} Theaters", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"} %>
@@ -93,7 +93,7 @@
                              <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
                               <strong>Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
                              <% end %>
-                             (<%= link_to "More Info", { :controller=>"pages", :action=>"moreinfo", :movieid=>"#{movieId}"} %>) <br />
+                             (<%= link_to "More Info", { :controller=>"pages", :action=>"moreinfo", :movieid=>"#{movieId}" } %>) <br />
                              
                           <% showusers = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'", :order => 'id desc', :limit => 5) %>
                              
@@ -120,7 +120,7 @@
                          </ul>
                      </div><!-- .movie_inner_content -->
                      <div class="movie_buttons">
-                         <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"}, :class=>"button_to" %><br />
+                         <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :miles=>"#{@miles}", :zip=>"#{@zip}", :movieid=>"#{movieId}"}, :class=>"button_to" %><br />
                          <%= link_to "More Info", { :controller=>"pages", :action=>"moreinfo", :movieid=>"#{movieId}"}, :class=>"button_to" %>
                      </div><!-- .movie_buttons -->
                  </li><!-- end movie list item -->
