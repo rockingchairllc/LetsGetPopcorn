@@ -21,9 +21,13 @@
              <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
                  <fieldset>
                      Movies playing within <%= select :search, :miles, options_for_select([5,10,15,20,25]), :class=>"miles" %>
-
-                     miles of <%= f.text_field :zip, :onFocus=>"if(this.value=='10098')this.value='';", :onBlur=>"if (this.value == '') this.value = '10098';", :value => "10098", :class=>"zip", :size=>"15" %>
-                     <%= select :search, :genre, options_for_select([['select genre',''], 'Action', 'Thriller', 'Adventure', 'Drama', 'Crime Drama', 'Comedy', 'Comedy Drama', 'Dark Comedy', 'Historical Drama', 'Romantic Comedy', 'Musical', 'Romance', 'Science Fiction', 'Fantasy', 'Horror', 'Documentary']), :class=>"miles" %><br />
+                    
+                    <% if user_signed_in? %>  
+                      miles of <%= f.text_field :zip, :onFocus=>"if(this.value=='#{current_user.zip}')this.value='';", :onBlur=>"if (this.value == '') this.value = '#{current_user.zip}';", :value => "#{current_user.zip}", :class=>"zip", :size=>"15" %>
+                    <% else %> 
+                      miles of <%= f.text_field :zip, :onFocus=>"if(this.value=='10098')this.value='';", :onBlur=>"if (this.value == '') this.value = '10098';", :value => "10098", :class=>"zip", :size=>"15" %>
+                    <% end %>
+                    <%= select :search, :genre, options_for_select([['select genre',''], 'Action', 'Thriller', 'Adventure', 'Drama', 'Crime Drama', 'Comedy', 'Comedy Drama', 'Dark Comedy', 'Historical Drama', 'Romantic Comedy', 'Musical', 'Romance', 'Science Fiction', 'Fantasy', 'Horror', 'Documentary']), :class=>"miles" %><br />
 
                      <span class="search_for">
                          <u>S</u>earch for: 
