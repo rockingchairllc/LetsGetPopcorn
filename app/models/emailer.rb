@@ -9,7 +9,7 @@ class Emailer < ActionMailer::Base
         def setup_email(contact)
           @recipients  = "kiplmailtest@gmail.com"
           @from        = "#{contact.email}"
-          @subject     = "Movies - Contact Us: "
+          @subject     = "LetsGetPopcorn - Contact Us: "
           @sent_on     = Time.now
           @content_type = "text/html"
           @body[:contact] = contact
