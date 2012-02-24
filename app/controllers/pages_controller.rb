@@ -4,7 +4,7 @@ require 'open-uri'
 
 class PagesController < ApplicationController
   
-before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou, :moreinfo]
+before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou, :moreinfo, :thanks]
   
   def movies
      time = Time.new 
@@ -203,12 +203,15 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
           @meta_title = " - Movies"
           
         else
-          redirect_to("/thank-you")
+          redirect_to("/thanks")
         end
        
     end
     
     def thankyou
+    end
+    
+    def thanks
     end
   
   
