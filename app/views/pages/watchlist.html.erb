@@ -31,18 +31,10 @@
 
 	<div class="wrapper">
 	
-	<div class="header">
-     		<h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.username %> <% else %> <% end %></h1>
-         	<div class="logo"></div>
-           <ul class="nav">
-             	<li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'} %></li>
-              <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'}, :class=>"active_button" %></li>
-              <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'} %></li>
-             </ul><!-- .nav -->
-
-             <!-- clear the float -->
-             <div class="clearfloat"></div>
-         </div><!-- .header -->
+	   <div class="header">
+    		<h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.username %> <% else %> <% end %></h1>
+    		  <%= render :partial =>"home/header" %>
+    	</div><!-- .header -->
 
 
   <div class="section">

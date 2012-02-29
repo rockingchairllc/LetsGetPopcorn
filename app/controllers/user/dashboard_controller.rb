@@ -30,6 +30,7 @@ class User::DashboardController < ApplicationController
              end
           end
      end
+     @title ="profile"
    end
   
  # 3rd module overlay   
@@ -59,7 +60,8 @@ class User::DashboardController < ApplicationController
 
                 end
              end
-        end     
+        end 
+      @title ="profile"    
              
    end
   

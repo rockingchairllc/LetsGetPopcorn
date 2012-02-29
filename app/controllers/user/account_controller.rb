@@ -8,6 +8,7 @@ class User::AccountController < ApplicationController
     @favmovie = Favmovie.find_by_user_id(current_user)
     @funnyque = Funnyque.find_by_user_id(current_user)
     @synopse = Synopsis.find_by_user_id(current_user)
+    @title ="profile"
   end
   
   # Add and edit synopsis 
