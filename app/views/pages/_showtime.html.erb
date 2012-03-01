@@ -39,19 +39,22 @@
       
                 <% movie.css("showtime").each do |showtime| %>
                   
-                  
-                   
-                    
                   <% datetime = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y-%m-%d %H:%M:%S") %>
                   <% movdt = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y%m%d%H%M%S") %>
 
                   <% movie_time = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%I:%M%p") %>
                   <div class="cb"><input type="checkbox"><%= movie_time %></div>
                   
-                  
-                
-    
                 <% end %>  
+                
+                <div id="status">
+                
+                  <button class="post" type="submit">
+                    Post (<span id='count'>0</span>) times
+                  </button>
+                
+                </div>
+                
               </td>
         </tr>
         </table> 
@@ -68,7 +71,5 @@
   
     
 
-<div id="status" style="margin-top: 10px; display: block;">
- <p id="count" class="post">0</p>
- </div>
+
 

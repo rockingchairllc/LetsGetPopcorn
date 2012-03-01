@@ -14,7 +14,7 @@ movie to your watchlist so that Popcorn [10023]</strong></div>
      
     <div class="t_list">
 	    <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showday', :miles=>"#{params[:miles]}", :zip=>"#{params[:zip]}", :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params['movieid']}" }, :remote => true %>
-		  <a class="map_link" href="#">map it</a>
+		  <%= link_to "map it", {:controller=>"/pages", :action=>"map", :latitude=>"#{theatre.css('geocode').attr('latitude')}", :longitude=>"#{theatre.css('geocode').attr('longitude')}"}, :target => "_blank", :class=>"map_link" %>
     </div>
    <% end %>
 

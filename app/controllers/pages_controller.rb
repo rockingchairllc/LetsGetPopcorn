@@ -4,7 +4,7 @@ require 'open-uri'
 
 class PagesController < ApplicationController
   
-before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou, :moreinfo, :thanks, :showday, :showtime]
+before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou, :moreinfo, :thanks, :showday, :showtime, :map]
   
   def movies
      time = Time.new 
@@ -277,6 +277,9 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
 
       end
 
+
+    def map
+    end
     
   
 end
