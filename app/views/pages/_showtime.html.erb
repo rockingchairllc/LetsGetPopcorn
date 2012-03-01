@@ -1,0 +1,74 @@
+
+<script type="text/javascript">
+        jQuery(document).ready(function () {
+    jQuery("input[type=checkbox]").each(function () {
+      jQuery(this).change(updateCount); 
+    });
+
+    updateCount();
+
+    function updateCount () {
+      var count = jQuery("input[type=checkbox]:checked").size();
+
+      jQuery("#count").text(count);
+      jQuery("#status").toggle(count >0);
+    };
+  });
+
+</script>
+
+
+<% @doc3.css("theatre").css("theatreday").each do |theatre| %>
+  
+
+<% if "#{theatre.attr('day')}" == "#{params[:showday]}" %>
+  
+<% theatre.css("movie").each do |movie| %>
+  
+  
+  
+    <% if "#{movie.attr('movieid')}" == "#{params[:movieid]}" %>
+    
+    
+    
+        <div style="margin-bottom:10px;"> Select Times:</div>
+  
+        <table width="100%" border="0" cellspacing="10" cellpadding="10">
+        <tr>
+              <td>
+      
+                <% movie.css("showtime").each do |showtime| %>
+                  
+                  
+                   
+                    
+                  <% datetime = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y-%m-%d %H:%M:%S") %>
+                  <% movdt = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y%m%d%H%M%S") %>
+
+                  <% movie_time = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%I:%M%p") %>
+                  <div class="cb"><input type="checkbox"><%= movie_time %></div>
+                  
+                  
+                
+    
+                <% end %>  
+              </td>
+        </tr>
+        </table> 
+     
+        <% end %>
+        
+        
+      
+      <% end %>
+      
+    <% end %>
+      
+  <% end %>
+  
+    
+
+<div id="status" style="margin-top: 10px; display: block;">
+ <p id="count" class="post">0</p>
+ </div>
+

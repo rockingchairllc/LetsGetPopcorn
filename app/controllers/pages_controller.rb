@@ -4,7 +4,7 @@ require 'open-uri'
 
 class PagesController < ApplicationController
   
-before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou, :moreinfo, :thanks]
+before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou, :moreinfo, :thanks, :showday, :showtime]
   
   def movies
      time = Time.new 
@@ -224,5 +224,59 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
     end
   
   
+    def showday
+
+        unless params[:zip].empty?
+          zip, miles = "#{params[:zip]}", "#{params[:miles]}"
+        else
+         
+            if user_signed_in?
+              zip, miles = "#{current_user.zip}", "5"
+            else
+              zip, miles = "10026", "5"
+            end
+          
+        end
+
+        time = Time.new 
+        current_date = time.strftime("%Y%m%d")
+
+        url3 = "http://api.tmsdatadirect.com/movies/TheatreShowtimes?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&theatreId=#{params[:theatreid]}&date=#{current_date}&numDays=7"
+        @doc3 = Nokogiri::HTML(open(url3))
+        
+        render :update do |page|
+              page.replace_html 'mydays', :partial => 'pages/showday'
+        end
+
+      end
+      
+      
+      def showtime
+
+          unless params[:zip].empty?
+            zip, miles = "#{params[:zip]}", "#{params[:miles]}"
+          else
+
+              if user_signed_in?
+                zip, miles = "#{current_user.zip}", "5"
+              else
+                zip, miles = "10026", "5"
+              end
+
+          end
+
+          time = Time.new 
+          current_date = time.strftime("%Y%m%d")
+
+          url3 = "http://api.tmsdatadirect.com/movies/TheatreShowtimes?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&theatreId=#{params[:theatreid]}&date=#{current_date}&numDays=7"
+          @doc3 = Nokogiri::HTML(open(url3))
+
+          render :update do |page|
+                page.replace_html 'mytime', :partial => 'pages/showtime'
+          end
+
+      end
+
+    
   
 end

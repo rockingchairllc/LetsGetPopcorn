@@ -1,30 +1,41 @@
 <div id="dialog" style="display:none; padding: 1.5em 1em !important;">
 
-	<div class="div_inner1">
-		<div class="showtimeheading" ><strong>Show My Theaters: </strong></div> 
-        <div>
- <table width="100%" border="1" cellspacing="10" cellpadding="10">
-  <tr>
-    <td>
-    
-    <ul id="theatre">
-      <%  @doc3.css("theatre").each do |theatre| %>
-        <li> <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showtime', :miles=>"#{params[:miles]}", :zip=>"#{params[:zip]}", :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params['movieid']}" } %></li>
-      <% end %>
-      
-      </ul>
-    </td>
-  
-   
-  </tr>
+  <div class="div_inner1">
+  <% unless @doc3.css("theatre").css('text')[0].nil? %>
+	<div class="showtimeheading" ><strong>Theaters playing “<%= @doc3.css("theatre").css("movie").css('text')[0].text %>” near Buddies in
+movie to your watchlist so that Popcorn [10023]</strong></div> 
+   <% end %>
+      <div>
 
-  
-</table>
- 
-  <%= link_to "x", {:controller=>"/pages", :action=>'movies'}, :class=>"modalcancel" %>     
-        
-</div>
+  <div class="t_list_wrap">
+
+
+   <%  @doc3.css("theatre").each do |theatre| %>
+     
+    <div class="t_list">
+	    <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showday', :miles=>"#{params[:miles]}", :zip=>"#{params[:zip]}", :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params['movieid']}" }, :remote => true %>
+		  <a class="map_link" href="#">map it</a>
     </div>
+   <% end %>
+
+   <% unless @doc3.css("theatre").css('text')[0].nil? %>
+     <div> <a href="#" class="more_theaters">more theaters</a></div>	
+   <% end %>
+   </div>
+
+
+
+   <div class="day_wrap" id="mydays">
+
+   </div>
+   
+   
+
+
+
+  <div style="width:100%; float:left; margin-top:10px"><%= link_to "Go Back", {:controller=>"/pages", :action=>"movies"} %></div>	
+    </div>
+  </div>
 </div>
 
 
