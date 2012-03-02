@@ -1,85 +1,36 @@
 <div id="dialog" style="display:none; padding: 1.5em 1em !important;">
 
-	<div class="div_inner1">
+
+   <div class="div_inner1">
+		  <div align="center" class="showtimeheading" >
+          Adding "<%= @doc2.css("movie").css('title').css('text')[0].text %>" join you! your Watchlist<p>
+
+        To make it easy for Popcorn Buddies to coordinate a trip with you,
+        You may select your preferred theater and show time:
+      </div> 
+          <div>
 	
-	  <% if !flash.empty? %>
-       <div style="color:#490000; background-color: #FFF1AB;border: 1px solid #999999; font-size: 12px; margin-right: 17px; margin-top: 3px; padding: 2px; text-align: center;"><%= alert %><%= notice %></div>
-     <% end %>
-     
-		<div class="showtimeheading" ><strong>Select Showtimes </strong></div> 
-      
-    <div>    
-     
-		          <table width="100%" class="showtimes">
-		          <tbody> 
-		           <% @doc3.css("theatre").css("movie").each do |movie| %>
-                <% if movie.attr("movieid") == "#{params[:movieid]}" %> 
-                <tr>
-                <% cnt = 1 %>
-                <% movie.css("showtime").each do |showtime| %>
-                  <% datetime = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y-%m-%d %H:%M:%S") %>
-                  <% movdt = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y%m%d%H%M%S") %>
-                  <% if cnt == 1 %>
-                    <th style="vertical-align:middle"><%= Date.strptime("#{showtime.attr("datetime")}", "%Y-%m-%d").strftime("%A") %></th>
-                  <% end %>
-                    
-                  <td id="mt_<%= movdt %>">
-                    <ul id="time">
-                      <li>
-                        <% movie_time = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%I:%M%p") %>
-                        <%= link_to "#{movie_time}", 'javascript:void(0);', :onclick =>"selectTime('#{datetime}','#{movdt}')" %>
-                        </li>
-                    </ul>  
-                  </td>
-                  <% cnt= cnt + 1 %>
-                 <% end %>   
-                </tr>
-                <% end %>
-               <% end %>
-                </tbody>
-                </table>
-                
-                
-                <% form_for :showtime, :url=>{:controller=>"pages", :action => "addtime"} do |f| %> 
-                <table width="100%">
-                <tr>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>
-                      <%= f.hidden_field :seltime, :value =>"" %>
-                      <%= f.hidden_field :showdate, :value =>"" %>
-                      <%= f.hidden_field :movieid, :value =>"#{params['movieid']}" %>
-                      <%= f.hidden_field :theatreid, :value =>"#{params['theatreid']}" %>
-                      <%= f.hidden_field :miles, :value =>"#{params['miles']}" %>
-                      <%= f.hidden_field :zip, :value =>"#{params['zip']}" %>
-                      <% if user_signed_in? %>
-                      <%= f.hidden_field :user_id, :value =>"#{current_user.id}" %>
-                      <% end %>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center"><%= submit_tag 'Add', :class=>'input-submit' %></td>
-                </tr>
-                </table>
-                <% end %>
-                 
-                  
-            <%= link_to "x", {:controller=>"/pages", :action=>'movies'}, :class=>"modalcancel" %>
-            
-              
-  </div>
+          <div align="center">	
+            <div style=" width:250px; height:40px; text-align:center">
+              <%= link_to "Select Preferred Show Time(s)", { :controller=>"pages", :action=>"watchlist", :miles=>"#{params[:miles]}", :zip=>"#{params[:zip]}", :movieid=>"#{params[:movieid]}"}, :class=>"showlist_Link" %>
+            </div>
+            <div style="width:250px; height:40px; clear:left"><a class="showlist_Link" href="#">Post Without Show Time</a></div>
+
+          </div>
+        </div>
     </div>
+  
+  
 </div>
 
 
 
 	<div class="wrapper">
 	
-	    <div class="header">
-      		<h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.username %> <% else %> <% end %></h1>
-      		  <%= render :partial =>"home/header" %>
-      	</div><!-- .header -->
+	   <div class="header">
+    		<h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.username %> <% else %> <% end %></h1>
+    		  <%= render :partial =>"home/header" %>
+    	</div><!-- .header -->
 
 
   <div class="section">
@@ -88,16 +39,13 @@
 
                 <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
                    <fieldset>
-                       Movies playing within <%= f.text_field :miles, :value => "#{params['miles']}", :class=>"miles" %>
-                
+                       Movies playing within <%= select :search, :miles, options_for_select([5,10,15,20,25], { :selected => "#{params['miles']}" }), :class=>"miles" %>
                        miles of <%= f.text_field :zip, :value => "#{params['zip']}", :class=>"zip", :size=>"15" %>
-                       <%= select :search, :genre, options_for_select([['select genre',''], 'Action', 'Thriller', 'Adventure', 'Drama', 'Crime Drama', 'Comedy', 'Comedy Drama', 'Dark Comedy', 'Historical Drama', 'Romantic Comedy', 'Musical', 'Romance', 'Science Fiction', 'Fantasy', 'Horror', 'Documentary'], { :selected => "#{params['genre']}" }), :class=>"miles" %><br />
-                       
-
+                      <%= select :search, :genre, options_for_select([['select genre',''], 'Action', 'Thriller', 'Adventure', 'Drama', 'Crime Drama', 'Comedy', 'Comedy Drama', 'Dark Comedy', 'Historical Drama', 'Romantic Comedy', 'Musical', 'Romance', 'Science Fiction', 'Fantasy', 'Horror', 'Documentary'], { :selected => "#{params['genre']}" }), :class=>"miles" %><br />
 
                        <span class="search_for"> 
                            <u>S</u>earch for: 
-                           <%= f.text_field :movie, :value => "", :class=>"search_movies" %>
+                           <%= f.text_field :movie, :value => "#{params['movie']}", :class=>"search_movies" %>
                            <%= submit_tag 'Go', :class=>'button_to go_width' %>
 
                        </span><!-- .search_for -->
@@ -110,7 +58,21 @@
            	<ul class="movie_list">
 
            	    <% @doc.css("movie").each do |item| %>
-               	<li><%  movieId = item.attr('movieid') %>
+
+           	   <% movie_name = item.css('title').css('text')[0].text %>
+
+           	   <% if movie_name.include?("#{params['movie']}") || movie_name.downcase.include?("#{params['movie']}") || movie_name.upcase.include?("#{params['movie']}") || movie_name.capitalize.include?("#{params['movie']}") %>
+
+           	    <%  movieId = item.attr('movieid') %>
+
+           	    <% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
+                   <% @doc2 = Nokogiri::HTML(open(url2)) %>
+
+                <% genre = @doc2.css("movie").css('genre').css('text').text %>
+
+                <% if genre.include?("#{params['genre']}") %>   
+
+               	<li>
                    	<div class="movie_outter_content">
                    	      <% unless item.css("asseturi").text.empty? %>
                            <a href="javascript:void(0);"><img src="<%= item.css('asseturi').text %>" width="162"></a>
@@ -118,23 +80,23 @@
                             <img src="/images/blank_movie.jpg">
                           <% end %>
                           
-                           <!-- start theaters -->    
-                              <% time = Time.new %>
-                              <% current_date = time.strftime("%Y%m%d") %>
+                          <!-- start theaters -->    
+                            <% time = Time.new %>
+                            <% current_date = time.strftime("%Y%m%d") %>
+                            
+                            <% unless params[:zip].nil? %>
+                             <%  zip, miles = "#{params[:zip]}", "#{params[:miles]}" %>
+                            <% else %>
+                             <% zip, miles = "10098", "5" %>
+                            <% end %>
 
-                              <% unless params[:zip].nil? %>
-                               <%  zip, miles = "#{params[:zip]}", "#{params[:miles]}" %>
-                              <% else %>
-                               <% zip, miles = "10098", "5" %>
-                              <% end %>
+                            <% url4 ="http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi" %>
+                            <% @doc4 = Nokogiri::HTML(open(url4)) %>
 
-                              <% url4 ="http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi" %>
-                              <% @doc4 = Nokogiri::HTML(open(url4)) %>
+                            <%= link_to "@ #{@doc4.css("theatre").count} Theaters", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"} %>
 
-                              <%= link_to "@ #{@doc4.css("theatre").count} Theaters", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"} %>
+                          <!-- end theaters -->
 
-                            <!-- end theaters -->
-                           
                        </div><!-- movie_outter_content -->
 
                        <div class="movie_inner_content">
@@ -142,8 +104,7 @@
                            	<a href="#"><%=  item.css('title').css('text')[0].text %></a> <br />
 
                        	</h3>
-                       	<% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
-                          <% @doc2 = Nokogiri::HTML(open(url2)) %>
+
 
                            <% unless @doc2.css("movie").css('genre').css('text')[0].nil? %>
                               <strong>Genre:</strong><% @doc2.css("movie").css("genre").each do |genre| %>
@@ -186,16 +147,17 @@
                                 <a href="#" class="more_matches">more...</a>
                                 <% end %>
                             </ul>
-                            
                        </div><!-- .movie_inner_content -->
-                       <div class="movie_buttons">
+                       <div class="movie_buttons"> 
                             <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"}, :class=>"button_to" %><br />
-                             <%= link_to "More Info", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
+                            <%= link_to "More Info", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
                        </div><!-- .movie_buttons -->
                    </li><!-- end movie list item -->
 
-                <% end %>
+                  <% end %>
 
+                <% end %>
+                <% end %>
 
 
                </ul><!-- .movie_list -->

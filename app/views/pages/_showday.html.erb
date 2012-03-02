@@ -1,0 +1,66 @@
+
+<script type="text/javascript">
+        jQuery(document).ready(function () {
+    jQuery("input[type=checkbox]").each(function () {
+      jQuery(this).change(updateCount); 
+    });
+
+    updateCount();
+
+    function updateCount () {
+      var count = jQuery("input[type=checkbox]:checked").size();
+
+      jQuery("#count").text(count);
+      jQuery("#status").toggle(count >0);
+    };
+  });
+
+</script>
+
+
+
+
+
+<% @doc3.css("theatre").css("movie").each do |movie| %>
+  
+
+  
+<% if "#{movie.attr('movieid')}" == "#{params[:movieid]}" %>
+    
+    <% cnt = 1 %>
+    <% movie.css("showtime").each do |showtime| %>
+      <% datetime = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y-%m-%d %H:%M:%S") %>
+      <% movdt = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y%m%d%H%M%S") %>
+      <% if cnt == 1 %>
+
+     <div class="day_list">
+        <% date = Date.strptime("#{showtime.attr("datetime")}", "%Y-%m-%d") %>
+        <% day = date.strftime("%A") %>
+      <%= link_to "#{day}", {:controller=>"/pages", :action=>'showtime', :showday=>"#{date}", :zip=>"#{params[:zip]}", :theatreid=>"#{params[:theatreid]}", :movieid=>"#{params['movieid']}" }, :remote => true %>
+
+       </div>
+       <% end %>
+
+     <% cnt= cnt + 1 %>
+     <% end %>
+     
+ <% end %>
+
+
+<% end %>
+
+<div class="c_box" id="mytime">
+
+
+
+ </div>
+
+ 
+ 
+
+
+
+
+
+
+
