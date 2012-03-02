@@ -1,0 +1,203 @@
+<div id="dialog" style="display:none; padding: 1.5em 1em !important;">
+
+
+   <div class="div_inner1">
+		  <div align="center" class="showtimeheading" >
+          Adding “Horribleto join you! your Watchlist<p>
+
+        To make it easy for Popcorn Buddies to coordinate a trip with you,
+        You may select your preferred theater and show time:
+      </div> 
+          <div>
+	
+          <div align="center">	
+            <div style=" width:250px; height:40px; text-align:center">
+              <%= link_to "Select Preferred Show Time(s)", { :controller=>"pages", :action=>"watchlist", :miles=>"#{params[:miles]}", :zip=>"#{params[:zip]}", :movieid=>"#{params[:movieid]}"}, :class=>"showlist_Link" %>
+            </div>
+            <div style="width:250px; height:40px; clear:left"><a class="showlist_Link" href="#">Post Without Show Time</a></div>
+
+          </div>
+        </div>
+    </div>
+  
+  
+</div>
+
+
+
+	<div class="wrapper">
+	
+	   <div class="header">
+    		<h1 class="title"><% if user_signed_in? %> Welcome, <%= current_user.username %> <% else %> <% end %></h1>
+    		  <%= render :partial =>"home/header" %>
+    	</div><!-- .header -->
+
+
+  <div class="section">
+
+           <div class="search_filternew">
+
+                <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
+                   <fieldset>
+                       Movies playing within <%= select :search, :miles, options_for_select([5,10,15,20,25], { :selected => "#{params['miles']}" }), :class=>"miles" %>
+                       miles of <%= f.text_field :zip, :value => "#{params['zip']}", :class=>"zip", :size=>"15" %>
+                      <%= select :search, :genre, options_for_select([['select genre',''], 'Action', 'Thriller', 'Adventure', 'Drama', 'Crime Drama', 'Comedy', 'Comedy Drama', 'Dark Comedy', 'Historical Drama', 'Romantic Comedy', 'Musical', 'Romance', 'Science Fiction', 'Fantasy', 'Horror', 'Documentary'], { :selected => "#{params['genre']}" }), :class=>"miles" %><br />
+
+                       <span class="search_for"> 
+                           <u>S</u>earch for: 
+                           <%= f.text_field :movie, :value => "#{params['movie']}", :class=>"search_movies" %>
+                           <%= submit_tag 'Go', :class=>'button_to go_width' %>
+
+                       </span><!-- .search_for -->
+                   </fieldset>
+               <% end %>
+
+           </div><!-- .search_filter -->
+           <div id="modal-box" style="display:none;"></div>
+           <div class="articlenew">
+           	<ul class="movie_list">
+
+           	    <% @doc.css("movie").each do |item| %>
+
+           	   <% movie_name = item.css('title').css('text')[0].text %>
+
+           	   <% if movie_name.include?("#{params['movie']}") || movie_name.downcase.include?("#{params['movie']}") || movie_name.upcase.include?("#{params['movie']}") || movie_name.capitalize.include?("#{params['movie']}") %>
+
+           	    <%  movieId = item.attr('movieid') %>
+
+           	    <% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
+                   <% @doc2 = Nokogiri::HTML(open(url2)) %>
+
+                <% genre = @doc2.css("movie").css('genre').css('text').text %>
+
+                <% if genre.include?("#{params['genre']}") %>   
+
+               	<li>
+                   	<div class="movie_outter_content">
+                   	      <% unless item.css("asseturi").text.empty? %>
+                           <a href="javascript:void(0);"><img src="<%= item.css('asseturi').text %>" width="162"></a>
+                          <% else %>
+                            <img src="/images/blank_movie.jpg">
+                          <% end %>
+                          
+                          <!-- start theaters -->    
+                            <% time = Time.new %>
+                            <% current_date = time.strftime("%Y%m%d") %>
+                            
+                            <% unless params[:zip].nil? %>
+                             <%  zip, miles = "#{params[:zip]}", "#{params[:miles]}" %>
+                            <% else %>
+                             <% zip, miles = "10098", "5" %>
+                            <% end %>
+
+                            <% url4 ="http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi" %>
+                            <% @doc4 = Nokogiri::HTML(open(url4)) %>
+
+                            <%= link_to "@ #{@doc4.css("theatre").count} Theaters", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"} %>
+
+                          <!-- end theaters -->
+
+                       </div><!-- movie_outter_content -->
+
+                       <div class="movie_inner_content">
+                       	<h3 class="movie_title">
+                           	<a href="#"><%=  item.css('title').css('text')[0].text %></a> <br />
+
+                       	</h3>
+
+
+                           <% unless @doc2.css("movie").css('genre').css('text')[0].nil? %>
+                              <strong>Genre:</strong><% @doc2.css("movie").css("genre").each do |genre| %>
+                                 <%=  genre.css('text').text %> <%= "," unless genre == @doc2.css("movie").css("genre").last %>
+                               <% end %> <br />
+                           <% end %>
+
+                           <% unless item.css('name').css('text')[0].nil? %> 
+                              <strong>Starring:</strong> 
+                              <% item.css("cast").each do |casts| %>
+                                  <%=  casts.css('name').css('first').text %> <%=  casts.css('name').css('last').text %> <%= "," unless casts == item.css("cast").last %>
+                              <% end %> <br />
+                           <% end %>
+
+                           <% unless @doc2.css("movie").css('description').css('text')[0].nil? %>
+                            <strong>Summary:</strong> <%= @doc2.css("movie").css('description').css('text')[0].text %>  
+                           <% end %>
+                           (<%= link_to "More Info", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :remote => true %>) <br />
+
+                            <% showusers = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'", :order => 'id desc', :limit => 5) %>
+
+                            <ul>
+                                <a href="#"><%= usercount = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'").count %> Guys</a> in your area want to see this movie: <br />
+                                <% showusers.each do |showuser| %>
+                                <li>
+
+                                    <% user = User.find_by_id(showuser.user_id) %>
+
+                               	  <% if user.profile_photo.url(:thumb) == "/profile_photos/thumb/missing.png" %>
+
+                               	    <%= link_to image_tag("/images/photo.jpg", :border => 0, :width=>"42"), {:action => 'profile', :controller => '/pages', :id=>"#{user.id}"} %>
+
+                               	  <% else %>
+                                   	<%= link_to image_tag(user.profile_photo.url(:thumb), :width=>"42"), {:controller=>"/pages", :action=>'profile', :id=>"#{user.id}"} %>
+                                   <% end %>
+
+                                </li>
+                                <% end %>
+                                <% if usercount >= 5 %>
+                                <a href="#" class="more_matches">more...</a>
+                                <% end %>
+                            </ul>
+                       </div><!-- .movie_inner_content -->
+                       <div class="movie_buttons"> 
+                            <%= link_to "Add to Watchlist", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"}, :class=>"button_to" %><br />
+                            <%= link_to "More Info", { :controller=>"pages", :action=>"imdb", :id=>"#{movieId}"}, :class=>"button_to", :remote => true %>
+                       </div><!-- .movie_buttons -->
+                   </li><!-- end movie list item -->
+
+                  <% end %>
+
+                <% end %>
+                <% end %>
+
+
+               </ul><!-- .movie_list -->
+           </div><!-- article -->
+           <!-- END Aritcle -->
+       </div><!-- .section -->
+
+       <!-- Start Sidebar (aside) -->
+       <div class="aside">
+           <ul>
+          		<h2>Recent Activity</h2>
+               <li>
+                   <a href="#">
+                       <img src="http://graph.facebook.com/502489573/picture?type=square" height="32" width="32" alt="" />
+                       <span class="user_name">Paul</span>,
+                       24, New York City <br />
+                       Movie: <span class="user_movie">Moneyball</span> 
+                   </a>
+                   <div class="clearfloat"></div>
+               </li>
+               <li>
+                   <a href="#">
+                       <img src="http://graph.facebook.com/12412651/picture?type=square" height="32" width="32" alt="" />
+                       <span class="user_name">Jim</span>,
+                       21, New York City <br />
+                       Movie: <span class="user_movie">What's...</span> 
+                   </a>
+                   <div class="clearfloat"></div>
+               </li>
+               <li>
+                   <a href="#">
+                       <img src="http://graph.facebook.com/12415713/picture?type=square" height="32" width="32" alt="" />
+                       <span class="user_name">Bob</span>,
+                       44, New York City <br />
+                       Movie: <span class="user_movie">Abduction</span> 
+                   </a>
+                   <div class="clearfloat"></div>
+               </li>
+           <!-- clear the float -->
+           <div class="clearfloat"></div>
+           </ul>
+       </div><!-- .aside -->
+       <!-- END Sidebar (aside) -->

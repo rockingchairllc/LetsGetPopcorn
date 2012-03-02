@@ -1328,6 +1328,7 @@ color:#A80202
 .more_theaters{ font-size:17px; color:#A80202; float:right}
 .more_theaters:hover{ color:#000000}
 .cb{ width:100px; float:left; padding:0; line-height:20px; margin:5px 0 0 0}
-
+.showlist_Link{padding:10px; background:#A80202; color:#FFFFFF; font-size:11px; font-weight:bold; -moz-border-radius:5px; display:block; margin-top:10px; text-align:center}
+.showlist_Link:hover{ background-color:#FFFFFF; color:#000000}
 
 

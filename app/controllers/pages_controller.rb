@@ -4,7 +4,7 @@ require 'open-uri'
 
 class PagesController < ApplicationController
   
-before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou, :moreinfo, :thanks, :showday, :showtime, :map]
+before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou, :moreinfo, :thanks, :showday, :showtime, :map, :add_to_watchlist]
   
   def movies
      time = Time.new 
@@ -276,6 +276,27 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
           end
 
       end
+      
+    
+    def add_to_watchlist
+      
+      unless params[:zip].nil?
+        zip, miles = "#{params[:zip]}", "#{params[:miles]}"
+      else
+        if user_signed_in?
+          zip, miles = "#{current_user.zip}", "5"
+        else
+          zip, miles = "10026", "5"
+        end
+      end
+
+      time = Time.new 
+      current_date = time.strftime("%Y%m%d")
+
+      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&radius=#{miles}&radiusUnit=mi&rhDays=14"
+      @doc = Nokogiri::HTML(open(url))
+      
+    end
 
 
     def map
