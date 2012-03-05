@@ -38,7 +38,7 @@
          	    <%  movieId = item.attr('movieid') %>
          	    
          	    <% url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&country=USA&lang=en" %>
-                 <% @doc2 = Nokogiri::HTML(open(url2)) %>
+              <% @doc2 = Nokogiri::HTML(open(url2)) %>
               
               <% genre = @doc2.css("movie").css('genre').css('text').text %>
               
@@ -92,7 +92,9 @@
                          <% end %>
                          (<%= link_to "More Info", { :controller=>"pages", :action=>"moreinfo", :movieid=>"#{movieId}"} %>) <br />
                          
-                          <% showusers = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'", :order => 'id desc', :limit => 5) %>
+                          <!-- -->
+                          <% showusers = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'", :order => 'id desc', :limit => 5)%>
+                          
 
                           <ul>
                               <a href="#"><%= usercount = Showmovie.find(:all, :conditions => "movieid = #{movieId} and showdate >= '#{Time.new.strftime("%Y-%m-%d %H:%M:%S ")}'").count %> Guys</a> in your area want to see this movie: <br />

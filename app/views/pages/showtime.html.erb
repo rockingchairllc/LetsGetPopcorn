@@ -128,7 +128,7 @@
                                <% zip, miles = "10098", "5" %>
                               <% end %>
 
-                              <% url4 ="http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi" %>
+                              <% url4 ="http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=1&numTheatres=&radius=#{miles}&radiusUnit=mi" %>
                               <% @doc4 = Nokogiri::HTML(open(url4)) %>
 
                               <%= link_to "@ #{@doc4.css("theatre").count} Theaters", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"} %>

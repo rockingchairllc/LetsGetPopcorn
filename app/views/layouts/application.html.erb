@@ -1,180 +1,67 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>LetsGetPopcorn <%=  @meta_title %></title>
+  <meta charset="UTF-8">
+  <title>LetsGetPopcorn <%=  @meta_title %></title>
   <%= stylesheet_link_tag 'reset', 'style','jquery-ui', 'skin', 'modalbox', 'jquery.lightbox-0.5', 'SpryTabbedPanels' %>
   <link rel="shortcut icon" href="images/favicon.png" />
   <%= javascript_include_tag 'jquery-1.6.2.min', 'modal/jquery-ui.min', 'jquery.validate.min', 'application', 'prototype', 'modalbox/effects.js', 'jquery.rails', 'jquery.jcarousel.min', 'toggle', 'modalbox/builder', 'modalbox/modalbox', 'jquery.lightbox-0.5', 'SpryTabbedPanels' %>
   <script>
-  function selectTime(imgid,cnt)
-  {
+    function selectTime(imgid,cnt)
+    {
+      var sel = document.getElementById("showtime_seltime").value;
+      if(sel !="")
+      {
+        var selDiv = document.getElementById(sel);
+        selDiv.setAttribute("style", "");
+        selDiv.setAttribute("style", "border-color: #BCD2E5;");
+      }
+        var currDivElement = document.getElementById("mt_"+cnt);currDivElement.setAttribute("style", "");
+        currDivElement.setAttribute("style", "color: #fff; background: #A80202;");
+        document.getElementById("showtime_seltime").value = "mt_"+cnt;
+        document.getElementById('showtime_showdate').value = imgid;
+    }
     
-     var sel = document.getElementById("showtime_seltime").value;
-  	 if(sel !="")
-  	 {
-  		  var selDiv = document.getElementById(sel);
-  		  selDiv.setAttribute("style", "");
-  		  selDiv.setAttribute("style", "border-color: #BCD2E5;");
-  	 }
-  	var currDivElement = document.getElementById("mt_"+cnt);currDivElement.setAttribute("style", "");
-  	currDivElement.setAttribute("style", "color: #fff; background: #A80202;");
-  	document.getElementById("showtime_seltime").value = "mt_"+cnt;
-  	document.getElementById('showtime_showdate').value = imgid;
- }
-  
-  jQuery(function () {
-
-              //Your logic here to set it true or false;
-              //On false the dialog will not be displayed
-              var yourCondition = true;
-
-              if (yourCondition) {
-                  jQuery('#dialog').dialog({
-                      modal: 'true',
-                      title: ''
-                  });
-              }
-
-          });
-  
     jQuery(document).ready(function() {
-          jQuery('#mycarousel').jcarousel();
+      jQuery('#mycarousel').jcarousel();
+      jQuery('#dialog').dialog({
+        autoOpen: true,
+        show: 'fade',
+        modal: true,
+        hide: 'fade'
+      });
+      jQuery('.gallery a').lightBox();
     });
-    
-      jQuery(function() {
-         jQuery('#gallery a').lightBox();
-      }); 
-          
+      
+    // should do it something like this instead...
+    //  
+    // jQuery('.dialog').dialog({
+    //   autoOpen: true,
+    //   show: 'fade',
+    //   modal: true,
+    //   hide: 'fade'
+    // });
+    // jQuery("#upload-link").live('click',function(e){
+    //     jQuery("#upload-dialog").dialog('open');
+    //     e.preventDefault();
+    // });
+
   </script>
 </head>
-  <body class="account">
-  
-  
-  
-    <!-- Model and Overlay -->
-        <div class="showtimes_wrapper">
-            <div class="select_showtime_modal_overlay"></div>
-               <div class="select_showtime_modal">
-                <h2>Select Showtimes</h2>
-                <h3>My Theaters: </h3>
-                <ul class="my_theaters">
-                    <li>AMC East Kips Bay, </li>
-                    <li>AMC West, </li>
-                    <li>Loews Uptown. </li>
-                    <li><a href="#">Change...</a></li>
-                </ul><!-- .my_theaters -->
-                
-                <table class="showtimes">
-                    <tr>
-                        <th>Today</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Tomorrow</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Wednesday</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Thursday</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Friday</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Saturday</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                    <tr>
-                        <th>Sunday</th>
-                        <td>noon</td>
-                        <td>1:15p</td>
-                        <td>3:00p</td>
-                        <td>5:30p</td>
-                        <td>7:30p</td>
-                        <td>10pm</td>
-                        <td>11:30p</td>
-                    </tr>
-                </table>
-				<button type="button" class="modal_cancel" onClick="showtimes()">x</button>
-            </div><!-- .select_time_modal -->
-        </div><!-- showtimes_wrapper -->
-        <!-- END modal overlay -->
+
+<body class="account">
+
+	<div class="wrapper">
     
-
-	 <div class="wrapper">
-	 	
-          
-          <%= yield %>
-
-    <!-- clear the float -->
+    <%= yield %>
+    
     <div class="clearfloat"></div>
     
-    <ul class="footer_links">
-      <li><a href="/">Home</a></li>
-        <li>|</li>
-    	<li><a href="/pages/about-us">About Us</a></li>
-        <li>|</li>
-    	<li><a href="/movies">Movies</a></li>
-        <li>|</li>
-        <li><a href="/user/account">Account</a></li>
-        <li>|</li>
-        <li><a href="/pages/faq">FAQ</a></li>
-        <li>|</li>
-        <li><a href="/contact">Contact</a></li>
-        <% if user_signed_in? %>
-          <li>|</li>
-          <li>
-          <form>
-            
-              <%= link_to "Sign out", destroy_user_session_path %>
-          </form>
-        
-         </li>
-        <% end %>
-    </ul><!-- .footer_links -->
+    <div class="footer">
+        <%= render :partial =>"home/footer" %>
+    </div><!-- .footer -->
     
-    </div><!-- wrapper -->
-  </body>
+  </div><!-- wrapper -->
+
+</body>
 </html>

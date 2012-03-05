@@ -16,12 +16,12 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
         @zip, @miles = "10026", "5"
       end
       
-       url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{@zip}&country=USA&date=#{current_date}&numDays=7&radius=#{@miles}&radiusUnit=mi&rhDays=14"
+       url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{@zip}&country=USA&date=#{current_date}&numDays=1&radius=#{@miles}&radiusUnit=mi&rhDays=14"
+       # url = "temp/MoviesInLocalTheatres.xml"
           @doc = Nokogiri::HTML(open(url))
           @meta_title = " - Movies"
           
           @title = "movies"
-         
   end
   
   def matches
@@ -29,7 +29,6 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
     current_date = time.strftime("%Y-%m-%d %H:%M:%S ")
     @matches = Showtime.find(:all, :conditions => "showdate >= '#{current_date}'", :order =>"showdate ASC")
     @title = "matches"
-    
   end
   
   def profile
@@ -43,10 +42,9 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
     # add new profileview entry
     profile_view = Profileview.new(:user_id => "#{@user.id}", :viewer_id => "#{current_user.id}")
     profile_view.save
-
   end
   
-  #  For Static Pages 
+  #  For Static Pages
   def show
     @page = Page.find(params[:id])
     @meta_title = " - #{@page.title}"
@@ -117,7 +115,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       time = Time.new 
       current_date = time.strftime("%Y%m%d")
 
-      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&radius=#{miles}&radiusUnit=mi&rhDays=14"
+      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=1&radius=#{miles}&radiusUnit=mi&rhDays=14"
       @doc = Nokogiri::HTML(open(url))
 
       if params[:search]
@@ -125,8 +123,8 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       else
           url3 = "http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:movieid]}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi"
       end    
-          @doc3 = Nokogiri::HTML(open(url3))
-          @title = "movies"
+      @doc3 = Nokogiri::HTML(open(url3))
+      @title = "movies"
 
     end
 
@@ -146,10 +144,10 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       time = Time.new 
       current_date = time.strftime("%Y%m%d")
 
-      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&radius=#{miles}&radiusUnit=mi&rhDays=14"
+      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=1&radius=#{miles}&radiusUnit=mi&rhDays=14"
       @doc = Nokogiri::HTML(open(url))
       
-      url3 = "http://api.tmsdatadirect.com/movies/TheatreShowtimes?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&theatreId=#{params[:theatreid]}&date=#{current_date}&numDays=7"
+      url3 = "http://api.tmsdatadirect.com/movies/TheatreShowtimes?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&theatreId=#{params[:theatreid]}&date=#{current_date}&numDays=1"
       @doc3 = Nokogiri::HTML(open(url3))
       @title = "movies"
 
@@ -217,7 +215,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
           time = Time.new 
           current_date = time.strftime("%Y%m%d")
 
-          url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{params[:search][:zip]}&country=USA&date=#{current_date}&numDays=7&radius=#{params[:search][:miles]}&radiusUnit=mi&rhDays=14"
+          url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{params[:search][:zip]}&country=USA&date=#{current_date}&numDays=1&radius=#{params[:search][:miles]}&radiusUnit=mi&rhDays=14"
           @doc = Nokogiri::HTML(open(url))
           @meta_title = " - Movies"
           
@@ -253,7 +251,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
         time = Time.new 
         current_date = time.strftime("%Y%m%d")
 
-        url3 = "http://api.tmsdatadirect.com/movies/TheatreShowtimes?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&theatreId=#{params[:theatreid]}&date=#{current_date}&numDays=7"
+        url3 = "http://api.tmsdatadirect.com/movies/TheatreShowtimes?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&theatreId=#{params[:theatreid]}&date=#{current_date}&numDays=1"
         @doc3 = Nokogiri::HTML(open(url3))
         
         render :update do |page|
@@ -280,7 +278,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
           time = Time.new 
           current_date = time.strftime("%Y%m%d")
 
-          url3 = "http://api.tmsdatadirect.com/movies/TheatreShowtimes?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&theatreId=#{params[:theatreid]}&date=#{current_date}&numDays=7"
+          url3 = "http://api.tmsdatadirect.com/movies/TheatreShowtimes?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&theatreId=#{params[:theatreid]}&date=#{current_date}&numDays=1"
           @doc3 = Nokogiri::HTML(open(url3))
 
           render :update do |page|
@@ -305,7 +303,7 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       time = Time.new 
       current_date = time.strftime("%Y%m%d")
 
-      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&radius=#{miles}&radiusUnit=mi&rhDays=14"
+      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=1&radius=#{miles}&radiusUnit=mi&rhDays=14"
       @doc = Nokogiri::HTML(open(url))
       
       url2 = "http://api.tmsdatadirect.com/movies/MovieSummary?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:movieid]}&country=USA&lang=en"

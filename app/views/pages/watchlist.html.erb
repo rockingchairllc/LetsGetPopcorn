@@ -2,33 +2,8 @@
 
   <div class="div_inner1">
   <% unless @doc3.css("theatre").css('text')[0].nil? %>
-  
-    <% form_for :search, :url=>{:action=>"watchlist", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %>  
-	    <div class="showtimeheading" >
-	    
-	    <% if params[:search] %>
-	    
-	       <%= f.hidden_field :movieid, :value => "#{params[:search][:movieid]}" %>
-          <%= f.hidden_field :miles, :value => "#{params[:search][:miles]}" %>
-    
-          <strong>Theaters playing “<%= @doc3.css("theatre").css("movie").css('text')[0].text %>” near Buddies in
-movie to your watchlist so that Popcorn <%= f.text_field :zip, :value => "#{params[:search]['zip']}", :class=>"zip", :size=>"15" %></strong>
-
-	    <% else %>
-	         <%= f.hidden_field :movieid, :value => "#{params[:movieid]}" %>
-            <%= f.hidden_field :miles, :value => "#{params[:miles]}" %>
-      
-	          <strong>Theaters playing “<%= @doc3.css("theatre").css("movie").css('text')[0].text %>” near Buddies in
-movie to your watchlist so that Popcorn <%= f.text_field :zip, :value => "#{params['zip']}", :class=>"zip", :size=>"15" %></strong>
-            
-        <% end %>
-        
-          <span class="btn_ok">
-              <%= submit_tag 'Ok', :class=>'button_to go_width' %>
-           </span>
-      </div> 
-      <% end %>
-    
+	<div class="showtimeheading" ><strong>Theaters playing “<%= @doc3.css("theatre").css("movie").css('text')[0].text %>” near Buddies in
+movie to your watchlist so that Popcorn [10023]</strong></div> 
    <% end %>
       <div>
 
@@ -38,12 +13,7 @@ movie to your watchlist so that Popcorn <%= f.text_field :zip, :value => "#{para
    <%  @doc3.css("theatre").each do |theatre| %>
      
     <div class="t_list">
-    
-      <% if params[:search] %>
-	      <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showday', :miles=>"#{params[:search][:miles]}", :zip=>"#{params[:search][:zip]}", :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params[:search][:movieid]}" }, :remote => true %>
-	    <% else %>
-	      <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showday', :miles=>"#{params[:miles]}", :zip=>"#{params[:zip]}", :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params['movieid']}" }, :remote => true %>
-	    <% end %>
+	    <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showday', :miles=>"#{params[:miles]}", :zip=>"#{params[:zip]}", :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params['movieid']}" }, :remote => true %>
 		  <%= link_to "map it", {:controller=>"/pages", :action=>"map", :latitude=>"#{theatre.css('geocode').attr('latitude')}", :longitude=>"#{theatre.css('geocode').attr('longitude')}"}, :target => "_blank", :class=>"map_link" %>
     </div>
    <% end %>
@@ -135,7 +105,7 @@ movie to your watchlist so that Popcorn <%= f.text_field :zip, :value => "#{para
                              <% zip, miles = "10098", "5" %>
                             <% end %>
 
-                            <% url4 ="http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi" %>
+                            <% url4 ="http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{movieId}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=1&numTheatres=&radius=#{miles}&radiusUnit=mi" %>
                             <% @doc4 = Nokogiri::HTML(open(url4)) %>
 
                             <%= link_to "@ #{@doc4.css("theatre").count} Theaters", { :controller=>"pages", :action=>"watchlist", :movieid=>"#{movieId}"} %>

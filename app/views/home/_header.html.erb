@@ -1,27 +1,29 @@
           
-             	<div class="logo"></div>
-               <ul class="nav">
-               
-                  <% if @title == 'matches' %>
-                 	  <li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'}, :class=>"active_button" %></li>
-                 	<% else %>
-                    <li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'} %></li>
-                  <% end %>
-                 	
-                 	<% if @title == 'movies' %>
-                    <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'}, :class=>"active_button" %></li>
-                  <% else %>
-                    <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'} %></li>
-                  <% end %>
-                  
-                  <% if @title == 'profile' %>
-                    <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'}, :class=>"active_button" %></li>
-                  <% else %>
-                      <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'} %></li>
-                  <% end %>
-                    
-                 </ul><!-- .nav -->
-
-                 <!-- clear the float -->
-                 <div class="clearfloat"></div>
+<div class="logo"></div>
+  <ul class="nav">
+    <% if @title == 'matches' %>
+ 	    <li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'}, :class=>"active_button" %>
+      </li>
+ 	  <% else %>
+      <li><%= link_to "matches", {:controller=>"/pages", :action=>'matches'} %>
+      </li>
+    <% end %>
+ 	
+ 	  <% if @title == 'movies' %>
+      <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'}, :class=>"active_button" %>
+      </li>
+    <% else %>
+      <li><%= link_to "movies", {:controller=>"/pages", :action=>'movies'} %>
+      </li>
+    <% end %>
+  
+    <% if @title == 'profile' %>
+      <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'}, :class=>"active_button" %>
+      </li>
+    <% else %>
+      <li><%= link_to "profile", {:controller=>"user/account", :action=>'index'} %>
+      </li>
+    <% end %>
+  </ul><!-- .nav -->
+<div class="clearfloat"></div>
              

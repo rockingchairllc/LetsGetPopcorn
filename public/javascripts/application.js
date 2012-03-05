@@ -90,20 +90,20 @@ jQuery(document).ready(function() {
 	rules: {
 		
 	
-		     "user[login]":{
-						required:true,
-						email:true
-		     }
-		},
+		"user[login]":{
+			required:true,
+			email:true
+		}
+	},
 	messages: {
 		
-	
 		"user[login]":{
-						            required: "Please enter email address",
-						            email: "Please enter valid email address"	
-					 }
+            required: "Please enter email address",
+            email: "Please enter valid email address"	
 		}
-	});
+	}
+
+  });
 });
 
 
@@ -114,48 +114,48 @@ jQuery(document).ready(function() {
 	errorElement:'div',
 	rules: {
 		"contactus[name]":{
-					                  required: true,
-									  minlength:2,
-     					              maxlength:29
-			},
+            required: true,
+		    minlength:2,
+            maxlength:29
+		},
 		
 		"contactus[email]":{
-						required:true,
-						email:true
+			required:true,
+			email:true
 		},
 		"contactus[subject]":{
-						required:true
+			required:true
 		},
 		
 		"contactus[message]":{
-						required:true,
-							minlength:10,
-						maxlength:499
+			required:true,
+			minlength:10,
+			maxlength:499
 		}
-		},
+	},
 	messages: {
 		"contactus[name]":{
-							required: "Please enter name",
-							minlength:jQuery.format("Please enter at least 2 characters."),
-			                 maxlength:jQuery.format("do not enter more than 30 charecter")
-			},
+			required: "Please enter name",
+			minlength:jQuery.format("Please enter at least 2 characters."),
+            maxlength:jQuery.format("do not enter more than 30 charecter")
+		},
 		
 		"contactus[email]":{
-						            required: "Please enter email address",
-						            email: "Please enter valid email id"
-						
+            required: "Please enter email address",
+            email: "Please enter valid email id"				
 		},
 		"contactus[subject]":{
-						            required: "Please enter subject"
+			required: "Please enter subject"
 						
 		},
 		"contactus[message]":{
-						            required: "Please enter message",
-						            minlength:jQuery.format("Please enter at least 10 characters."),
-						            maxlength:jQuery.format("Can not exceed 500 characters")
+            required: "Please enter message",
+            minlength:jQuery.format("Please enter at least 10 characters."),
+            maxlength:jQuery.format("Can not exceed 500 characters")
 		}
-		}
-	});
+	}
+	
+  });
 });
 
 

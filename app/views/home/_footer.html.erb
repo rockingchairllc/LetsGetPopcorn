@@ -1,0 +1,21 @@
+<div>
+  <ul class="footer_links" style="float: right;position: static;">
+    <li><a href="/pages/about-us">About Us</a></li>
+    <li>|</li>
+  	<li><a href="/movies">Movies</a></li>
+    <li>|</li>
+    <li><a href="/user/account">Account</a></li>
+    <li>|</li>
+    <li><a href="/pages/faq">FAQ</a></li>
+    <li>|</li>
+    <li><a href="/contact">Contact</a></li>
+    <% if user_signed_in? %>
+      <li>|</li>
+      <li>
+        <form>
+          <%= link_to "Sign out", destroy_user_session_path %>
+        </form>
+      </li>
+    <% end %>
+  </ul><!-- .footer_links -->
+</div>
