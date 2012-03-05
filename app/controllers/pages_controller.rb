@@ -40,6 +40,10 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
     @mymovies = Showmovie.find(:all, :conditions => "user_id= '#{@user.id}' and showdate >= '#{current_date}'")
     @title = "matches"
     
+    # add new profileview entry
+    profile_view = Profileview.new(:user_id => "#{@user.id}", :viewer_id => "#{current_user.id}")
+    profile_view.save
+
   end
   
   #  For Static Pages 

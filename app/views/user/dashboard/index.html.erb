@@ -81,73 +81,34 @@
             
         <!-- Start Sidebar (aside) -->
         <div class="aside">
-            <ul>
-           		<h2>Ads</h2>
-                
+           	<h2>Ads</h2>    
                 <div class="advertise">
                 	<p align="center"><strong>Advertise Here</strong></p>
                 </div>
               
-              <h2>Proﬁle Views:</h2>
-              <li>
-                    <a href="javascript:void(0)">
-                        <img src="http://graph.facebook.com/502489573/picture?type=square" height="32" width="32" alt="" />
-                        <span class="user_name">Paul</span>,
-                        24, New York City <br />
-                        Movie: <span class="user_movie">Moneyball</span> 
-                    </a>
-                    <div class="clearfloat"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0)">
-                        <img src="http://graph.facebook.com/12412651/picture?type=square" height="32" width="32" alt="" />
-                        <span class="user_name">Jim</span>,
-                        21, New York City <br />
-                        Movie: <span class="user_movie">What's...</span> 
-                    </a>
-                    <div class="clearfloat"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0)">
-                        <img src="http://graph.facebook.com/12415713/picture?type=square" height="32" width="32" alt="" />
-                        <span class="user_name">Bob</span>,
-                        44, New York City <br />
-                        Movie: <span class="user_movie">Abduction</span> 
-                    </a>
-                    <div class="clearfloat"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0)">
-                        <img src="http://graph.facebook.com/502489573/picture?type=square" height="32" width="32" alt="" />
-                        <span class="user_name">Paul</span>,
-                        24, New York City <br />
-                        Movie: <span class="user_movie">Moneyball</span> 
-                    </a>
-                    <div class="clearfloat"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0)">
-                        <img src="http://graph.facebook.com/12412651/picture?type=square" height="32" width="32" alt="" />
-                        <span class="user_name">Jim</span>,
-                        21, New York City <br />
-                        Movie: <span class="user_movie">What's...</span> 
-                    </a>
-                    <div class="clearfloat"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0)">
-                        <img src="http://graph.facebook.com/12415713/picture?type=square" height="32" width="32" alt="" />
-                        <span class="user_name">Bob</span>,
-                        44, New York City <br />
-                        Movie: <span class="user_movie">Abduction</span> 
-                    </a>
-                    <div class="clearfloat"></div>
-                </li>
+            <h2>Proﬁle Views:</h2>
+                <ul class="profile_view_list">
+                    <% @viewers.each do |item| %>
+                        <li><div>
+            
+                            <% user = User.find_by_id(item.viewer_id) %>
               
-               
-            <!-- clear the float -->
-            <div class="clearfloat"></div>
-            </ul>
+                            <% if user.profile_photo.url(:thumb) == "/profile_photos/thumb/missing.png" %>
+                                <%= link_to image_tag("/images/photo.jpg", :border => 0), {:action => 'profile', :controller => '/pages', :id=>"#{user.id}"}, :class => 'photo' %>
+              
+                            <% else %>
+                                <%= link_to image_tag(user.profile_photo.url(:thumb), :class=>"photo"), {:controller=>"/pages", :action=>'profile', :id=>"#{user.id}"} %>
+                            <% end %>
+                
+                            <p><span class="user_name"><strong><%= link_to "#{user.username}", {:controller=>"/pages", :action=>'profile', :id=>"#{user.id}"} %></strong></span>
+                                <!-- Movie: <span class="user_movie">Moneyball</span> -->
+                            </p>            
+                        </div><div class="clearfloat"></div></li>
+                    <% end %>      
+                    <!-- clear the float -->
+                    <div class="clearfloat"></div>
+                </ul><!-- .profile_view_list -->
+       
         </div><!-- .aside -->
         <!-- END Sidebar (aside) -->
         
