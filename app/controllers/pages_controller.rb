@@ -95,14 +95,18 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
     
     def watchlist
       
-      
-      unless params[:zip].nil?
-        zip, miles = "#{params[:zip]}", "#{params[:miles]}"
+      if params[:search]
+        zip, miles = "#{params[:search][:zip]}", "#{params[:search][:miles]}"
       else
-        if user_signed_in?
-          zip, miles = "#{current_user.zip}", "5"
+        
+        unless params[:zip].nil?
+          zip, miles = "#{params[:zip]}", "#{params[:miles]}"
         else
-          zip, miles = "10026", "5"
+          if user_signed_in?
+            zip, miles = "#{current_user.zip}", "5"
+          else
+            zip, miles = "10026", "5"
+          end
         end
       end
 
@@ -112,9 +116,13 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&radius=#{miles}&radiusUnit=mi&rhDays=14"
       @doc = Nokogiri::HTML(open(url))
 
-      url3 = "http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:movieid]}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi" 
-      @doc3 = Nokogiri::HTML(open(url3))
-      @title = "movies"
+      if params[:search]
+          url3 = "http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:search][:movieid]}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi" 
+      else
+          url3 = "http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:movieid]}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi"
+      end    
+          @doc3 = Nokogiri::HTML(open(url3))
+          @title = "movies"
 
     end
 
