@@ -1252,7 +1252,7 @@ ul#position_container li div { cursor: move; }
 }
 
 .search_for input[type="submit"] {
-    width: 11% !important;
+    width: 11% !important; cursor: pointer;
 }
 
 #time{
@@ -1321,7 +1321,7 @@ color:#A80202
 .map_link{float:right; padding:4px; background:#A80202; color:#FFFFFF; font-size:11px; font-weight:bold; -moz-border-radius:3px;}
 .map_link:hover{ background-color:#FFFFFF}
 
-.c_box{width:200px; padding:5px; text-align:left; float:left; -moz-border-radius:5px; background-color:#fff; font-size:12px; font-weight:bold; top:108px; position:absolute; left:367px;}
+.c_box{width:200px; padding:5px; text-align:left; float:left; -moz-border-radius:5px; background-color:#fff; font-size:12px; font-weight:bold; top:112px; position:absolute; left:367px;}
 
 .post{padding:5px; text-align:center; background:#A80202; color:#FFFFFF; font-size:17px; -moz-border-radius:5px; margin-top:10px}
 
@@ -1330,5 +1330,7 @@ color:#A80202
 .cb{ width:100px; float:left; padding:0; line-height:20px; margin:5px 0 0 0}
 .showlist_Link{padding:10px; background:#A80202; color:#FFFFFF; font-size:11px; font-weight:bold; -moz-border-radius:5px; display:block; margin-top:10px; text-align:center}
 .showlist_Link:hover{ background-color:#FFFFFF; color:#000000}
+
+.btn_ok input[type="submit"] { width: 8% !important; cursor: pointer;}
 
 

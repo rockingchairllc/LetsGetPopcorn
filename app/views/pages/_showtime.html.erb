@@ -17,7 +17,9 @@
 
 </script>
 
-
+<% unless @doc3.css("theatre").attr('theatreid').nil? %>
+  <% theatreid = @doc3.css("theatre").attr('theatreid') %>
+<% end %>
 <% @doc3.css("theatre").css("theatreday").each do |theatre| %>
   
 
@@ -36,6 +38,8 @@
         <table width="100%" border="0" cellspacing="10" cellpadding="10">
         <tr>
               <td>
+              
+              <% form_for :showtime, :url=>{:controller=>"pages", :action => "addtime"} do |f| %>
       
                 <% movie.css("showtime").each do |showtime| %>
                   
@@ -43,7 +47,21 @@
                   <% movdt = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%Y%m%d%H%M%S") %>
 
                   <% movie_time = DateTime.strptime("#{showtime.attr("datetime")}", "%Y-%m-%dT%H:%M:%S").strftime("%I:%M%p") %>
-                  <div class="cb"><input type="checkbox"><%= movie_time %></div>
+                  <div class="cb">
+                  
+                  <%= check_box_tag "task_ids[]", datetime %> <%= movie_time %>
+                  
+                  
+                  <%= f.hidden_field :movieid, :value =>"#{params['movieid']}" %>
+                  <%= f.hidden_field :theatreid, :value =>"#{theatreid}" %>
+                  
+                  <% if user_signed_in? %>
+                  <%= f.hidden_field :user_id, :value =>"#{current_user.id}" %>
+                  <% end %>
+                  
+                  
+                  
+                  </div>
                   
                 <% end %>  
                 
@@ -54,7 +72,7 @@
                   </button>
                 
                 </div>
-                
+              <% end %>
               </td>
         </tr>
         </table> 

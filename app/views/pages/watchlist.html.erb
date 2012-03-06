@@ -2,8 +2,33 @@
 
   <div class="div_inner1">
   <% unless @doc3.css("theatre").css('text')[0].nil? %>
-	<div class="showtimeheading" ><strong>Theaters playing “<%= @doc3.css("theatre").css("movie").css('text')[0].text %>” near Buddies in
-movie to your watchlist so that Popcorn [10023]</strong></div> 
+  
+    <% form_for :search, :url=>{:action=>"watchlist", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %>  
+	    <div class="showtimeheading" >
+	    
+	    <% if params[:search] %>
+	    
+	       <%= f.hidden_field :movieid, :value => "#{params[:search][:movieid]}" %>
+          <%= f.hidden_field :miles, :value => "#{params[:search][:miles]}" %>
+    
+          <strong>Theaters playing “<%= @doc3.css("theatre").css("movie").css('text')[0].text %>” near Buddies in
+movie to your watchlist so that Popcorn <%= f.text_field :zip, :value => "#{params[:search]['zip']}", :class=>"zip", :size=>"15" %></strong>
+
+	    <% else %>
+	         <%= f.hidden_field :movieid, :value => "#{params[:movieid]}" %>
+            <%= f.hidden_field :miles, :value => "#{params[:miles]}" %>
+      
+	          <strong>Theaters playing “<%= @doc3.css("theatre").css("movie").css('text')[0].text %>” near Buddies in
+movie to your watchlist so that Popcorn <%= f.text_field :zip, :value => "#{params['zip']}", :class=>"zip", :size=>"15" %></strong>
+            
+        <% end %>
+        
+          <span class="btn_ok">
+              <%= submit_tag 'Ok', :class=>'button_to go_width' %>
+           </span>
+      </div> 
+      <% end %>
+    
    <% end %>
       <div>
 
@@ -13,7 +38,12 @@ movie to your watchlist so that Popcorn [10023]</strong></div>
    <%  @doc3.css("theatre").each do |theatre| %>
      
     <div class="t_list">
-	    <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showday', :miles=>"#{params[:miles]}", :zip=>"#{params[:zip]}", :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params['movieid']}" }, :remote => true %>
+    
+      <% if params[:search] %>
+	      <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showday', :miles=>"#{params[:search][:miles]}", :zip=>"#{params[:search][:zip]}", :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params[:search][:movieid]}" }, :remote => true %>
+	    <% else %>
+	      <%= link_to "#{theatre.attr('theatrename')}", {:controller=>"/pages", :action=>'showday', :miles=>"#{params[:miles]}", :zip=>"#{params[:zip]}", :theatreid=>"#{theatre.attr('theatreid')}", :movieid=>"#{params['movieid']}" }, :remote => true %>
+	    <% end %>
 		  <%= link_to "map it", {:controller=>"/pages", :action=>"map", :latitude=>"#{theatre.css('geocode').attr('latitude')}", :longitude=>"#{theatre.css('geocode').attr('longitude')}"}, :target => "_blank", :class=>"map_link" %>
     </div>
    <% end %>

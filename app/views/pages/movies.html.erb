@@ -7,10 +7,6 @@
 
 
        <div class="section">
-         <% if !flash.empty? %>
-           <div style="margin:10px 0 0 140px; width: 556px;"><%= alert %><%= notice %></div>
-         <% end %>
-         
          <div class="search_filternew">
              <% form_for :search, :url=>{:action=>"search", :controller=>"pages"}, :html=>{:method=>'get'} do |f| %> 
                  <fieldset>
@@ -34,6 +30,10 @@
                  </fieldset>
              <% end %>
          </div><!-- .search_filter -->
+         
+         <% if !flash.empty? %>
+            <div style="margin:10px 0 0 140px; width: 556px;" id="notice"><%= alert %><%= notice %></div>
+          <% end %>
          
          <div id="modal-box" style="display:none;"></div>
          

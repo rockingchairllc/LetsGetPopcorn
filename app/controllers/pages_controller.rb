@@ -99,14 +99,18 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
     
     def watchlist
       
-      
-      unless params[:zip].nil?
-        zip, miles = "#{params[:zip]}", "#{params[:miles]}"
+      if params[:search]
+        zip, miles = "#{params[:search][:zip]}", "#{params[:search][:miles]}"
       else
-        if user_signed_in?
-          zip, miles = "#{current_user.zip}", "5"
+        
+        unless params[:zip].nil?
+          zip, miles = "#{params[:zip]}", "#{params[:miles]}"
         else
-          zip, miles = "10026", "5"
+          if user_signed_in?
+            zip, miles = "#{current_user.zip}", "5"
+          else
+            zip, miles = "10026", "5"
+          end
         end
       end
 
@@ -116,36 +120,18 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
       url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&radius=#{miles}&radiusUnit=mi&rhDays=14"
       @doc = Nokogiri::HTML(open(url))
 
-      url3 = "http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:movieid]}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi" 
-      @doc3 = Nokogiri::HTML(open(url3))
-      @title = "movies"
-
-    end
-
-
-    def showtime
-      
-      unless params[:zip].empty?
-        zip, miles = "#{params[:zip]}", "#{params[:miles]}"
+      if params[:search]
+          url3 = "http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:search][:movieid]}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi" 
       else
-        if user_signed_in?
-          zip, miles = "#{current_user.zip}", "5"
-        else
-          zip, miles = "10026", "5"
-        end
-      end
-
-      time = Time.new 
-      current_date = time.strftime("%Y%m%d")
-
-      url = "http://api.tmsdatadirect.com/movies/MoviesInLocalTheatres?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&radius=#{miles}&radiusUnit=mi&rhDays=14"
-      @doc = Nokogiri::HTML(open(url))
-      
-      url3 = "http://api.tmsdatadirect.com/movies/TheatreShowtimes?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&theatreId=#{params[:theatreid]}&date=#{current_date}&numDays=7"
-      @doc3 = Nokogiri::HTML(open(url3))
-      @title = "movies"
+          url3 = "http://api.tmsdatadirect.com/movies/TheatresAndShowtimesByMovie?rType=xml&srvcVersion=1.0&aid=rocking-4q7&key=K4w3s3D93NFg&movieId=#{params[:movieid]}&postalCode=#{zip}&country=USA&date=#{current_date}&numDays=7&numTheatres=&radius=#{miles}&radiusUnit=mi"
+      end    
+          @doc3 = Nokogiri::HTML(open(url3))
+          @title = "movies"
 
     end
+
+
+   
     
     
     
@@ -163,10 +149,18 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
               unless mymovie >= 2
 
                   showmovie = Showmovie.create(:movieid=> params[:showtime][:movieid], :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
-                  showtime = Showtime.create(:movieid=> params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
+                  
+                  @num = params[:task_ids]
+                  @observations = Array(@num)
+
+                  @observations.each do |index|
+                       showtimes = Showtime.create(:movieid => params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => index, :user_id => params[:showtime][:user_id]) 
+                  end
+                  
+                  
 
                   flash[:notice] = "Movie added to your watchlist."
-                  redirect_to("/movies/showtime?miles=#{params[:showtime][:miles]}&movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}&zip=#{params[:showtime][:zip]}")
+                  redirect_to("/movies")
 
               else
 
@@ -182,14 +176,20 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
                         
                       showmovie = Showmovie.update(c.id, :movieid => c.movieid, :user_id => c.user_id, :showdate => myshowtime)
                     end
-                    showtime = Showtime.create(:movieid => params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => params[:showtime][:showdate], :user_id => params[:showtime][:user_id])
+                    
+                    @num = params[:task_ids]
+                    @observations = Array(@num)
+
+                    @observations.each do |index|
+                         showtimes = Showtime.create(:movieid => params[:showtime][:movieid], :theatreid => params[:showtime][:theatreid],  :showdate => index, :user_id => params[:showtime][:user_id]) 
+                    end
 
                     flash[:notice] = "Movie added to your watchlist."
-                    redirect_to("/movies/showtime?miles=#{params[:showtime][:miles]}&movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}&zip=#{params[:showtime][:zip]}")
+                    redirect_to("/movies")
                     
                   else
                     flash[:notice] = "Love the enthusiasm! But, unfortunately, we can only handle 2 movies on your watchlist right now." 
-                    redirect_to("/movies/showtime?miles=#{params[:showtime][:miles]}&movieid=#{params[:showtime][:movieid]}&theatreid=#{params[:showtime][:theatreid]}&zip=#{params[:showtime][:zip]}")
+                    redirect_to("/movies")
                     
                  end
               end
@@ -268,6 +268,8 @@ before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contac
               end
 
           end
+          
+         
 
           time = Time.new 
           current_date = time.strftime("%Y%m%d")
