@@ -1,10 +1,9 @@
 # Mysql
 #   gem install mysql
 development:
-  adapter: mysql    
-  database: movies
-  username: root
-  password: root
+    adapter: sqlite3
+    database: db/development.sqlite3
+    timeout: 5000
  # socket: /var/run/mysqld/mysqld.sock
 
   
