@@ -5,7 +5,7 @@ require 'open-uri'
 class PagesController < ApplicationController
   
 before_filter :authenticate_user!, :except => [:movies, :matches, :show, :contact, :imdb, :watchlist, :showtime, :search, :thankyou, :moreinfo, :thanks, :showday, :showtime, :map, :add_to_watchlist]
-  
+  s
   def movies
      time = Time.new 
       current_date = time.strftime("%Y%m%d")
