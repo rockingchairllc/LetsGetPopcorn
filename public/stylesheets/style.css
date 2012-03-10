@@ -172,15 +172,15 @@ body {
 	
 }
 .wrapper {
-	width: 960px;
+	width1: 960px;
 	margin: 0 auto 20px auto;
 	padding: -20px 0 20px 0;
 	position: relative;
 	background: #d9e5fb;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	min-height:572px;
+	-webkit1-border-radius: 10px;
+	-moz1-border-radius: 10px;
+	border1-radius: 10px;
+	min1-height:572px;
 }
 
 /****************************************************************************************************************
@@ -191,7 +191,7 @@ Login Page
 	height: 410px;
 	margin:60px 0 0 0;
 	background-color: #d9e5fb;
-	background-image: url(/images/login_popcorn.png);
+	background-image1: url(/images/login_popcorn.png);
 	background-repeat: no-repeat;
 	background-position: 20px 20px;
 }

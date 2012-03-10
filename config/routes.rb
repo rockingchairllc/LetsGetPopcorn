@@ -2,6 +2,8 @@ Moviewithme::Application.routes.draw do |map|
   
   
 
+  resources :invite_codes
+
   devise_for :admins, :path_names => { :sign_in =>"login", :sign_out =>"logout"}
 
   resources :authentications

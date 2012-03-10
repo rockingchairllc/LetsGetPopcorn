@@ -7,48 +7,48 @@
   <link rel="shortcut icon" href="images/favicon.png" />
   <%= javascript_include_tag 'jquery-1.6.2.min', 'modal/jquery-ui.min', 'jquery.validate.min', 'application', 'prototype', 'modalbox/effects.js', 'jquery.rails', 'jquery.jcarousel.min', 'toggle', 'modalbox/builder', 'modalbox/modalbox', 'jquery.lightbox-0.5', 'SpryTabbedPanels' %>
   <script>
-  function selectTime(imgid,cnt)
-  {
-    
-     var sel = document.getElementById("showtime_seltime").value;
-  	 if(sel !="")
-  	 {
-  		  var selDiv = document.getElementById(sel);
-  		  selDiv.setAttribute("style", "");
-  		  selDiv.setAttribute("style", "border-color: #BCD2E5;");
-  	 }
-  	var currDivElement = document.getElementById("mt_"+cnt);currDivElement.setAttribute("style", "");
-  	currDivElement.setAttribute("style", "color: #fff; background: #A80202;");
-  	document.getElementById("showtime_seltime").value = "mt_"+cnt;
-  	document.getElementById('showtime_showdate').value = imgid;
- }
-  
-  jQuery(function () {
-
-              //Your logic here to set it true or false;
-              //On false the dialog will not be displayed
-              var yourCondition = true;
-
-              if (yourCondition) {
-                  jQuery('#dialog').dialog({
-                      modal: 'true',
-                      title: ''
-                  });
-              }
-
-          });
-  
-    jQuery(document).ready(function() {
-          jQuery('#mycarousel').jcarousel();
-    });
-    
-      jQuery(function() {
-         jQuery('#gallery a').lightBox();
-      }); 
-          
+ //  function selectTime(imgid,cnt)
+ //  {
+ //    
+ //     var sel = document.getElementById("showtime_seltime").value;
+ //  	 if(sel !="")
+ //  	 {
+ //  		  var selDiv = document.getElementById(sel);
+ //  		  selDiv.setAttribute("style", "");
+ //  		  selDiv.setAttribute("style", "border-color: #BCD2E5;");
+ //  	 }
+ //  	var currDivElement = document.getElementById("mt_"+cnt);currDivElement.setAttribute("style", "");
+ //  	currDivElement.setAttribute("style", "color: #fff; background: #A80202;");
+ //  	document.getElementById("showtime_seltime").value = "mt_"+cnt;
+ //  	document.getElementById('showtime_showdate').value = imgid;
+ // }
+ //  
+ //  jQuery(function () {
+ // 
+ //              //Your logic here to set it true or false;
+ //              //On false the dialog will not be displayed
+ //              var yourCondition = true;
+ // 
+ //              if (yourCondition) {
+ //                  jQuery('#dialog').dialog({
+ //                      modal: 'true',
+ //                      title: ''
+ //                  });
+ //              }
+ // 
+ //          });
+ //  
+ //    jQuery(document).ready(function() {
+ //          jQuery('#mycarousel').jcarousel();
+ //    });
+ //    
+ //      jQuery(function() {
+ //         jQuery('#gallery a').lightBox();
+ //      }); 
+ //          
   </script>
 </head>
-  <body class="account">
+  <body class="account1">
   
   
   
@@ -143,7 +143,7 @@
         <!-- END modal overlay -->
     
 
-	 <div class="wrapper">
+	 <div class="wrapper1">
 	 	
           
           <%= yield %>
